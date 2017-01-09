@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "880699045378",
+    "firebase_url": "https://hairn-18475.firebaseio.com",
+    "project_id": "hairn-18475",
+    "storage_bucket": "hairn-18475.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880699045378:android:cfe1660980128bba",
+        "android_client_info": {
+          "package_name": "ru.akov.hairn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880699045378-ue13aeetjvq9kqfgqlog1n5jgseqo11q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.akov.hairn",
+            "certificate_hash": "F32AB3EE77E039CC65D249FB31F53D6A9C74DEC4"
+          }
+        },
+        {
+          "client_id": "880699045378-633ftk1lfu1l287llcacejdekalu0llo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcncxAn5M37GV4i0JlCl13D2zftJExzzI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880699045378-633ftk1lfu1l287llcacejdekalu0llo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
