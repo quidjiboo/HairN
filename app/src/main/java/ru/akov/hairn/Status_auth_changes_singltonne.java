@@ -50,6 +50,8 @@ import com.google.firebase.database.ValueEventListener;
                             .setTosUrl("https://www.google.com/policies/terms/")
                             .build(),
                     100);}
+        else {   Log.v("AKOV", "ЗАЛОГИНИН ПОЛЬЗОВАТЕЛЬ " + auth.getCurrentUser()) ;}
+
 
     }
 
@@ -62,9 +64,11 @@ import com.google.firebase.database.ValueEventListener;
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            Log.v("AKOV", "РАЗЛОГИНИЛСЯ!!! ");
                             Snackbar.make(view,"разлогинились", Snackbar.LENGTH_LONG).show();
 
                         } else {
+                            Log.v("AKOV", "ЧТО ТО НЕ РАЗЛОГИНИВАЕТСЯ ");
 
                         }
                     }

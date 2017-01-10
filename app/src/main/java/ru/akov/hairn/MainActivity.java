@@ -17,4 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
         Status_auth_changes_singltonne.getInstance().login_action(app.getauth(),this);
     }
+    public void login_out(View view) {
+
+        Status_auth_changes_singltonne.getInstance().logout_action(this,view);
+    }
 }
