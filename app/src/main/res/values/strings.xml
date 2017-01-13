@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HairN</string>
+    <string name="title_activity_test_choser">test_choser</string>
 </resources>
