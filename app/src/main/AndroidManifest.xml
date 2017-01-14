@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Test_choser"
+            android:name=".Test_chooser"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

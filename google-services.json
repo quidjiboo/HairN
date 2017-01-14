@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "880699045378-39qaun2ge4u1ifrauk177r0lq9nhgk2d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.akov.hairn",
+            "certificate_hash": "DA66E342D63AF36997AD699E4CD4EB36519A7AD7"
+          }
+        },
+        {
           "client_id": "880699045378-ue13aeetjvq9kqfgqlog1n5jgseqo11q.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
