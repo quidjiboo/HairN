@@ -8,6 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import ru.akov.hairn.Data_tipes.Clock;
 import ru.akov.hairn.Data_tipes.Shops;
 
 /**
@@ -65,15 +66,20 @@ public   class Shop_creator {
                         if(!dataSnapshot.exists()) {
 
 
-
-
-
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:00").setValue("free");
+                            Clock mcm = new Clock("8:00","free");
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mcm = new Clock("8:30","free");
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mcm = new Clock("9:00","free");
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mcm = new Clock("9:30","free");
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                           /* mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:00").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:30").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("9:00").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("9:00").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("9:30").setValue("free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("10:00").setValue("free");
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("10:00").setValue("free");*/
 
                                  }
                         // ...
