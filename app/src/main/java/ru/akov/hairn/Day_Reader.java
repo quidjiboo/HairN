@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import ru.akov.hairn.Data_tipes.Clock;
+
 /**
  * Created by User on 16.01.2017.
  */
@@ -32,15 +34,17 @@ public class Day_Reader {
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
 
+                        ArrayList<Date> notbuzy_dayz = new ArrayList();
                         ArrayList<Date> buzy_dayz = new ArrayList();
 
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
 
-
+                            Boolean freeday=false;
                             Date date = null;
                             System.out.println(postSnapshot.getKey().toString());
                             String stringDateFormat = "yyyyMMdd";
                             SimpleDateFormat format = new SimpleDateFormat(stringDateFormat, Locale.US);
+
 
                             try {
                                 date = format.parse(postSnapshot.getKey().toString());
@@ -49,22 +53,30 @@ public class Day_Reader {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
-                       /*     //тут часы выделяем
+                           //тут часы выделяем
                             for (DataSnapshot postpostSnapshot: postSnapshot.getChildren()) {
+                                ;
+                                Clock clocks = new Clock();
+                                clocks =   postpostSnapshot.getValue(Clock.class);
+                                if (clocks.getavaluble().contains("free"))
 
+                                    freeday=true;
                                 Log.v("AKOV", "Часы в дне" + postpostSnapshot.getValue().toString());
 
-                            }*/
+                            }
 
-                            //  Buzy_day X_day = new  Buzy_day(date, (int) postSnapshot.getChildrenCount());
-                                    buzy_dayz.add(date);
+
+                            if(postSnapshot.getChildrenCount()==0)  buzy_dayz.add(date);
+                            if(!freeday)  buzy_dayz.add(date);
+                            else
+                            notbuzy_dayz.add(date);
                             Log.v("AKOV", "добавлена дата" + date.toString());
                             // TODO: ТУТ СОЗДАВАТЬ КАЛЕНДАРИК ЧЕРЕЗ колбэк.. и по всем элементам массива создавать СЛУШАТЕЛИ . МЕНЕДЖЕР СЛУШАТЕЛЕЙ СДЕЛАТЬ.. в бужщем
 
 
                         }
                         // обновление календаричка при изменении таблицы с числами и данными в ней
-                        myCallback.izmenit_calendar(buzy_dayz);
+                        myCallback.izmenit_calendar(notbuzy_dayz,buzy_dayz);
 
 
                         /// сохдёте окно календарика!
@@ -78,39 +90,5 @@ public class Day_Reader {
                     }
                 });
     }
-   /* public void List_freetimes(final DatabaseReference mDatabase, final FirebaseUser user, String mday) {
-        mDatabase.child("shop").child("test_barber").child("workdays").child(mday).addValueEventListener(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-
-                        ArrayList times = new ArrayList();
-
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-
-
-                            String date = null;
-
-
-                                times.add(postSnapshot.getValue().toString());
-
-                                System.out.println(date.toString());
-
-
-
-
-                        }
-
-                        myCallback.show_clocks(times);
-
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w("уккщк", "getUser:onCancelled", databaseError.toException());
-                    }
-                });
-    }*/
 }

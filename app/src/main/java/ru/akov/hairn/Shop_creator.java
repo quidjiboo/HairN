@@ -67,13 +67,13 @@ public   class Shop_creator {
 
 
                             Clock mcm = new Clock("8:00","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170121").push().setValue(mcm);
                             mcm = new Clock("8:30","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170121").push().setValue(mcm);
                             mcm = new Clock("9:00","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);
                             mcm = new Clock("9:30","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").push().setValue(mcm);
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);
                            /* mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:00").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:30").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("9:00").setValue("free");

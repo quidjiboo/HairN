@@ -9,6 +9,7 @@ import java.util.Date;
  */
 public interface MyCallback {
 
-       void izmenit_calendar(ArrayList<Date> date);
+       void izmenit_calendar(ArrayList<Date> date,ArrayList<Date> buzydate);
+       void vibral_datu(String date);
     /*   void show_clocks(ArrayList date);*/
 }
