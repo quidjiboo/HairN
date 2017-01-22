@@ -59,6 +59,10 @@ Shop_creator creator = new Shop_creator();
             // not signed in
         }
     }
+    public void  all_days(View view) {
+        Shop_creator creator = new Shop_creator();
+        creator.get_days_ofmouth1();
+    }
 
     @Override
     protected void onResume() {

@@ -8,6 +8,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import ru.akov.hairn.Data_tipes.Clock;
 import ru.akov.hairn.Data_tipes.Shops;
 
@@ -91,5 +94,51 @@ public   class Shop_creator {
                         Log.w(TAG, "getUser:onCancelled", databaseError.toException());
                     }
                 });
+    }
+    public  static ArrayList<String> get_days_ofmouth(){
+        ArrayList<String> days = new ArrayList();
+        Calendar cal = Calendar.getInstance();
+        int today_month;
+        int today_year;
+        int day_in_month;
+        today_year = cal.get(Calendar.YEAR);
+        today_month = cal.get(Calendar.MONTH);
+
+        day_in_month=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        for (int i = 0; i <= day_in_month; i++){
+            days.add(Integer.toString(today_year)+Integer.toString(today_month)+Integer.toString(i));
+            Log.w("AKOV",Integer.toString(today_year)+Integer.toString(today_month)+Integer.toString(i) );
+        }
+        return days;
+    }
+    public  static void get_days_ofmouth1(){
+        ArrayList<String> days = new ArrayList();
+        Calendar cal = Calendar.getInstance();
+        int today_month;
+        int today_year;
+        int day_in_month;
+        today_year = cal.get(Calendar.YEAR);
+        today_month = cal.get(Calendar.MONTH);
+
+
+        day_in_month=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        for (int i = 1; i <= day_in_month; i++){
+            String month = String.format("%02d", today_month+1);
+            String day = String.format("%02d",i);
+            days.add(Integer.toString(today_year)+month+day);
+            Log.w("AKOV",Integer.toString(today_year)+month+day );
+
+        }
+        cal.set(Calendar.MONTH, today_month+1);
+        int next_month = cal.get(Calendar.MONTH);
+        int day_in_next_month=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        for (int i = 1; i <= day_in_next_month; i++){
+            String next_month1 = String.format("%02d", next_month+1);
+            String day = String.format("%02d",i);
+             days.add(Integer.toString(today_year)+next_month1+day);
+            Log.w("AKOV",Integer.toString(today_year)+next_month1+day );
+        }
+        cal.clear();
     }
 }
