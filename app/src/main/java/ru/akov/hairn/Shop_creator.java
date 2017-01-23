@@ -8,11 +8,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import ru.akov.hairn.Data_tipes.Clock;
+import ru.akov.hairn.Data_tipes.Dennedeli;
 import ru.akov.hairn.Data_tipes.Shops;
+
 
 /**
  * Created by User on 13.01.2017.
@@ -67,16 +70,29 @@ public   class Shop_creator {
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         if(!dataSnapshot.exists()) {
+                            ArrayList<Dennedeli> mydays = new ArrayList();
+                            mydays=get_days_ofmouth1();
+                            int z;
+                            z=mydays.size();
+                            for (int i = 0; i < z; i++){
+                                if(mydays.get(i).getDayinweek()==1||mydays.get(i).getDayinweek()==7){
+                                    Clock mcm = new Clock("8:00","VOHODNOI");
+                                    mDatabase.child("shop").child("test_barber").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm);
+                                }
+                                else {
+                                    Clock mcm = new Clock("8:00", "free");
+                                    mDatabase.child("shop").child("test_barber").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm);
+                                }
+                            }
 
-
-                            Clock mcm = new Clock("8:00","free");
+                         /*   Clock mcm = new Clock("8:00","free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170121").push().setValue(mcm);
                             mcm = new Clock("8:30","free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170121").push().setValue(mcm);
                             mcm = new Clock("9:00","free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);
                             mcm = new Clock("9:30","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);
+                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);*/
                            /* mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:00").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:30").setValue("free");
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("9:00").setValue("free");
@@ -95,50 +111,61 @@ public   class Shop_creator {
                     }
                 });
     }
-    public  static ArrayList<String> get_days_ofmouth(){
-        ArrayList<String> days = new ArrayList();
-        Calendar cal = Calendar.getInstance();
+
+    public  static  ArrayList<Dennedeli> get_days_ofmouth1(){
+
+        ArrayList<Dennedeli> days = new ArrayList();
+        Calendar mycal = Calendar.getInstance();
         int today_month;
         int today_year;
         int day_in_month;
-        today_year = cal.get(Calendar.YEAR);
-        today_month = cal.get(Calendar.MONTH);
-
-        day_in_month=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        for (int i = 0; i <= day_in_month; i++){
-            days.add(Integer.toString(today_year)+Integer.toString(today_month)+Integer.toString(i));
-            Log.w("AKOV",Integer.toString(today_year)+Integer.toString(today_month)+Integer.toString(i) );
-        }
-        return days;
-    }
-    public  static void get_days_ofmouth1(){
-        ArrayList<String> days = new ArrayList();
-        Calendar cal = Calendar.getInstance();
-        int today_month;
-        int today_year;
-        int day_in_month;
-        today_year = cal.get(Calendar.YEAR);
-        today_month = cal.get(Calendar.MONTH);
+        today_year = mycal.get(Calendar.YEAR);
+        today_month = mycal.get(Calendar.MONTH);
 
 
-        day_in_month=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        day_in_month=mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
 
         for (int i = 1; i <= day_in_month; i++){
+            Calendar testcal = Calendar.getInstance();
+
             String month = String.format("%02d", today_month+1);
             String day = String.format("%02d",i);
-            days.add(Integer.toString(today_year)+month+day);
-            Log.w("AKOV",Integer.toString(today_year)+month+day );
 
+            testcal.set(Calendar.DAY_OF_MONTH,i);
+            int dayofweek = testcal.get(Calendar.DAY_OF_WEEK) ;
+            Log.w("AKOV",Integer.toString(today_year)+month+day+ "день недели " + dayofweek);
+            Dennedeli dm = new Dennedeli(Integer.toString(today_year)+month+day, dayofweek);
+           // days.add(Integer.toString(today_year)+month+day);
+            days.add(dm);
         }
-        cal.set(Calendar.MONTH, today_month+1);
-        int next_month = cal.get(Calendar.MONTH);
-        int day_in_next_month=cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+// сдедующий месяц!!!
+        mycal.set(Calendar.MONTH, today_month+1);
+        Log.w("AKOV","месяц" + mycal.get(Calendar.MONTH) + mycal.get(Calendar.DAY_OF_MONTH));
+        int next_month = mycal.get(Calendar.MONTH);
+        int day_in_next_month=mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int i = 1; i <= day_in_next_month; i++){
+            Calendar testcal = Calendar.getInstance();
+            testcal.set(Calendar.MONTH, today_month+1);
             String next_month1 = String.format("%02d", next_month+1);
             String day = String.format("%02d",i);
-             days.add(Integer.toString(today_year)+next_month1+day);
-            Log.w("AKOV",Integer.toString(today_year)+next_month1+day );
+
+            testcal.set(Calendar.DAY_OF_MONTH,i);
+            int dayofweek = testcal.get(Calendar.DAY_OF_WEEK) ;
+
+            Log.w("AKOV",Integer.toString(today_year)+next_month1+day + "день недели В следующем месяце " + dayofweek);
+
+            Dennedeli dm = new Dennedeli(Integer.toString(today_year)+next_month1+day, dayofweek);
+            //  days.add(Integer.toString(today_year)+next_month1+day);
+            days.add(dm);
         }
-        cal.clear();
+
+        mycal.clear();
+
+     /* Calendar mycal1 = Calendar.getInstance();
+      Log.w("AKOV","месяц    =" + mycal.get(Calendar.MONTH)  + mycal.get(Calendar.DAY_OF_MONTH));
+        Log.w("AKOV","месяц11   =" + mycal1.get(Calendar.MONTH)+1  + mycal1.get(Calendar.DAY_OF_MONTH));*/
+        return days;
     }
+
 }

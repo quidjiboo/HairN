@@ -4,7 +4,10 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.roomorama.caldroid.CaldroidFragment;
 import com.roomorama.caldroid.CaldroidListener;
 
@@ -25,11 +28,11 @@ public class Calendarik_data_pick {
             @Override
             public void onSelectDate(Date date, View view) {
 
-                if (date.before(Calendar.getInstance().getTime())){
+               /* if (date.before(Calendar.getInstance().getTime())){
 
                     Snackbar.make(view,"Выбеи другую дату", Snackbar.LENGTH_LONG).show();
                 }
-                else {
+                else {*/
 
                     final  String month = (String) android.text.format.DateFormat.format("MM", date); //06
                     final String year = (String) android.text.format.DateFormat.format("yyyy", date); //2013
@@ -37,13 +40,12 @@ public class Calendarik_data_pick {
                     final String zapis = year + month + day;
                     myCallback.vibral_datu(zapis);
                 }
-            }
+          //  }
         };
 
 
         return listener;
     }
-
 
 
 }

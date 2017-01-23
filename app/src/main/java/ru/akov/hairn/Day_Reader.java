@@ -53,9 +53,10 @@ public class Day_Reader {
                             } catch (ParseException e) {
                                 e.printStackTrace();
                             }
+
                            //тут часы выделяем
                             for (DataSnapshot postpostSnapshot: postSnapshot.getChildren()) {
-                                ;
+
                                 Clock clocks = new Clock();
                                 clocks =   postpostSnapshot.getValue(Clock.class);
                                 if (clocks.getavaluble().contains("free"))
@@ -90,5 +91,6 @@ public class Day_Reader {
                     }
                 });
     }
+
 
 }
