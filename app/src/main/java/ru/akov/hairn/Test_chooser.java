@@ -38,6 +38,8 @@ import ru.akov.hairn.Data_tipes.Clock;
 import static ru.akov.hairn.R.style.AppTheme;
 
 public class Test_chooser extends AppCompatActivity   implements MyCallback {
+    private String lastpickdate;
+    private String lastpickdatecolor;
     Calendar  cal;
     private Day_Reader product_touch_listenr;
     private My_app app;
@@ -64,6 +66,7 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         });
 
         caldroidFragment = new CaldroidFragment();
+
         Bundle args = new Bundle();
         args.putInt(CaldroidFragment.THEME_RESOURCE,R.style.MyTheme);
        // com.caldroid.R.style.CaldroidMy
@@ -96,34 +99,33 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
     @Override
     public void izmenit_calendar(ArrayList<Date> dates,ArrayList<Date> buzydates) {
-     //   caldroidFragment.clearDisableDates();
-       caldroidFragment.getBackgroundForDateTimeMap().clear();
-        //(R.color.my)
-    //    ColorDrawable white = new ColorDrawable(getResources().getColor(R.color.my));
+
+      caldroidFragment.getBackgroundForDateTimeMap().clear();
+
         ColorDrawable white = new ColorDrawable(Color.WHITE);
         ColorDrawable gray = new ColorDrawable(Color.GRAY);
-      //  caldroidFragment.setDisableDates(buzydates);
+
         for (Date date1 : buzydates) {
 
-         //   if(date1.after(Calendar.getInstance().getTime()) )
+
             caldroidFragment.setBackgroundDrawableForDate(gray,date1);
 
         }
 
         for (Date date1 : dates) {
-       //     if(date1.after(Calendar.getInstance().getTime()) )
+
           caldroidFragment.setBackgroundDrawableForDate(white,date1);
 
         }
 
-        caldroidFragment.refreshView();
+       caldroidFragment.refreshView();
 
     }
 
-    @Override
-    public void vibral_datu(String date) {
 
-        test_data(date);
+    public void vibral_datu_vivod(String date) {
+
+
      FirebaseListAdapter  mAdapter = new FirebaseListAdapter<Clock>(this, Clock.class, android.R.layout.simple_list_item_1, app.getmDatabase().getRef().child("shop").child("test_barber").child("workdays").child(date)) {
             @Override
             protected void populateView(View view, Clock clocks, int position) {
@@ -143,12 +145,30 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
     }
 
+    public void vibral_datu(String date) {
+
+        test_data(date);
+
+
+    }
+    public void net_dannih() {
+        String[] values = new String[] { "НЕТ ДАННЫХ" };
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_list_item_1, values);
+        messagesView.setAdapter(adapter);
+    }
     public void test_data(String date) {
+
         app.getmDatabase().child("shop").child("test_barber").child("workdays").child(date).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (!dataSnapshot.exists()){
+                    net_dannih();
                     Log.w("уккщк", "НЕТ ДАННЫХ!");
+                }
+                else{
+                    Log.w("уккщк", dataSnapshot.getKey().toString());
+                 vibral_datu_vivod(dataSnapshot.getKey().toString());
                 }
             }
 
