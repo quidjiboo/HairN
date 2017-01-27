@@ -1,5 +1,8 @@
 package ru.akov.hairn;
 
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,10 +13,12 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +43,8 @@ import ru.akov.hairn.Data_tipes.Clock;
 import static ru.akov.hairn.R.style.AppTheme;
 
 public class Test_chooser extends AppCompatActivity   implements MyCallback {
+    private ProgressDialog progressDialog = null;
+
     private String lastpickdate;
     private String lastpickdatecolor;
     Calendar  cal;
@@ -94,6 +101,7 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
         messagesView  = (ListView) findViewById(R.id.clocks);
 
+        showProgress("загрузка");
 
     }
 
@@ -119,7 +127,8 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         }
 
        caldroidFragment.refreshView();
-
+   //     progressBar.setVisibility(ProgressBar.INVISIBLE);
+        hideProgress();
     }
 
 
@@ -177,6 +186,59 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
             }
         });}
+
+
+
+
+
+
+    private void showProgress(String text) {
+
+        if (progressDialog == null) {
+            try {
+                progressDialog = ProgressDialog.show(this, "", text);
+              //  progressDialog.setCancelable(false);
+                progressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+
+                    }
+                });
+                progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                    @Override
+                    public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                        if(keyCode == KeyEvent.KEYCODE_BACK)
+                        {
+                            back_to_main();
+                            // ваш код
+                        }
+                        return true;
+
+                    }
+                });
+
+            } catch (Exception e) {
+
+            }
+
+        }
+
+    }
+    public void hideProgress() {
+
+        if (progressDialog != null) {
+            progressDialog.dismiss();
+            progressDialog = null;
+        }
+    }
+    public void back_to_main() {
+
+        Intent intent = new Intent(Test_chooser.this,MainActivity.class);
+
+        startActivity(intent);
+
+        this.finish();
+    }
 
 }
 
