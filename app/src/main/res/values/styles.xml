@@ -24,16 +24,19 @@
         <item name="styleCaldroidSquareCell">@style/CaldroidDefault1SquareCell</item>
 </style>
 
+    <style name="MyListStyle">
+        <item name="android:choiceMode">singleChoice</item>
+    </style>
+
 
 <style name="CaldroidDefault1NormalCell" parent="CaldroidDefaultCell">
 <item name="android:textColor">@color/caldroid_black</item>
-<item name="android:background">@color/caldroid_darker_gray</item>
+<item name="android:background">@drawable/cell_bg_my</item>
 </style>
 
 <style name="CaldroidDefault1SquareCell" parent="CaldroidDefaultCell">
-
 <item name="android:textColor">@color/caldroid_black</item>
-<item name="android:background">@color/caldroid_darker_gray</item>
+<item name="android:background">@drawable/cell_bg_my</item>
 </style>
 
     />

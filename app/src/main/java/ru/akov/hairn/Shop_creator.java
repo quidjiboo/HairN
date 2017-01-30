@@ -82,6 +82,8 @@ public   class Shop_creator {
                                 else {
                                     Clock mcm = new Clock("8:00", "free");
                                     mDatabase.child("shop").child("test_barber").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm);
+                                    Clock mcm1 = new Clock("8:30", "free");
+                                    mDatabase.child("shop").child("test_barber").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm1);
                                 }
                             }
 
@@ -140,18 +142,19 @@ public   class Shop_creator {
         }
 
 // сдедующий месяц!!!
-        mycal.set(Calendar.MONTH, today_month+1);
-        Log.w("AKOV","месяц" + mycal.get(Calendar.MONTH) + mycal.get(Calendar.DAY_OF_MONTH));
-        int next_month = mycal.get(Calendar.MONTH);
-        int day_in_next_month=mycal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        Calendar mycal1 = Calendar.getInstance();
+        mycal1.set(Calendar.MONTH, today_month+1);
+        Log.w("AKOV","месяц" + mycal1.get(Calendar.MONTH) + mycal.get(Calendar.DAY_OF_MONTH));
+        int next_month = mycal1.get(Calendar.MONTH);
+        int day_in_next_month=mycal1.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int i = 1; i <= day_in_next_month; i++){
-            Calendar testcal = Calendar.getInstance();
-            testcal.set(Calendar.MONTH, today_month+1);
-            String next_month1 = String.format("%02d", next_month+1);
+            Calendar testcal1 = Calendar.getInstance();
+            testcal1.set(Calendar.MONTH, today_month+1);
+            String next_month1 = String.format("%02d", next_month);
             String day = String.format("%02d",i);
 
-            testcal.set(Calendar.DAY_OF_MONTH,i);
-            int dayofweek = testcal.get(Calendar.DAY_OF_WEEK) ;
+            testcal1.set(Calendar.DAY_OF_MONTH,i);
+            int dayofweek = testcal1.get(Calendar.DAY_OF_WEEK) ;
 
             Log.w("AKOV",Integer.toString(today_year)+next_month1+day + "день недели В следующем месяце " + dayofweek);
 
@@ -159,8 +162,8 @@ public   class Shop_creator {
             //  days.add(Integer.toString(today_year)+next_month1+day);
             days.add(dm);
         }
-
         mycal.clear();
+        mycal1.clear();
 
      /* Calendar mycal1 = Calendar.getInstance();
       Log.w("AKOV","месяц    =" + mycal.get(Calendar.MONTH)  + mycal.get(Calendar.DAY_OF_MONTH));

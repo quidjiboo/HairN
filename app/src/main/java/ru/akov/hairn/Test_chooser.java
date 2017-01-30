@@ -3,13 +3,17 @@ package ru.akov.hairn;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -44,7 +48,9 @@ import static ru.akov.hairn.R.style.AppTheme;
 
 public class Test_chooser extends AppCompatActivity   implements MyCallback {
     private ProgressDialog progressDialog = null;
-
+    private  ArrayList<Date> mybuzydates=null;
+    private ArrayList<Date> mydates=null;
+    private Date datet =null;
     private String lastpickdate;
     private String lastpickdatecolor;
     Calendar  cal;
@@ -57,6 +63,7 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
     private ListView messagesView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       //  wight_gray = ContextCompat.getDrawable(this, R.drawable.cell_bg_my_freeday);
         super.onCreate(savedInstanceState);
         app = ((My_app) getApplicationContext());
         setContentView(R.layout.activity_test_choser);
@@ -101,32 +108,45 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
         messagesView  = (ListView) findViewById(R.id.clocks);
 
+
+
+
         showProgress("загрузка");
+
 
     }
 
     @Override
     public void izmenit_calendar(ArrayList<Date> dates,ArrayList<Date> buzydates) {
+       /* if(mydates!=null&&mybuzydates!=null){
+        mybuzydates.clear();
+        mydates.clear();}*/
+
+        mybuzydates=buzydates;
+        mydates=dates;
 
       caldroidFragment.getBackgroundForDateTimeMap().clear();
 
         ColorDrawable white = new ColorDrawable(Color.WHITE);
+
         ColorDrawable gray = new ColorDrawable(Color.GRAY);
 
-        for (Date date1 : buzydates) {
+
+
+        for (Date date1 : mybuzydates) {
 
 
             caldroidFragment.setBackgroundDrawableForDate(gray,date1);
-
+            caldroidFragment.refreshView();
         }
 
-        for (Date date1 : dates) {
-
-          caldroidFragment.setBackgroundDrawableForDate(white,date1);
-
+        for (Date date1 : mydates) {
+            Drawable gra1 =  ContextCompat.getDrawable(this,R.drawable.cell_bg_my_canuse);
+        caldroidFragment.setBackgroundDrawableForDate(gra1,date1);
+            caldroidFragment.refreshView();
         }
 
-       caldroidFragment.refreshView();
+        caldroidFragment.refreshView();
    //     progressBar.setVisibility(ProgressBar.INVISIBLE);
         hideProgress();
     }
@@ -135,7 +155,11 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
     public void vibral_datu_vivod(String date) {
 
 
-     FirebaseListAdapter  mAdapter = new FirebaseListAdapter<Clock>(this, Clock.class, android.R.layout.simple_list_item_1, app.getmDatabase().getRef().child("shop").child("test_barber").child("workdays").child(date)) {
+
+
+
+
+     FirebaseListAdapter  mAdapter = new FirebaseListAdapter<Clock>(this, Clock.class, R.layout.list_item, app.getmDatabase().getRef().child("shop").child("test_barber").child("workdays").child(date)) {
             @Override
             protected void populateView(View view, Clock clocks, int position) {
 
@@ -150,22 +174,54 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
         };
 
+
         messagesView.setAdapter(mAdapter);
+
+        messagesView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+
 
     }
 
     public void vibral_datu(String date) {
+        if(datet!=null)
+        { caldroidFragment.clearBackgroundDrawableForDate(datet);
+            caldroidFragment.refreshView();}
+
+        if(mydates!=null&&mybuzydates!=null){
+            izmenit_calendar(mydates,mybuzydates);}
+
+        Drawable gra1 =  ContextCompat.getDrawable(this,R.drawable.test);
+        String stringDateFormat = "yyyyMMdd";
+        SimpleDateFormat format = new SimpleDateFormat(stringDateFormat, Locale.US);
+        try {
+            datet = format.parse(date);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        caldroidFragment.setBackgroundDrawableForDate(gra1,datet);
+        caldroidFragment.refreshView();
 
         test_data(date);
 
 
     }
+
+    @Override
+    public void vibral_vremia(String date) {
+
+    }
+
     public void net_dannih() {
         String[] values = new String[] { "НЕТ ДАННЫХ" };
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, values);
         messagesView.setAdapter(adapter);
     }
+
+
     public void test_data(String date) {
 
         app.getmDatabase().child("shop").child("test_barber").child("workdays").child(date).addListenerForSingleValueEvent(new ValueEventListener() {

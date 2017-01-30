@@ -11,5 +11,6 @@ public interface MyCallback {
 
        void izmenit_calendar(ArrayList<Date> date,ArrayList<Date> buzydate);
        void vibral_datu(String date);
+       void   vibral_vremia(String date);
     /*   void show_clocks(ArrayList date);*/
 }
