@@ -59,6 +59,7 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
     TextView dateDisplay;
     CaldroidFragment caldroidFragment;
     private  Day_Reader day_reader;
+    private  Day_Reader day_reader1;
     private  Calendarik_data_pick calendarik_data_picker;
     private ListView messagesView;
     @Override
@@ -99,7 +100,11 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
         day_reader  = new Day_Reader();
         day_reader.registerCallBack(this);
-        day_reader.List_ofdays(app.getmDatabase(),app.getauth().getCurrentUser());
+        day_reader.List_ofdays(app.getmDatabase(),app.getauth().getCurrentUser(),"test_barber");
+
+        day_reader1  = new Day_Reader();
+        day_reader1.registerCallBack(this);
+        day_reader1.List_ofdays(app.getmDatabase(),app.getauth().getCurrentUser(),"test_barber1");
 
         calendarik_data_picker  = new Calendarik_data_pick();
         calendarik_data_picker.registerCallBack(this);
@@ -117,14 +122,22 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
     }
 
     @Override
-    public void izmenit_calendar(ArrayList<Date> dates,ArrayList<Date> buzydates) {
+    public synchronized void izmenit_calendar(ArrayList<Date> dates, ArrayList<Date> buzydates) {
        /* if(mydates!=null&&mybuzydates!=null){
         mybuzydates.clear();
         mydates.clear();}*/
+        if(mydates==null){
+            mydates=dates;
+        }
+        for (int i = 0; i < buzydates.size(); i++) {
+if(!mydates.contains(dates.get(i))){
+    mydates.add(dates.get(i));
+}
+
+        }
+     //   mybuzydates=buzydates;
 
         mybuzydates=buzydates;
-        mydates=dates;
-
       caldroidFragment.getBackgroundForDateTimeMap().clear();
 
         ColorDrawable white = new ColorDrawable(Color.WHITE);
@@ -200,9 +213,9 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        caldroidFragment.setBackgroundDrawableForDate(gra1,datet);
-        caldroidFragment.refreshView();
+//убрал изменение кнопки выбраннного дня
+      //  caldroidFragment.setBackgroundDrawableForDate(gra1,datet);
+     //   caldroidFragment.refreshView();
 
         test_data(date);
 
@@ -288,7 +301,8 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         }
     }
     public void back_to_main() {
-
+        progressDialog.dismiss();
+        progressDialog = null;
         Intent intent = new Intent(Test_chooser.this,MainActivity.class);
 
         startActivity(intent);

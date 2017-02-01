@@ -27,8 +27,8 @@ public class Day_Reader {
         this.myCallback = callback;
     }
 
-    public void List_ofdays(final DatabaseReference mDatabase, final FirebaseUser user) {
-        mDatabase.child("shop").child("test_barber").child("workdays").addValueEventListener(
+    public void List_ofdays(final DatabaseReference mDatabase, final FirebaseUser user,String name_of_barber) {
+        mDatabase.child("shop").child(name_of_barber).child("workdays").addValueEventListener(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -77,7 +77,7 @@ public class Day_Reader {
 
                         }
                         // обновление календаричка при изменении таблицы с числами и данными в ней
-                        myCallback.izmenit_calendar(notbuzy_dayz,buzy_dayz);
+                      myCallback.izmenit_calendar(notbuzy_dayz,buzy_dayz);
 
 
                         /// сохдёте окно календарика!
