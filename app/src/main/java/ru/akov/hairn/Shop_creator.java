@@ -113,59 +113,6 @@ public   class Shop_creator {
                     }
                 });
     }
-    public  static void add_test_workdays1(final DatabaseReference mDatabase, final FirebaseUser user ){
-        //дефолтовыймагазин
-        final String TAG = "ДЕФОЛТНЫЙ БАРБЕР ШОП";
-        final String userId = user.getUid();
-        mDatabase.child("shop").child("test_barber1").child("workdays").addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        if(!dataSnapshot.exists()) {
-                            ArrayList<Dennedeli> mydays = new ArrayList();
-                            mydays=get_days_ofmouth1();
-                            int z;
-                            z=mydays.size();
-                            for (int i = 0; i < z; i++){
-                                if(mydays.get(i).getDayinweek()==1||mydays.get(i).getDayinweek()==7){
-                                    Clock mcm = new Clock("8:00","VOHODNOI");
-                                    mDatabase.child("shop").child("test_barber1").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm);
-                                }
-                                else {
-                                    Clock mcm = new Clock("8:00", "free");
-                                    mDatabase.child("shop").child("test_barber1").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm);
-                                    Clock mcm1 = new Clock("8:30", "free");
-                                    mDatabase.child("shop").child("test_barber1").child("workdays").child(mydays.get(i).getDay()).push().setValue(mcm1);
-                                }
-                            }
-
-                         /*   Clock mcm = new Clock("8:00","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170121").push().setValue(mcm);
-                            mcm = new Clock("8:30","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170121").push().setValue(mcm);
-                            mcm = new Clock("9:00","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);
-                            mcm = new Clock("9:30","free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170122").push().setValue(mcm);*/
-                           /* mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:00").setValue("free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("8:30").setValue("free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170116").child("9:00").setValue("free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("9:00").setValue("free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("9:30").setValue("free");
-                            mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("10:00").setValue("free");*/
-
-                        }
-                        // ...
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.w(TAG, "getUser:onCancelled", databaseError.toException());
-                    }
-                });
-    }
     public  static  ArrayList<Dennedeli> get_days_ofmouth1(){
 
         ArrayList<Dennedeli> days = new ArrayList();
@@ -196,8 +143,8 @@ public   class Shop_creator {
 // сдедующий месяц!!!
         Calendar mycal1 = Calendar.getInstance();
         mycal1.set(Calendar.MONTH, today_month+1);
-        Log.w("AKOV","месяц" + mycal1.get(Calendar.MONTH) + mycal.get(Calendar.DAY_OF_MONTH));
-        int next_month = mycal1.get(Calendar.MONTH);
+        Log.w("AKOV","месяц" + mycal1.get(Calendar.MONTH) + " сегодня дней в месяце" + mycal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        int next_month = mycal1.get(Calendar.MONTH)+1;
         int day_in_next_month=mycal1.getActualMaximum(Calendar.DAY_OF_MONTH);
         for (int i = 1; i <= day_in_next_month; i++){
             Calendar testcal1 = Calendar.getInstance();

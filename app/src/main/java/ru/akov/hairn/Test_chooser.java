@@ -102,9 +102,7 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         day_reader.registerCallBack(this);
         day_reader.List_ofdays(app.getmDatabase(),app.getauth().getCurrentUser(),"test_barber");
 
-        day_reader1  = new Day_Reader();
-        day_reader1.registerCallBack(this);
-        day_reader1.List_ofdays(app.getmDatabase(),app.getauth().getCurrentUser(),"test_barber1");
+
 
         calendarik_data_picker  = new Calendarik_data_pick();
         calendarik_data_picker.registerCallBack(this);
@@ -213,9 +211,9 @@ if(!mydates.contains(dates.get(i))){
         } catch (ParseException e) {
             e.printStackTrace();
         }
-//убрал изменение кнопки выбраннного дня
-      //  caldroidFragment.setBackgroundDrawableForDate(gra1,datet);
-     //   caldroidFragment.refreshView();
+// КРАСИТ КНОПКУ ВЫБРАННОГО ДНЯ!
+        caldroidFragment.setBackgroundDrawableForDate(gra1,datet);
+        caldroidFragment.refreshView();
 
         test_data(date);
 

@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public void new_test_workdays(View view) {
         Shop_creator creator = new Shop_creator();
         creator.add_test_workdays(app.getmDatabase(),app.getauth().getCurrentUser());
-        creator.add_test_workdays1(app.getmDatabase(),app.getauth().getCurrentUser());
+
     }
 
     public void new_shop(View view) {
