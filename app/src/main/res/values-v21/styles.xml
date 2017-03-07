@@ -8,8 +8,8 @@
     </style>
 
 
-<style name="MyListStyle">
-<item name="android:choiceMode">singleChoice</item>
-</style>
+    <style name="MyListStyle">
+        <item name="android:choiceMode">singleChoice</item>
+    </style>
 
 </resources>

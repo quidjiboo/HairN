@@ -19,7 +19,16 @@
         <activity
             android:name=".Test_chooser"
             android:label="@string/title_activity_test_choser"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Zakaz_blank"
+            android:label="@string/title_activity_zakaz_blank"
+            android:parentActivityName=".Test_chooser"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.akov.hairn.Test_chooser" />
+        </activity>
     </application>
 
 </manifest>

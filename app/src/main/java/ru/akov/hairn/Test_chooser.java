@@ -69,14 +69,24 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         app = ((My_app) getApplicationContext());
         setContentView(R.layout.activity_test_choser);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
         setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+
+                Intent intent = new Intent(Test_chooser.this,Zakaz_blank.class);
+
+                startActivity(intent);
+                Test_chooser.this.finish();
+              //  Test_chooser.this.finish();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
             }
         });
 
@@ -117,6 +127,15 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         showProgress("загрузка");
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        // super.onBackPressed();
+        Intent intent = new Intent(Test_chooser.this,MainActivity.class);
+
+        startActivity(intent);
+
+        this.finish();
     }
 
     @Override
