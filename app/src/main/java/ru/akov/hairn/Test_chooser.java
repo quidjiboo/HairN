@@ -80,10 +80,13 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
             public void onClick(View view) {
 
 
-                Intent intent = new Intent(Test_chooser.this,Zakaz_blank.class);
+close_next();
+               // Intent intent = new Intent(Test_chooser.this,Zakaz_blank.class);
 
-                startActivity(intent);
-                Test_chooser.this.finish();
+           //     startActivity(intent);
+
+               // Test_chooser.this.finish();
+
               //  Test_chooser.this.finish();
                 /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
@@ -128,9 +131,19 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
 
 
     }
+    private void close_next() {
+
+        Intent intent = new Intent(this,Zakaz_blank.class);
+
+        startActivity(intent);
+
+        this.finish();
+    }
+
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
+
         Intent intent = new Intent(Test_chooser.this,MainActivity.class);
 
         startActivity(intent);
