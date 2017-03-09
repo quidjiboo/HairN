@@ -1,5 +1,6 @@
 package ru.akov.hairn;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
@@ -7,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -29,7 +31,7 @@ public class Zakaz_blank extends AppCompatActivity {
     TextView mUserEmail;
 
     TextView mUserDisplayName;
-
+    TextView mPhoneNumber;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class Zakaz_blank extends AppCompatActivity {
 
         mUserEmail = (TextView)findViewById(R.id.user_email);
         mUserDisplayName = (TextView)findViewById(R.id.user_display_name);
-
+        mPhoneNumber = (TextView)findViewById(R.id.phonenumber);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);

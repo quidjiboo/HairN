@@ -51,10 +51,10 @@
                     android:text="user display name" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/phonenumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="test" />
+                    android:text="phonenumber" />
 
             </LinearLayout>
         </LinearLayout>
@@ -65,6 +65,12 @@
             android:layout_height="match_parent">
 
 
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/editText" />
         </LinearLayout>
 
     </LinearLayout>
