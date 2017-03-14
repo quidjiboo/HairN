@@ -64,6 +64,10 @@ Shop_creator creator = new Shop_creator();
         Shop_creator creator = new Shop_creator();
         creator.get_days_ofmouth1();
     }
+    public void  creat_user(View view) {
+        User_creator creator = new User_creator();
+        creator.add_user(app.getmDatabase(),app.getauth().getCurrentUser());
+    }
 
     @Override
     protected void onResume() {
