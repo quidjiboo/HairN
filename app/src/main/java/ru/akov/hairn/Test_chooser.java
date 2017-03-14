@@ -78,19 +78,8 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-close_next();
-               // Intent intent = new Intent(Test_chooser.this,Zakaz_blank.class);
-
-           //     startActivity(intent);
-
-               // Test_chooser.this.finish();
-
-              //  Test_chooser.this.finish();
-                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-            }
+                close_next();
+                     }
         });
 
         caldroidFragment = new CaldroidFragment();
@@ -120,7 +109,6 @@ close_next();
         calendarik_data_picker  = new Calendarik_data_pick();
         calendarik_data_picker.registerCallBack(this);
         caldroidFragment.setCaldroidListener(calendarik_data_picker.createlistner());
-
 
         messagesView  = (ListView) findViewById(R.id.clocks);
 

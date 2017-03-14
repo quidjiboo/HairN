@@ -18,25 +18,32 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Date;
+
+import ru.akov.hairn.Data_tipes.Clock;
+import ru.akov.hairn.Data_tipes.Usluga;
 
 
-public class Zakaz_blank extends AppCompatActivity {
-
+public class Zakaz_blank extends AppCompatActivity implements MyCallback_textwatcher {
+    private MtextWatcher textwatcher;
     private My_app app;
     private FirebaseAuth auth;
     private  FirebaseAuth.AuthStateListener mAuthListener;
-
-    EditText mphone;
-    EditText mmail;
-    EditText mname;
+    private ListView messagesView;
+    private EditText mphone;
+    private  EditText mmail;
+    private EditText mname;
 
     TextView mUserEmail;
     TextView mUserDisplayName;
@@ -53,41 +60,11 @@ public class Zakaz_blank extends AppCompatActivity {
         mphone.setText("");
         mphone.append("+7");
 
+        app = ((My_app) getApplicationContext());
 
-        mphone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String formatted;
-                String regex1 = "(\\+\\d)(\\d{3})";
-                String regex2 = "(.+ )(\\d{3})$";
-                String regex3 = "(.+\\-)(\\d{2})$";
-
-                // буду реализвывать ввод телефона в формате +х (ххх) ххх-хх-хх
-                if (s.toString().matches(regex1)) {
-                    formatted = String.valueOf(s).replaceFirst(regex1, "$1 ($2) ");
-                    mphone.setText(formatted);
-                    mphone.setSelection(formatted.length());
-                } else if (s.toString().matches(regex2)) {
-                    formatted = String.valueOf(s).replaceFirst(regex2, "$1$2-");
-                    mphone.setText(formatted);
-                    mphone.setSelection(formatted.length());
-                } else if (s.toString().matches(regex3) && s.length() < 18) {
-                    formatted = String.valueOf(s).replaceFirst(regex3, "$1$2-");
-                    mphone.setText(formatted);
-                    mphone.setSelection(formatted.length());
-                }
-            }
-        });
+        textwatcher = new MtextWatcher();
+        textwatcher.registerCallBack(this);
+        mphone.addTextChangedListener(textwatcher);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -103,8 +80,28 @@ public class Zakaz_blank extends AppCompatActivity {
             }
         });
 
+
+
         populateProfile();
 
+        messagesView  = (ListView) findViewById(R.id.list_uslugi);
+
+        FirebaseListAdapter mAdapter = new FirebaseListAdapter<Usluga>(this, Usluga.class, R.layout.list_item, app.getmDatabase().getRef().child("shop").child("test_barber").child("uslugi")) {
+            @Override
+            protected void populateView(View view, Usluga usluga, int position) {
+
+
+                    ((TextView) view.findViewById(android.R.id.text1)).setText(usluga.getvalue());
+
+
+            }
+
+        };
+
+
+        messagesView.setAdapter(mAdapter);
+
+        messagesView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
     @MainThread
@@ -134,4 +131,11 @@ public class Zakaz_blank extends AppCompatActivity {
         this.finish();
     }
 
+
+
+    @Override
+    public void izmenit_text(String date, int number) {
+        mphone.setText(date);
+        mphone.setSelection(number);
+    }
 }

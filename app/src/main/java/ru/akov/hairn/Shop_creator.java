@@ -15,6 +15,7 @@ import java.util.Calendar;
 import ru.akov.hairn.Data_tipes.Clock;
 import ru.akov.hairn.Data_tipes.Dennedeli;
 import ru.akov.hairn.Data_tipes.Shops;
+import ru.akov.hairn.Data_tipes.Usluga;
 
 
 /**
@@ -49,9 +50,19 @@ public   class Shop_creator {
                             mDatabase.child("shops").child(key1).child("products").child(key).child("variebles").setValue(variebl);*/
 
                             Log.v("AKOV", "NO SHOPS");
+
                         }
                         // ...
-
+                        Usluga usluga = new Usluga("стрижка");
+                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
+                        usluga = new Usluga("окраска");
+                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
+                        usluga = new Usluga("укладка");
+                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
+                        usluga = new Usluga("освадебная причёска");
+                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
+                        usluga = new Usluga("брови");
+                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
                     }
 
                     @Override
@@ -103,6 +114,7 @@ public   class Shop_creator {
                             mDatabase.child("shop").child("test_barber").child("workdays").child("20170117").child("10:00").setValue("free");*/
 
                                  }
+
                         // ...
 
                     }

@@ -111,5 +111,16 @@
 
         </LinearLayout>
 
+        <TextView android:layout_width="367dp"
+            android:layout_height="wrap_content"
+            android:text="Список услуг:"
+            android:id="@+id/textView2"
+            style="@style/Base.TextAppearance.AppCompat.Title" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/list_uslugi" />
+
     </LinearLayout>
 </RelativeLayout>
