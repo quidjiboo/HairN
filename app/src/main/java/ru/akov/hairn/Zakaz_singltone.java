@@ -31,7 +31,7 @@ public class Zakaz_singltone {
         return instance;
     }
 
-    public   void add_data(String mail, String name, String phone, ArrayList<String> uslugi) {
+    synchronized  public   void add_data(String mail, String name, String phone, ArrayList<String> uslugi) {
         this.mail=mail;
         this.name=name;
         this.phone=phone;

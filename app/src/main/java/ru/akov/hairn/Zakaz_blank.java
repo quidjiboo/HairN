@@ -87,10 +87,13 @@ public class Zakaz_blank extends AppCompatActivity implements MyCallback_textwat
                     list.add(((TextView)messagesView.getChildAt(i).findViewById(android.R.id.text1)).getText().toString());
                 }
                 Log.v("AKOV", list.toString());
+        //запоняем синглон
                 Zakaz_singltone.getInstance().add_data(mmail.getText().toString(),mname.getText().toString(),mphone.getText().toString(),list);
 
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                    Zakaz_sender.sen_zakaz(app.getmDatabase(),app.getauth().getCurrentUser());
+
+                Snackbar.make(view, mmail.getText().toString() +" "+ mname.getText().toString() +" "+ mphone.getText().toString() +" "+ list, Snackbar.LENGTH_LONG)
+                                                .setAction("Action", null).show();
             }
         });
 
@@ -117,39 +120,7 @@ public class Zakaz_blank extends AppCompatActivity implements MyCallback_textwat
 
         messagesView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-       /* messagesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                // TODO Auto-generated method stub
-                // Clear the TextView before we assign the new content.
 
-
-                int cntChoice = ((ListView) parent).getCount();
-
-                String checked = "";
-
-                String unchecked = "";
-                SparseBooleanArray sparseBooleanArray = ((ListView) parent)
-                        .getCheckedItemPositions();
-
-                for (int i = 0; i < cntChoice; i++) {
-
-                    if (sparseBooleanArray.get(i) == true) {
-                        checked += messagesView.getItemAtPosition(i).toString()
-                                + "\\n";
-                        // выводим список выбранных элементов
-                        //selection.setText(checked);
-                        Log.v("AKOV", "ВЫБРАННЫЕ ЭЛЕМЕНТЫ" + checked);
-                    } else if (sparseBooleanArray.get(i) == false) {
-                        unchecked += ((ListView) parent).getItemAtPosition(i).toString()
-                                + "\\n";
-                        // выводим список невыбранных элементов
-                      //  selection.setText(unchecked);
-                    }
-                }
-            }
-        });*/
     }
 
     @MainThread
