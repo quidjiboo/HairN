@@ -17,17 +17,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Test_chooser"
+            android:name=".Date_chooser_main"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Zakaz_blank"
             android:label="@string/title_activity_zakaz_blank"
-            android:parentActivityName=".Test_chooser"
+            android:parentActivityName=".Date_chooser_main"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.akov.hairn.Test_chooser" />
+                android:value="ru.akov.hairn.Date_chooser_main" />
         </activity>
     </application>
 

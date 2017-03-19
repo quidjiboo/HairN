@@ -3,36 +3,27 @@ package ru.akov.hairn;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.CalendarView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseIndexListAdapter;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 import com.roomorama.caldroid.CaldroidFragment;
-import com.roomorama.caldroid.CaldroidListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -40,13 +31,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-import java.util.Objects;
 
 import ru.akov.hairn.Data_tipes.Clock;
 
-import static ru.akov.hairn.R.style.AppTheme;
-
-public class Test_chooser extends AppCompatActivity   implements MyCallback {
+public class Date_chooser_main extends AppCompatActivity   implements MyCallback {
     private ProgressDialog progressDialog = null;
     private  ArrayList<Date> mybuzydates=null;
     private ArrayList<Date> mydates=null;
@@ -111,8 +99,10 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
         caldroidFragment.setCaldroidListener(calendarik_data_picker.createlistner());
 
         messagesView  = (ListView) findViewById(R.id.clocks);
+        List_time_pick  clock_listner  = new List_time_pick();
+        clock_listner.registerCallBack(this);
 
-
+        messagesView.setOnItemClickListener(clock_listner.createlistner());
 
 
         showProgress("загрузка");
@@ -132,7 +122,7 @@ public class Test_chooser extends AppCompatActivity   implements MyCallback {
     public void onBackPressed() {
         // super.onBackPressed();
 
-        Intent intent = new Intent(Test_chooser.this,MainActivity.class);
+        Intent intent = new Intent(Date_chooser_main.this,MainActivity.class);
 
         startActivity(intent);
 
@@ -236,13 +226,13 @@ if(!mydates.contains(dates.get(i))){
         caldroidFragment.refreshView();
 
         test_data(date);
-
+Zakaz_singltone.getInstance().add_data_of_date(date);
 
     }
 
     @Override
     public void vibral_vremia(String date) {
-
+        Zakaz_singltone.getInstance().add_clock(date);
     }
 
     public void net_dannih() {
@@ -321,7 +311,7 @@ if(!mydates.contains(dates.get(i))){
     public void back_to_main() {
         progressDialog.dismiss();
         progressDialog = null;
-        Intent intent = new Intent(Test_chooser.this,MainActivity.class);
+        Intent intent = new Intent(Date_chooser_main.this,MainActivity.class);
 
         startActivity(intent);
 

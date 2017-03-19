@@ -1,6 +1,5 @@
 package ru.akov.hairn;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.MainThread;
@@ -8,32 +7,21 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.telephony.PhoneNumberFormattingTextWatcher;
-import android.telephony.TelephonyManager;
-import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseListAdapter;
-import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Date;
 
-import ru.akov.hairn.Data_tipes.Clock;
 import ru.akov.hairn.Data_tipes.Usluga;
 
 
@@ -94,6 +82,9 @@ public class Zakaz_blank extends AppCompatActivity implements MyCallback_textwat
 
                 Snackbar.make(view, mmail.getText().toString() +" "+ mname.getText().toString() +" "+ mphone.getText().toString() +" "+ list, Snackbar.LENGTH_LONG)
                                                 .setAction("Action", null).show();
+
+                Zakaz_singltone.getInstance().Show_data();
+                Log.v("AKOV"," deswfsdfd sdsgf ds");
             }
         });
 
@@ -143,7 +134,7 @@ public class Zakaz_blank extends AppCompatActivity implements MyCallback_textwat
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
-        Intent intent = new Intent(Zakaz_blank.this,Test_chooser.class);
+        Intent intent = new Intent(Zakaz_blank.this,Date_chooser_main.class);
 
         startActivity(intent);
 

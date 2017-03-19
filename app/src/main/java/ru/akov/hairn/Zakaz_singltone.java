@@ -1,12 +1,7 @@
 package ru.akov.hairn;
 
-import android.app.Activity;
 import android.util.Log;
 
-import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -17,6 +12,8 @@ public class Zakaz_singltone {
     private String mail="";
     private String name="";
     private String phone="";
+    private String date="";
+    private String clock="";
     private ArrayList<String> uslugi = new ArrayList();
     private static Zakaz_singltone instance;
 
@@ -37,4 +34,19 @@ public class Zakaz_singltone {
         this.phone=phone;
         this.uslugi=uslugi;
     }
+    synchronized  public   void add_data_of_date(String date) {
+        this.date="";
+        this.date=date;
+
+    }
+    synchronized  public   void add_clock(String clock) {
+        Log.v("AKOV", " Время  в синглтоне" + clock);
+        this.clock=clock;
+
+    }
+    public   void Show_data() {
+        Log.v("AKOV",mail + " " + name + " " + phone + " " + uslugi + " " +  date + " " + clock);
+
+    }
+
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ru.akov.hairn.Test_chooser">
+    tools:context="ru.akov.hairn.Date_chooser_main">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

@@ -43,7 +43,7 @@ Shop_creator creator = new Shop_creator();
 
     public void test_choose_day(View view) {
 
-        Intent intent = new Intent(MainActivity.this,Test_chooser.class);
+        Intent intent = new Intent(MainActivity.this,Date_chooser_main.class);
 
         startActivity(intent);
 

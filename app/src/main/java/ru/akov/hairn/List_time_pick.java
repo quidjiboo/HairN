@@ -1,13 +1,9 @@
 package ru.akov.hairn;
 
-import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
-
-import com.roomorama.caldroid.CaldroidListener;
-
-import java.util.Date;
 
 /**
  * Created by User on 30.01.2017.
@@ -23,8 +19,8 @@ public class List_time_pick {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                myCallback.vibral_vremia(((TextView) view).getText().toString());
-
+               myCallback.vibral_vremia(((TextView) view).getText().toString());
+                Log.v("AKOV", " Время " + ((TextView) view).getText().toString());
 
             }
 

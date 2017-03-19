@@ -12,7 +12,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
 
 
-    tools:context="ru.akov.hairn.Test_chooser"
+    tools:context="ru.akov.hairn.Date_chooser_main"
     tools:showIn="@layout/activity_test_choser">
 
     <LinearLayout
