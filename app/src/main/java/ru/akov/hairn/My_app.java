@@ -3,7 +3,6 @@ package ru.akov.hairn;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +29,9 @@ public class My_app extends Application {
     @Override
     public void onCreate() {
        super.onCreate();
+        // иницализиру сингтоны
+        Zakaz_singltone.getInstance();
+        Status_auth_changes_singltonne.getInstance();
         mContext = this;
 
         auth   = FirebaseAuth.getInstance();
