@@ -17,22 +17,25 @@ import ru.akov.hairn.Data_tipes.Zakaz;
 public class Zakaz_sender {
  static    public  void sen_zakaz(final DatabaseReference mDatabase, final FirebaseUser user ){
 
-       final Zakaz aaa = new Zakaz("testmail", "testname", "123213123","освадебная причёска, брови" );
+       final Zakaz aaa = new Zakaz("wd0BrpZcbThQ4nJCbAka5pqufV13", "shop","mail_test", "TestName", "123213123","освадебная причёска, брови", "20170321", "8:00","need" );
         //дефолтовыймагазин
         final String TAG = "Отправка заказа";
 
-        mDatabase.child("shop").child("zakazi").addListenerForSingleValueEvent(
+     mDatabase.child(user.getUid()).child("myzakazy").addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        if(!dataSnapshot.exists()) {
+                   //   if(!dataSnapshot.exists()) {
 
                         /*    Shops msg = new Shops("noname", "notipe", "https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",userId);
                             //    String key=mDatabase.child("shops").push().getKey();
 */
 
-                            String key  = mDatabase.child("shop").child("zakazi").push().getKey();
+                            String key  = mDatabase.child(user.getUid()).child("myzakazy").push().getKey();
+/// СНАЧАЛА У КЛИЕНТА ДЕЛАЕМ ЗАПРОС смотри рулезы
+                            mDatabase.child("users").child(user.getUid()).child("myzakazy").child(key).setValue(aaa);
+
                             mDatabase.child("shop").child("zakazi").child(key).setValue(aaa);
 
 
@@ -40,7 +43,7 @@ public class Zakaz_sender {
 
                             Log.v("AKOV", "ADD USER ");
 
-                        }
+                    //    }
 
                     }
 
