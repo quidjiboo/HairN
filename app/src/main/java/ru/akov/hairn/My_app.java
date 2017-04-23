@@ -62,8 +62,7 @@ public void createmAuthListener () {
                     {
                     //     next_scr(getCurrentFocus());
                         //TODO синг тон надо добавить нвоый
-                   // Status_auth_changes_singltonne.getInstance().Chek_status_online_user_siglevalue_listner(mDatabase, auth.getCurrentUser());
-
+                  //  Status_auth_changes_singltonne.getInstance().Chek_status_online_user_siglevalue_listner(mDatabase, auth.getCurrentUser());
 
                     flag = false;
 

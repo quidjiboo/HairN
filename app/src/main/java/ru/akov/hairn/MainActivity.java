@@ -6,10 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 public class MainActivity extends AppCompatActivity {
+    private static final String TAG = "MainActivity";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private My_app app;
 
@@ -19,6 +23,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         app = ((My_app) getApplicationContext());
+
+        Button logTokenButton = (Button) findViewById(R.id.logTokenButton);
+        logTokenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Get token
+                String token = FirebaseInstanceId.getInstance().getToken();
+
+                // Log and toast
+                String msg = getString(R.string.msg_token_fmt, token);
+                Log.d(TAG, msg);
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

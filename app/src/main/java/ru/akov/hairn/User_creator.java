@@ -7,14 +7,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-
-import ru.akov.hairn.Data_tipes.Clock;
-import ru.akov.hairn.Data_tipes.Dennedeli;
-import ru.akov.hairn.Data_tipes.Shops;
-import ru.akov.hairn.Data_tipes.Usluga;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 
 /**
@@ -39,10 +32,17 @@ public   class User_creator {
                             //    String key=mDatabase.child("shops").push().getKey();
 */
 
-                            mDatabase.child("users").child(user.getUid()).setValue("true");
+                        //    mDatabase.child("users").child(user.getUid()).setValue("true");
+                            String name = user.getDisplayName();
+
+                            
+                            String DeviceToken =  FirebaseInstanceId.getInstance().getToken();
+                            //    String key=mDatabase.child("shops").push().getKey();
 
 
+                            mDatabase.child("users").child(user.getUid()).setValue(name);
 
+                            mDatabase.child("users").child(user.getUid()).child("tokens").push().setValue(DeviceToken);
                             Log.v("AKOV", "ADD USER ");
 
                         }
