@@ -86,6 +86,10 @@ Shop_creator creator = new Shop_creator();
         User_creator creator = new User_creator();
         creator.add_user(app.getmDatabase(),app.getauth().getCurrentUser());
     }
+    public void  Confirm_order(View view) {
+        somethigss_doing creator = new somethigss_doing();
+        creator.confirm_order(app.getmDatabase(),app.getauth().getCurrentUser());
+    }
 
     @Override
     protected void onResume() {
