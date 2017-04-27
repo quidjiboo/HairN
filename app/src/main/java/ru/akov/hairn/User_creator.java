@@ -42,7 +42,7 @@ public   class User_creator {
 
                             mDatabase.child("users").child(user.getUid()).setValue(name);
 
-                            mDatabase.child("users").child(user.getUid()).child("tokens").push().setValue(DeviceToken);
+                            mDatabase.child("users").child(user.getUid()).child("tokens").child(DeviceToken).setValue("true");
                             Log.v("AKOV", "ADD USER ");
 
                         }

@@ -70,7 +70,9 @@ Shop_creator creator = new Shop_creator();
 
     public void  curent_user_action(View view) {
         if (app.getauth().getCurrentUser() != null) {
-
+            Log.v(TAG, "getDisplayName = " +  app.getauth().getCurrentUser().getDisplayName());
+            Log.v(TAG, "getEmail = " +  app.getauth().getCurrentUser().getEmail());
+            Log.v(TAG, "getPhotoUrl = " +  app.getauth().getCurrentUser().getPhotoUrl());
             //    auth = FirebaseAuth.getInstance();
             Snackbar.make(view,app.getauth().getCurrentUser().toString(), Snackbar.LENGTH_LONG).show();
         } else {

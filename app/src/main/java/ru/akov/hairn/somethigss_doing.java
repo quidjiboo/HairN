@@ -24,9 +24,9 @@ public   class somethigss_doing {
         //дефолтовыймагазин
         final String TAG = "Поддверждение заказа";
         final String userId = user.getUid();
-        String key = mDatabase.child("Confirmedorders").push().getKey();
-        Confirm msg = new Confirm("wd0BrpZcbThQ4nJCbAka5pqufV13");
-        mDatabase.child("Confirmedorders").child(key).setValue(msg);
+     //   String key = mDatabase.child("Confirmedorders").push().getKey();
+      //  Confirm msg = new Confirm("wd0BrpZcbThQ4nJCbAka5pqufV13");
+        mDatabase.child("Confirmedorders").child("wd0BrpZcbThQ4nJCbAka5pqufV13").setValue("false");
     }
 
 
