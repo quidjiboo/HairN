@@ -17,7 +17,7 @@ import ru.akov.hairn.Data_tipes.Zakaz;
 public class Zakaz_sender {
  static    public  void sen_zakaz(final DatabaseReference mDatabase, final FirebaseUser user ){
 
-       final Zakaz aaa = new Zakaz("wd0BrpZcbThQ4nJCbAka5pqufV13", "shop","mail_test", "TestName", "123213123","освадебная причёска, брови", "20170321", "8:00","need" );
+       final Zakaz aaa = new Zakaz("wd0BrpZcbThQ4nJCbAka5pqufV13", "shop","mail_test", "TestName", "123213123","освадебная причёска, брови", "20170521", "8:00","need" );
         //дефолтовыймагазин
         final String TAG = "Отправка заказа";
 
