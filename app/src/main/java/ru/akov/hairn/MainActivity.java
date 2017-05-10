@@ -88,9 +88,14 @@ Shop_creator creator = new Shop_creator();
         User_creator creator = new User_creator();
         creator.add_user(app.getmDatabase(),app.getauth().getCurrentUser());
     }
-    public void  Confirm_order(View view) {
-        somethigss_doing creator = new somethigss_doing();
-        creator.confirm_order(app.getmDatabase(),app.getauth().getCurrentUser());
+
+    public void  add_defaults(View view) {
+        Shop_creator creator = new Shop_creator();
+        creator.add_defaults(app.getmDatabase());
+    }
+    public void  add_Nady_barbeshop_text_first(View view) {
+        Shop_creator creator = new Shop_creator();
+        creator.add_Nady_barbeshop_text_first(app.getmDatabase(),app.getauth().getCurrentUser());
     }
 
     @Override

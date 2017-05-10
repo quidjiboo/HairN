@@ -13,7 +13,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="Hello World!"
+        android:id="@+id/textView" />
 
     <Button
         android:text="LOGIN"
@@ -104,4 +105,21 @@
         android:id="@+id/button10"
         android:onClick="Confirm_order" />
 
+    <Button
+        android:text="add_Nady_barbeshop_text_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button12"
+        android:onClick="add_Nady_barbeshop_text_first"
+        android:layout_above="@+id/button8"
+        android:layout_toEndOf="@+id/button10" />
+
+    <Button
+    android:text="add_defaults"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/button11"
+    android:onClick="add_defaults"
+        android:layout_above="@+id/button10"
+        android:layout_toStartOf="@+id/button7" />
 </RelativeLayout>
