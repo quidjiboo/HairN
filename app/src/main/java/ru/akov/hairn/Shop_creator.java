@@ -46,6 +46,9 @@ public   class Shop_creator {
                         mDatabase.child("shops_types").child("car_workshop").setValue(Boolean.TRUE);
                         mDatabase.child("location").child("Novovoronezh").setValue(Boolean.TRUE);
                         mDatabase.child("location").child("Moscow").setValue(Boolean.TRUE);
+                        mDatabase.child("services").child("Man's haircut").setValue(Boolean.TRUE);
+                        mDatabase.child("services").child("Female haircut").setValue(Boolean.TRUE);
+                        mDatabase.child("services").child("Hair coloring").setValue(Boolean.TRUE);
                         }
 
                     @Override
@@ -93,15 +96,18 @@ public   class Shop_creator {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                Log.v("AKOV", "ДЕЛАЕМ МАГАЗИН НАДЕ!!!");
+                add_Nady_barbeshop(mDatabase,user,downloadUrl.toString());
             }
         });
 
     }
-    public  static void add_Nady_barbeshop(final DatabaseReference mDatabase, final FirebaseUser user ){
+    public  static void add_Nady_barbeshop(final DatabaseReference mDatabase, final FirebaseUser user,String uri_text ){
         //дефолтовыймагазин
+        final String uri_text1=uri_text;
         final String TAG = "ТЕСТОВЫЙ БАРБЕР ШОП";
         final String userId = user.getUid();
-        mDatabase.child("shop").addListenerForSingleValueEvent(
+        mDatabase.child("shops").addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -110,14 +116,21 @@ public   class Shop_creator {
                             String key = mDatabase.child("barbershops").push().getKey();
 
 
-                            Shop_data msg = new Shop_data("Nady_hair_shop", "barbershop", "https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",userId,"Novovoronezh","37.7853889" ,"-122.4056973","testuri");
+                            Shop_data msg = new Shop_data("Nady_hair_shop", "barbershop", "https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",userId,"Novovoronezh","37.7853889" ,"-122.4056973",uri_text1);
                             //    String key=mDatabase.child("shops").push().getKey();
 
 
                             mDatabase.child("barbershops").child(key).setValue(msg);
 
 
-                            mDatabase.child("barbershops_names").child("Nady_hair_shop").setValue(key);
+                            mDatabase.child("locations_names").child("Novovoronezh").child("barbershops_names").child("Nady_hair_shop").setValue(key);
+                            mDatabase.child("services_Female haircut").child("Nady_hair_shop").setValue(key);
+
+                            String usluga = "Female haircut";
+                            mDatabase.child("barbershops").child(key).child("services").child(usluga).setValue(true);
+                            usluga = "Hair coloring";
+                            mDatabase.child("barbershops").child(key).child("services").child(usluga).setValue(true);
+
 
 
                          /*   Product product = new Product("default","0.0","https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/shopping-paper-bag-outline_318-39786.png?alt=media&token=93a2373e-1336-4fbe-9268-924db09e4fb9");
@@ -131,7 +144,7 @@ public   class Shop_creator {
 
                         }
                         // ...
-                        Usluga usluga = new Usluga("стрижка");
+         /*               Usluga usluga = new Usluga("стрижка");
                         mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
                         usluga = new Usluga("окраска");
                         mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
@@ -140,7 +153,7 @@ public   class Shop_creator {
                         usluga = new Usluga("освадебная причёска");
                         mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
                         usluga = new Usluga("брови");
-                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);
+                        mDatabase.child("shop").child("test_barber").child("uslugi").push().setValue(usluga);*/
                     }
 
                     @Override
