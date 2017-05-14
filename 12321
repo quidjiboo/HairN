@@ -1,0 +1,78 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    //не забывать коментить
+    ".write": "auth != null",
+    "users": {
+      "$users": {
+        ".write": "$users === auth.uid",
+        "myzakazy": {
+          "$myzakazy": {
+            //    ".write":    "root.child('shop').child('admin').child(newData.child('clienid').val()).exists()"
+          }
+        }
+      }
+    },
+    "shop": {
+      //тут надо создавать только новые данные и что бы пользователь был одинаковым с пользователем в юзерах
+      ".write": "auth != null",
+      "zakazi": {
+        "$zakazi": {
+          ".write": "root.child('users').child(newData.child('clienid').val()).exists() && newData.child('status').val()==='need'"
+        }
+      },
+      "test_barber": {
+        "$test_barber": {
+          ".write": "auth != null"
+        }
+      }
+    },
+    "Confirmedorders": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "Confirmedorders_pull": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "locations": {
+      "$locations": {
+        "$locations_types": {
+          // Allow anyone to read the GeoFire index
+          ".read": true,
+          // Index each location's geohash for faster querying
+          ".indexOn": [
+            "g"
+          ],
+          // Schema validation
+          "$key": {
+            // Allow any authentication user to add, update, or remove keys in the GeoFire index
+            ".write": "auth !== null",
+            // Key validation
+            ".validate": "newData.hasChildren(['g', 'l']) && newData.getPriority().length <= 22 && newData.getPriority().length > 0",
+            // Geohash validation
+            "g": {
+              ".validate": "newData.val() == newData.parent().getPriority()"
+            },
+            // Location coordinates validation
+            "l": {
+              "0": {
+                ".validate": "newData.isNumber() && newData.val() >= -90 && newData.val() <= 90"
+              },
+              "1": {
+                ".validate": "newData.isNumber() && newData.val() >= -180 && newData.val() <= 180"
+              },
+              "$other": {
+                ".validate": false
+              }
+            },
+            // Don't allow any other keys to be written
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

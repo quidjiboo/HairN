@@ -67,6 +67,14 @@ Shop_creator creator = new Shop_creator();
 
         this.finish();
     }
+    public void add_recycle_view(View view) {
+
+        Intent intent = new Intent(MainActivity.this,Recycle_vew_test.class);
+
+        startActivity(intent);
+
+        this.finish();
+    }
 
     public void  curent_user_action(View view) {
         if (app.getauth().getCurrentUser() != null) {
