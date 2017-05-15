@@ -4,18 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_recycle_vew_test"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="ru.akov.hairn.Recycle_vew_test"
+    tools:context="ru.akov.hairn.recycle_view_test.Mecycle_vew_test"
     tools:showIn="@layout/activity_recycle_vew_test">
+
+    <Button
+        android:text="Delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button15"
+        android:onClick="deletbadday" />
+
+    <Button
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button14"
+        android:onClick="addbadday"
+        android:layout_alignBaseline="@+id/button15"
+        android:layout_alignBottom="@+id/button15"
+        android:layout_toEndOf="@+id/button15"
+        android:layout_marginStart="18dp" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+          android:scrollbars="vertical"
+        android:id="@+id/RecView_my"
+        android:layout_below="@+id/button14"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="27dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/ic_launcher"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toEndOf="@+id/button14"
+        android:layout_marginStart="29dp"
+        android:id="@+id/imageView3" />
 </RelativeLayout>

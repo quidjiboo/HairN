@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">HairN</string>
     <string name="title_activity_test_choser">test_choser</string>
+    <string name="Recycle">recycle_list_test</string>
+    <string name="Helloworld">recycle_list_test</string>
     <string name="title_activity_zakaz_blank">Zakaz_blank</string>
     <string name="log_token">Log Token</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>

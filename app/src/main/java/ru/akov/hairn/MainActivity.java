@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import ru.akov.hairn.recycle_view_test.Mecycle_vew_test;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -69,7 +71,7 @@ Shop_creator creator = new Shop_creator();
     }
     public void add_recycle_view(View view) {
 
-        Intent intent = new Intent(MainActivity.this,Recycle_vew_test.class);
+        Intent intent = new Intent(MainActivity.this,Mecycle_vew_test.class);
 
         startActivity(intent);
 

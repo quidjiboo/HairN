@@ -17,8 +17,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Recycle_vew_test"
-            android:label="@string/title_activity_test_choser"
+            android:name=".recycle_view_test.Mecycle_vew_test"
+            android:label="@string/Recycle"
+
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Date_chooser_main"
@@ -48,7 +49,7 @@
         </service>
         <!-- [END firebase_iid_service] -->
         <activity
-            android:name=".recycle_vew_test"
+            android:name=".Recycle_vew_test"
             android:label="@string/title_activity_recycle_vew_test"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>

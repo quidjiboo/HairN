@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="ru.akov.hairn.recycle_vew_test">
+    tools:context="ru.akov.hairn.Recycle_vew_test">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
