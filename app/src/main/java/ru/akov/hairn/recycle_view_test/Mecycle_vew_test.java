@@ -1,10 +1,10 @@
 package ru.akov.hairn.recycle_view_test;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,25 +18,31 @@ import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
 import com.firebase.geofire.GeoQueryEventListener;
-import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
-import java.util.UUID;
+import java.util.Comparator;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 
 public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_listner_global_baddy {
+    private ArrayMap<String, Double> mkeysdist = new ArrayMap<>();
+    private ArrayMap<String, LatLng> mkeys = new ArrayMap<>();
+    private SortedSet<GPScoords> countrySet;
+
     private Mecycle_vew_test context;
     private static final String TAG = "MainActivity";
     private My_global_day_to_delet_test badday_reader;
     private My_app app;
     private GeoQuery geoQuery;
     final ArrayList<String> store_keys = new ArrayList<String>();
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -44,7 +50,26 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
+
+        final Comparator testcomap = new Comparator<GPScoords>() {
+            public int compare(GPScoords o1, GPScoords o2) {
+                Double price1 = o1.getmdist();
+                Double price2 = o2.getmdist();
+                /*if (price1 > price2) {
+                    return 1;
+                } else if (price1 < price2) {
+                    return -1;
+                } else {
+                    return 0;
+                }*/
+                if (price1 > price2) { return 1;}
+                else return -1;
+            }
+        };
+        countrySet = new TreeSet<>(testcomap);
+
         setContentView(R.layout.activity_recycle_vew_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -69,14 +94,27 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
         GeoFire geoFire = new GeoFire(app.getmDatabase().child("locations").child("Novovoronezh").child("barbershops_locations"));
         geoFire.setLocation("-Kk6KCRefV3EGZ8Vn222", new GeoLocation(37.7853839, -112.4056973));
         geoFire.setLocation("-Kk6KCRefV3EGZ8Vn333", new GeoLocation(31.7853839, -112.4356973));
-        geoFire.setLocation("-Kk6KCRefV3EGZ8Vn444", new GeoLocation(31.7853839, -112.4056973));
+        geoFire.setLocation("-Kk6KCRefV3EGZ8Vn444", new GeoLocation(31.7853839, -112.4356973));
         //Cоздал первоначальный список - пока не динамический , потом можно будет подкрутить
         geoQuery = geoFire.queryAtLocation(new GeoLocation(31.7853339, -112.4026973), 20);
         geoQuery.addGeoQueryEventListener(new GeoQueryEventListener() {
+
+            LatLng mymloc = new LatLng(31.7853339, -112.4026973);
+
             @Override
             public void onKeyEntered(String key, GeoLocation location) {
                 System.out.println(String.format("Key %s entered the search area at [%f,%f]", key, location.latitude, location.longitude));
                 store_keys.add(key);
+
+                LatLng mloc = new LatLng(location.latitude, location.longitude);
+
+
+                mkeys.put(key.toString(), mloc);
+
+                mkeysdist.put(key.toString(), SphericalUtil.computeDistanceBetween(mloc, mymloc));
+                GPScoords objmy = new GPScoords(key.toString(), SphericalUtil.computeDistanceBetween(mloc, mymloc));
+                countrySet.add(objmy);
+
             }
 
             @Override
@@ -97,9 +135,15 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
 
                 for (String cat : store_keys) {
                     System.out.println("СПИСОК ТЕХ КТО В ЗОНЕ ДОСЯГАЕМОСТИ" + cat);
-                    ;
+
                 }
+                //   mymloc = new LatLng(31.7853339, -112.4026973);
+                Spisok_singletone.getInstance().add_data(mkeys, mymloc);
+
                 spisok_creator(store_keys);
+                System.out.println("СПИСОК stn" + countrySet.size());
+
+
             }
 
             @Override
@@ -107,7 +151,6 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
                 System.err.println("There was an error with this query: " + error);
             }
         });
-
 
 
         ImageView mimageView = (ImageView) findViewById(R.id.imageView3);
@@ -125,7 +168,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
         badday_reader.registerCallBack(this);
         badday_reader.List_ofdays(app.getmDatabase());
         //цеплять предварительно обработанный список
-        mAdapter = new RecyclerAdaptermy(this,array_of_keys);
+        mAdapter = new RecyclerAdaptermy(this, array_of_keys);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -152,7 +195,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
     @Override
     synchronized public void dayisdeletedfrombadlist(String test) {
 
-       if(!store_keys.contains(test)){
+        if (!store_keys.contains(test)) {
             store_keys.add(test);
             Log.d(TAG, "Прибавил день в список" + test);
         }
@@ -163,7 +206,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
     synchronized public void dayisaddedinbadlist(String test) {
 
 
-        if(store_keys.contains(test)){
+        if (store_keys.contains(test)) {
             store_keys.remove(test);
             Log.d(TAG, "Удалил  день из списка" + test);
         }
