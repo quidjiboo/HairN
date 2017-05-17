@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -32,7 +31,7 @@ import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 
 public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_listner_global_baddy {
-    private ArrayMap<String, Double> mkeysdist = new ArrayMap<>();
+
     private ArrayMap<String, LatLng> mkeys = new ArrayMap<>();
     private SortedSet<GPScoords> countrySet;
 
@@ -55,18 +54,19 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
 
         final Comparator testcomap = new Comparator<GPScoords>() {
             public int compare(GPScoords o1, GPScoords o2) {
-                Double price1 = o1.getmdist();
-                Double price2 = o2.getmdist();
-                /*if (price1 > price2) {
+                Double mdist1 = o1.getmdist();
+                Double mdist2 = o2.getmdist();
+                String key1 = o1.getkey();
+                String key2 = o2.getkey();
+                if ((mdist1 > mdist2)) {
                     return 1;
-                } else if (price1 < price2) {
+                } else if (mdist1 < mdist2) {
                     return -1;
                 } else {
-                    return 0;
-                }*/
-                if (price1 > price2) { return 1;}
-                else return -1;
-            }
+
+                    return o1.toString().compareTo(o2.toString());
+                }
+               }
         };
         countrySet = new TreeSet<>(testcomap);
 
@@ -111,7 +111,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
 
                 mkeys.put(key.toString(), mloc);
 
-                mkeysdist.put(key.toString(), SphericalUtil.computeDistanceBetween(mloc, mymloc));
+
                 GPScoords objmy = new GPScoords(key.toString(), SphericalUtil.computeDistanceBetween(mloc, mymloc));
                 countrySet.add(objmy);
 
@@ -134,16 +134,15 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
                 geoQuery.removeAllListeners();
 
                 for (String cat : store_keys) {
-                    System.out.println("СПИСОК ТЕХ КТО В ЗОНЕ ДОСЯГАЕМОСТИ" + cat);
+                //    System.out.println("СПИСОК ТЕХ КТО В ЗОНЕ ДОСЯГАЕМОСТИ" + c at);
 
                 }
-                //   mymloc = new LatLng(31.7853339, -112.4026973);
-                Spisok_singletone.getInstance().add_data(mkeys, mymloc);
 
                 spisok_creator(store_keys);
                 System.out.println("СПИСОК stn" + countrySet.size());
 
-
+                ArrayList<GPScoords> countrylist = new ArrayList<GPScoords>(countrySet);
+                Spisok_singletone.getInstance().add_data(countrylist,app.getmDatabase());
             }
 
             @Override
@@ -159,6 +158,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
                 .load("https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d")
                 .into(mimageView);
     }
+
 
     public void spisok_creator(ArrayList<String> array_of_keys) {
 
@@ -197,7 +197,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
 
         if (!store_keys.contains(test)) {
             store_keys.add(test);
-            Log.d(TAG, "Прибавил день в список" + test);
+       //     Log.d(TAG, "Прибавил день в список" + test);
         }
         mAdapter.notifyDataSetChanged();
     }
@@ -208,7 +208,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
 
         if (store_keys.contains(test)) {
             store_keys.remove(test);
-            Log.d(TAG, "Удалил  день из списка" + test);
+       //     Log.d(TAG, "Удалил  день из списка" + test);
         }
         mAdapter.notifyDataSetChanged();
     }
