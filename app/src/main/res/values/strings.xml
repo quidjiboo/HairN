@@ -7,4 +7,5 @@
     <string name="log_token">Log Token</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
     <string name="title_activity_recycle_vew_test">recycle_vew_test</string>
+    <string name="title_activity_list_test">list_test</string>
 </resources>

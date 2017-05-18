@@ -19,7 +19,6 @@
         <activity
             android:name=".recycle_view_test.Mecycle_vew_test"
             android:label="@string/Recycle"
-
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Date_chooser_main"
@@ -51,7 +50,16 @@
         <activity
             android:name=".Recycle_vew_test"
             android:label="@string/title_activity_recycle_vew_test"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".listesting.list_test"
+            android:label="@string/title_activity_list_test"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.akov.hairn.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

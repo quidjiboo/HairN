@@ -133,4 +133,13 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="37dp"
         android:layout_marginBottom="61dp" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button13"
+        android:layout_toEndOf="@+id/button7"
+        android:id="@+id/button16"
+        android:onClick="add_list_view_test"/>
 </RelativeLayout>
