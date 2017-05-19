@@ -49,7 +49,7 @@ public class Spisok_singletone {
                     if (mMap.containsKey(childDataSnapshot.getKey())) {
                         Rec_Shop_data post = childDataSnapshot.getValue(Rec_Shop_data.class);
                         mMap.get(childDataSnapshot.getKey()).setname(post.getname());
-                        mMap.get(childDataSnapshot.getKey()).setuid(post.getpicurl());
+                        mMap.get(childDataSnapshot.getKey()).seturi(post.getpicurl());
                         Log.v(TAG, "Совпадение в двух базах можно добавлять данные" + childDataSnapshot.getKey());
                     }
 

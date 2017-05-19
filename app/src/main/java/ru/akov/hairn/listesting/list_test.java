@@ -7,20 +7,25 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
+import ru.akov.hairn.recycle_view_test.GPScoords;
 
-public class list_test extends AppCompatActivity {
+public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
+    private ListView mlistView;
+    private MyArrayAdapter adapter;
     private My_app app;
-    mFirebaseArray marra;
-    String key="000";
+    private ArrayList<GPScoords> arra_for_listvieew;
+    private  String key = "000";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,56 +43,41 @@ public class list_test extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button mbutton = (Button) findViewById(R.id.button17);
-        Button addbutton = (Button) findViewById(R.id.button333);
-        Button addbutton9 = (Button) findViewById(R.id.button1999);
-        ListView mlistView = (ListView) findViewById(R.id.mlist);
-        final ArrayList<String> catnames = new ArrayList<String>();
 
-        final ArrayAdapter<String> adapter;
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, catnames);
-        // Привяжем массив через адаптер к ListView
+        LatLng mymloc = new LatLng(31.7853339, -112.4026973);
+
+        Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc);
+        mlistView = (ListView) findViewById(R.id.mlist);
+        arra_for_listvieew = Spisok_array_hashmap_singl.getInstance().getlist();
+        adapter = new MyArrayAdapter(this, R.layout.listview_item_row, arra_for_listvieew);
         mlistView.setAdapter(adapter);
 
+
+        Button mbutton = (Button) findViewById(R.id.button17);
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                catnames.add("lalal");
-                if(catnames.size()>=14 && catnames.get(3)!=null){
-                    catnames.set(3,"dsfdsfsdf");
-                }
-                adapter.notifyDataSetChanged();
-                System.out.println(marra.getCount());
-            }
-        });
-        addbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(key.contains("000")){
-                    key=app.getmDatabase().child("test").push().getKey();
-               app.getmDatabase().child("test").child(key).setValue(true);}
-                app.getmDatabase().child("test").push().setValue(true);
-            }
-        });
-        addbutton9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                app.getmDatabase().child("test2").child(key).setValue(true);
-            }
+                   }
         });
 
-        marra  = new mFirebaseArray(app.getmDatabase().child("test"),app.getmDatabase().child("test2"));
-        System.out.println(marra.getCount());
+        Spisok_array_hashmap_singl.getInstance().registerCallBack(this);
     }
+
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
-
+        Spisok_array_hashmap_singl.getInstance().remove_location_sort_arraylist();
         Intent intent = new Intent(list_test.this, MainActivity.class);
 
         startActivity(intent);
 
         this.finish();
+    }
+
+    @Override
+    public void refresh() {
+        arra_for_listvieew.clear();
+        arra_for_listvieew.addAll(Spisok_array_hashmap_singl.getInstance().getlist());
+        adapter.notifyDataSetChanged();
     }
 }

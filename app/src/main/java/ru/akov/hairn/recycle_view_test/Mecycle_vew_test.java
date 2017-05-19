@@ -112,7 +112,7 @@ public class Mecycle_vew_test extends AppCompatActivity implements MyCallbacl_li
                 mkeys.put(key.toString(), mloc);
 
 
-                GPScoords objmy = new GPScoords(key.toString(), SphericalUtil.computeDistanceBetween(mloc, mymloc));
+                GPScoords objmy = new GPScoords( SphericalUtil.computeDistanceBetween(mloc, mymloc),key.toString());
                 countrySet.add(objmy);
 
             }

@@ -24,7 +24,7 @@ import java.util.Calendar;
 import ru.akov.hairn.Data_tipes.Clock;
 import ru.akov.hairn.Data_tipes.Dennedeli;
 import ru.akov.hairn.Data_tipes.Shop_data;
-import ru.akov.hairn.Data_tipes.Shop_in_locat_url_names;
+import ru.akov.hairn.Data_tipes.Shop_in_locat_url_names_loc;
 import ru.akov.hairn.Data_tipes.Shop_locat_list_data;
 import ru.akov.hairn.Data_tipes.Shops;
 import ru.akov.hairn.Data_tipes.Usluga;
@@ -126,7 +126,7 @@ public   class Shop_creator {
 
 
                      //       mDatabase.child("locations_names").child("Novovoronezh").child("barbershops_names").child("Nady_hair_shop").setValue(key);
-                            Shop_in_locat_url_names msguri = new Shop_in_locat_url_names("Nady_hair_shop","https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d");
+                            Shop_in_locat_url_names_loc msguri = new Shop_in_locat_url_names_loc("Nady_hair_shop","https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",37.7853889,-122.4056973);
                             mDatabase.child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).setValue(msguri);
                             Shop_locat_list_data msgpos= new Shop_locat_list_data("37.7853889","-122.4056973");
                             mDatabase.child("locations").child("Novovoronezh").child("barbershops_locations").child(key).setValue(msgpos);

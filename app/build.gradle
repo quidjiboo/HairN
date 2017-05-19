@@ -33,16 +33,16 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
 
-            compile 'com.google.android.gms:play-services-plus:10.0.1'
-            compile 'com.google.android.gms:play-services-auth:10.0.1'
-            compile 'com.google.android.gms:play-services-base:10.0.1'
-           // compile 'com.google.firebase:firebase-appindexing:9.0.2'
-           compile 'com.google.android.gms:play-services-analytics:10.0.1'
-            compile 'com.google.android.gms:play-services-gcm:10.0.1'
-            compile 'com.google.android.gms:play-services-drive:10.0.1'
+    compile 'com.google.android.gms:play-services-plus:10.0.1'
+    compile 'com.google.android.gms:play-services-auth:10.0.1'
+    compile 'com.google.android.gms:play-services-base:10.0.1'
+    // compile 'com.google.firebase:firebase-appindexing:9.0.2'
+    compile 'com.google.android.gms:play-services-analytics:10.0.1'
+    compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'com.google.android.gms:play-services-drive:10.0.1'
     compile 'com.google.android.gms:play-services-maps:10.0.1'
 
-            compile 'com.firebaseui:firebase-ui:1.0.1'
+    compile 'com.firebaseui:firebase-ui:1.0.1'
 
 
     compile 'com.google.firebase:firebase-messaging:10.0.1'
@@ -58,5 +58,6 @@ dependencies {
     compile 'com.firebase:geofire-android:2.1.1'
 
     compile 'com.google.maps.android:android-maps-utils:0.4+'
+
 }
 apply plugin: 'com.google.gms.google-services'

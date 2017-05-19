@@ -6,28 +6,50 @@ package ru.akov.hairn.recycle_view_test;
 
 public class GPScoords {
     private Double mdist;
-        private String key;
-    private String uid="null";
-    private String name="null";
-     GPScoords(String key,Double mdist)
-     {
-this.key=key;
-        this.mdist=mdist;
+    private String key;
+    private String uri = "empty";
+    private String name = "empty";
+    private double latitude;
+    private double longitude;
+    public GPScoords(){
+        super();
     }
-    public Double getmdist(){
-        return mdist;
-    }
-    public String getkey(){
-        return key;
-    }
-    public String getname(){
-        return name;
+    public GPScoords(double mdist, String key, String uri, String name, double latitude, double longitude) {
+        this.mdist = mdist;
+        this.key = key;
+        this.uri = uri;
+        this.name = name;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
-    public void setname(String name){
+    public GPScoords(Double mdist, String key) {
+        this.mdist = mdist;
+        this.key = key;
+        this.uri = uri;
+
+    }
+
+    public double getmdist() {
+        return mdist;
+    }
+
+    public String getkey() {
+        return key;
+    }
+
+    public String getname() {
+        return name;
+    }
+    public String geturi() {
+        return uri;
+    }
+
+    public void setname(String name) {
         this.name = name;
     }
-    public void setuid(String uid){
-        this.uid = uid;
+
+    public void seturi(String uri) {
+        this.uri = uri;
     }
 }
