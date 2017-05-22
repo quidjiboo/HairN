@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:divider="@null"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ru.akov.hairn.listesting.list_test"
     tools:showIn="@layout/activity_list_test">
@@ -32,8 +33,10 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:divider="@null"
         android:layout_marginTop="48dp"
-        android:id="@+id/mlist" />
+        android:id="@+id/mlist"
+        style="@style/Widget.AppCompat.ListView" />
 
     <Button
         android:text="Button3"

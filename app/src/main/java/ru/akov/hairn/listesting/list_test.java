@@ -20,6 +20,7 @@ import ru.akov.hairn.R;
 import ru.akov.hairn.recycle_view_test.GPScoords;
 
 public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
+    private LatLng mymloc;
     private ListView mlistView;
     private MyArrayAdapter adapter;
     private My_app app;
@@ -44,12 +45,13 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        LatLng mymloc = new LatLng(31.7853339, -112.4026973);
+        mymloc = new LatLng(31.7853339, -112.4026973);
 
-        Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc);
+        Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc,app.getmDatabase().child("test_rem_add"));
         mlistView = (ListView) findViewById(R.id.mlist);
+
         arra_for_listvieew = Spisok_array_hashmap_singl.getInstance().getlist();
-        adapter = new MyArrayAdapter(this, R.layout.listview_item_row, arra_for_listvieew);
+        adapter = new MyArrayAdapter(this, R.layout.test_card, arra_for_listvieew);
         mlistView.setAdapter(adapter);
 
 
@@ -61,6 +63,9 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         });
 
         Spisok_array_hashmap_singl.getInstance().registerCallBack(this);
+
+
+
     }
 
     @Override
@@ -80,4 +85,12 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         arra_for_listvieew.addAll(Spisok_array_hashmap_singl.getInstance().getlist());
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+   synchronized public void adddata(GPScoords obj) {
+
+    }
+
+
+
 }

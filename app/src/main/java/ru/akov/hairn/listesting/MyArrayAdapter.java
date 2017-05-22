@@ -6,7 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -45,7 +48,7 @@ public class MyArrayAdapter extends ArrayAdapter<GPScoords> {
             holder = new WeatherHolder();
             holder.name = (TextView)row.findViewById(R.id.txtTitle1);
             holder.dist = (TextView)row.findViewById(R.id.txtTitle2);
-         //   holder.image = (ImageView)row.findViewById(R.id.imgIcon123);
+            holder.image = (ImageView)row.findViewById(R.id.imgIcon123);
             row.setTag(holder);
         }
         else
@@ -60,14 +63,20 @@ public class MyArrayAdapter extends ArrayAdapter<GPScoords> {
         holder.dist.setText(Double.toString(newDouble));
         holder.name.setText(weather.getname());
 
-       /* Glide.with(context)
+      Glide.with(context)
                 .load(weather.geturi())
+               .placeholder(R.mipmap.ic_launcher)
+              .error(R.drawable.anon_user_48dp)
+              //.centerCrop()
+               .centerCrop()
+               .crossFade(500)
+              //  .override(800, 600)
 
-                .centerCrop()
-                .override(200, 200)
 
 
-                .into(holder.image);*/
+               .into(holder.image);
+
+
         return row;
     }
 
@@ -75,7 +84,7 @@ public class MyArrayAdapter extends ArrayAdapter<GPScoords> {
     {
         TextView name;
         TextView dist;
-      //  ImageView image;
+        ImageView image;
     }
 }
 
