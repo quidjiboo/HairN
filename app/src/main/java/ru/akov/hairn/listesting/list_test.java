@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
-import ru.akov.hairn.recycle_view_test.GPScoords;
 
 public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
     private LatLng mymloc;

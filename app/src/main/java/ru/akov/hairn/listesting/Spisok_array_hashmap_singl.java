@@ -16,7 +16,6 @@ import java.util.TreeSet;
 
 import ru.akov.hairn.Data_tipes.Shop_in_locat_url_names_loc;
 import ru.akov.hairn.My_app;
-import ru.akov.hairn.recycle_view_test.GPScoords;
 
 /**
  * Created by User on 17.03.2017.
@@ -133,7 +132,7 @@ public class Spisok_array_hashmap_singl {
                             System.out.println("ОБЕКТЫ В ТРИИСЕТЕ =" + c.getmdist() + c.getname() + c.getkey());
 
                         }
-                     //   myCallback.refresh();
+                        myCallback.refresh();
                         add_rem_hashset(isklmDatabase);
 
                     }

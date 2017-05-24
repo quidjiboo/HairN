@@ -13,7 +13,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import ru.akov.hairn.listesting.list_test;
-import ru.akov.hairn.recycle_view_test.Mecycle_vew_test;
+
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -70,14 +70,8 @@ Shop_creator creator = new Shop_creator();
 
         this.finish();
     }
-    public void add_recycle_view(View view) {
 
-        Intent intent = new Intent(MainActivity.this,Mecycle_vew_test.class);
 
-        startActivity(intent);
-
-        this.finish();
-    }
     public void add_list_view_test(View view) {
 
         Intent intent = new Intent(MainActivity.this,list_test.class);

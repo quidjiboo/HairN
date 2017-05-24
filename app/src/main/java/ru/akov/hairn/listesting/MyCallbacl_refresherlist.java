@@ -1,8 +1,6 @@
 package ru.akov.hairn.listesting;
 
 
-import ru.akov.hairn.recycle_view_test.GPScoords;
-
 /**
  * Created by User on 21.04.2016.
  */

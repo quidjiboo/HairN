@@ -16,7 +16,6 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import ru.akov.hairn.R;
-import ru.akov.hairn.recycle_view_test.GPScoords;
 
 /**
  * Created by User on 19.05.2017.

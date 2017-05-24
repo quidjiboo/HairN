@@ -1,4 +1,4 @@
-package ru.akov.hairn.recycle_view_test;
+package ru.akov.hairn.listesting;
 
 /**
  * Created by User on 16.05.2017.
