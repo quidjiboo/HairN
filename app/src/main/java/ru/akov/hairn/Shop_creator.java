@@ -130,8 +130,10 @@ public   class Shop_creator {
                             mDatabase.child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).setValue(msguri);
                             Shop_locat_list_data msgpos= new Shop_locat_list_data("37.7853889","-122.4056973");
                             mDatabase.child("locations").child("Novovoronezh").child("barbershops_locations").child(key).setValue(msgpos);
-                            mDatabase.child("services_names").child("Female haircut").child("Nady_hair_shop").child(key).setValue(true);
-                            mDatabase.child("services_names").child("Female haircut").child("Hair coloring").child(key).setValue(true);
+                            Double  femalehaircut =500.0;
+                            mDatabase.child("services_names").child("Female haircut").child(key).setValue(femalehaircut);
+                            Double  Haircoloring =300.0;
+                            mDatabase.child("services_names").child("Hair coloring").child(key).setValue(Haircoloring);
 
                             String usluga = "Female haircut";
                             mDatabase.child("barbershops").child(key).child("services").child(usluga).setValue(true);

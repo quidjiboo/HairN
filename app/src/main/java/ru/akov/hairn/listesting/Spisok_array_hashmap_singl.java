@@ -165,62 +165,62 @@ public class Spisok_array_hashmap_singl {
 
 
         mDatabase.addChildEventListener(bloched_sort_arraylistner = new ChildEventListener() {
-                                            @Override
-                                            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                                                if (location_sort_arraylist_of_keys.contains(dataSnapshot.getKey())) {
+                        if (location_sort_arraylist_of_keys.contains(dataSnapshot.getKey())) {
 
-                                                    Iterator<GPScoords> iterator = location_sort_array_treest.iterator();
-                                                    while (iterator.hasNext()) {
+                            Iterator<GPScoords> iterator = location_sort_array_treest.iterator();
+                            while (iterator.hasNext()) {
 
-                                                        GPScoords c = (GPScoords) iterator.next();
-                                                        if (c.getkey().contains(dataSnapshot.getKey()))
-                                                            iterator.remove();
-
-
-                                                    }
-                                                    location_sort_arraylist = new ArrayList<GPScoords>(location_sort_array_treest);
-
-                                                    myCallback.refresh();
-                                                }
-
-                                            }
-
-                                            @Override
-                                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                                            }
-
-                                            @Override
-                                            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                                                if (location_sort_arraylist_of_keys.contains(dataSnapshot.getKey())) {
-                                                    Iterator<GPScoords> iterator = location_sort_array_treest_COPY.iterator();
-                                                    while (iterator.hasNext()) {
-
-                                                        GPScoords c = (GPScoords) iterator.next();
-                                                        if (c.getkey().contains(dataSnapshot.getKey()))
-                                                            location_sort_array_treest.add(c);
+                                GPScoords c = (GPScoords) iterator.next();
+                                if (c.getkey().contains(dataSnapshot.getKey()))
+                                    iterator.remove();
 
 
-                                                    }
-                                                    location_sort_arraylist = new ArrayList<GPScoords>(location_sort_array_treest);
+                            }
+                            location_sort_arraylist = new ArrayList<GPScoords>(location_sort_array_treest);
 
-                                                    myCallback.refresh();
+                            myCallback.refresh();
+                        }
 
-                                                    myCallback.refresh();
-                                                }
-                                            }
+                    }
 
-                                            @Override
-                                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
-                                            }
+                    }
 
-                                            @Override
-                                            public void onCancelled(DatabaseError databaseError) {
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        if (location_sort_arraylist_of_keys.contains(dataSnapshot.getKey())) {
+                            Iterator<GPScoords> iterator = location_sort_array_treest_COPY.iterator();
+                            while (iterator.hasNext()) {
 
-                                            }
-                                        }
+                                GPScoords c = (GPScoords) iterator.next();
+                                if (c.getkey().contains(dataSnapshot.getKey()))
+                                    location_sort_array_treest.add(c);
+
+
+                            }
+                            location_sort_arraylist = new ArrayList<GPScoords>(location_sort_array_treest);
+
+                            myCallback.refresh();
+
+                            myCallback.refresh();
+                        }
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                }
         );
 
 

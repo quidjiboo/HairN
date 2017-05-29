@@ -18,7 +18,6 @@ import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.listesting.DATA.GPScoords;
-import ru.akov.hairn.listesting.DATA.Shop_info_data;
 
 public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
     private LatLng mymloc;
@@ -26,10 +25,9 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
     private MyArrayAdapter adapter;
     private My_app app;
     private ArrayList<GPScoords> arra_for_listvieew;
-    private ArrayList<Shop_info_data> shop_info_datas_array_for_listvieew;
 
 
-    private  String key = "000";
+    private String key = "000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +48,11 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mymloc = new LatLng(31.7853339, -112.4026973);
-
-        Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc,app.getmDatabase().child("test_rem_add"));
+        Spisok_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc, app.getmDatabase().child("test_rem_add"));
+        Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc, app.getmDatabase().child("test_rem_add"));
         mlistView = (ListView) findViewById(R.id.mlist);
 
-        shop_info_datas_array_for_listvieew = Spisok_singl.getInstance().getlist();
+
         arra_for_listvieew = Spisok_array_hashmap_singl.getInstance().getlist();
 
 
@@ -66,11 +64,10 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                   }
+            }
         });
 
         Spisok_array_hashmap_singl.getInstance().registerCallBack(this);
-
 
 
     }
@@ -94,15 +91,13 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         adapter.notifyDataSetChanged();
 
 
-
     }
 
     @Override
-   synchronized public void adddata(GPScoords obj) {
+    synchronized public void adddata(GPScoords obj) {
 
 
     }
-
 
 
 }
