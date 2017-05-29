@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
+import ru.akov.hairn.listesting.DATA.GPScoords;
+import ru.akov.hairn.listesting.DATA.Shop_info_data;
 
 public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
     private LatLng mymloc;
@@ -24,6 +26,9 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
     private MyArrayAdapter adapter;
     private My_app app;
     private ArrayList<GPScoords> arra_for_listvieew;
+    private ArrayList<Shop_info_data> shop_info_datas_array_for_listvieew;
+
+
     private  String key = "000";
 
     @Override
@@ -49,7 +54,10 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc,app.getmDatabase().child("test_rem_add"));
         mlistView = (ListView) findViewById(R.id.mlist);
 
+        shop_info_datas_array_for_listvieew = Spisok_singl.getInstance().getlist();
         arra_for_listvieew = Spisok_array_hashmap_singl.getInstance().getlist();
+
+
         adapter = new MyArrayAdapter(this, R.layout.test_card, arra_for_listvieew);
         mlistView.setAdapter(adapter);
 
@@ -81,12 +89,17 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
     @Override
     public void refresh() {
         arra_for_listvieew.clear();
+
         arra_for_listvieew.addAll(Spisok_array_hashmap_singl.getInstance().getlist());
         adapter.notifyDataSetChanged();
+
+
+
     }
 
     @Override
    synchronized public void adddata(GPScoords obj) {
+
 
     }
 

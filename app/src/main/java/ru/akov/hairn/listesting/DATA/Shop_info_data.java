@@ -1,21 +1,20 @@
-package ru.akov.hairn.listesting;
+package ru.akov.hairn.listesting.DATA;
 
 /**
  * Created by User on 16.05.2017.
  */
 
-public class GPScoords {
-    private Double mdist;
+public class Shop_info_data {
     private String key;
     private String uri = "empty";
     private String name = "empty";
     private double latitude;
     private double longitude;
-    public GPScoords(){
+    public Shop_info_data(){
         super();
     }
-    public GPScoords(double mdist, String key, String uri, String name, double latitude, double longitude) {
-        this.mdist = mdist;
+    public Shop_info_data( String key, String uri, String name, double latitude, double longitude) {
+
         this.key = key;
         this.uri = uri;
         this.name = name;
@@ -23,16 +22,14 @@ public class GPScoords {
         this.longitude = longitude;
     }
 
-    public GPScoords(Double mdist, String key) {
-        this.mdist = mdist;
+    public Shop_info_data(Double mdist, String key) {
+
         this.key = key;
         this.uri = uri;
 
     }
 
-    public double getmdist() {
-        return mdist;
-    }
+
 
     public String getkey() {
         return key;
@@ -44,7 +41,9 @@ public class GPScoords {
     public String geturi() {
         return uri;
     }
-
+    public double getlatitude() {
+        return latitude;
+    }
     public void setname(String name) {
         this.name = name;
     }

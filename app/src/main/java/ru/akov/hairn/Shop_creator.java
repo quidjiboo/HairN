@@ -50,7 +50,7 @@ public   class Shop_creator {
                         mDatabase.child("location").child("Moscow").setValue(Boolean.TRUE);
                         mDatabase.child("services").child("Man's haircut").setValue(Boolean.TRUE);
                         mDatabase.child("services").child("Female haircut").setValue(Boolean.TRUE);
-                        mDatabase.child("services").child("Hair coloring").setValue(Boolean.TRUE);
+             //           mDatabase.child("services").child("Hair coloring").setValue();
                         }
 
                     @Override
@@ -97,7 +97,7 @@ public   class Shop_creator {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, and download URL.
-                Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                @SuppressWarnings("VisibleForTests") Uri downloadUrl =  taskSnapshot.getDownloadUrl();
                 Log.v("AKOV", "ДЕЛАЕМ МАГАЗИН НАДЕ!!!");
                 add_Nady_barbeshop(mDatabase,user,downloadUrl.toString());
             }
@@ -137,8 +137,14 @@ public   class Shop_creator {
                             mDatabase.child("barbershops").child(key).child("services").child(usluga).setValue(true);
                             usluga = "Hair coloring";
                             mDatabase.child("barbershops").child(key).child("services").child(usluga).setValue(true);
+                            Double  price =500.0;
+                            mDatabase.child("barbershops").child(key).child("services_price").child("Hair coloring").setValue(price);
+                           // mDatabase.child("services_price").child("Hair coloring").child(key).child("price").setValue(price);
 
+                             price =300.0;
+                            mDatabase.child("barbershops").child(key).child("services_price").child("Female haircut").setValue(price);
 
+                         //   mDatabase.child("services_price").child("Female haircut").child(key).child("price").setValue(price);
 
                          /*   Product product = new Product("default","0.0","https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/shopping-paper-bag-outline_318-39786.png?alt=media&token=93a2373e-1336-4fbe-9268-924db09e4fb9");
                             String key = mDatabase.child("shops").child(key1).child("products").push().getKey();
