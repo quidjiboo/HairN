@@ -11,23 +11,35 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DatabaseReference;
+import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
 
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
-import ru.akov.hairn.listesting.DATA.GPScoords;
+import ru.akov.hairn.listesting.DATA.GPScoords_price;
 
 public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
-    private LatLng mymloc;
+    //временные переменные должны приходить при открытии списка
+  //  String namebarbershop_key ="-KlJ2HhZMdxUQCa2HF2Z";
+    String location ="Novovoronezh";
+    String services_names ="services_names";
+    String service ="Female haircut";
+    String date ="20170602";
+    String time ="08_00";
+    LatLng  mymloc =  new LatLng(31.7853339, -112.4026973);
+
+    //private LatLng mymloc;
     private ListView mlistView;
-    private MyArrayAdapter adapter;
+
+    private MyArrayAdapter_price adapter_price;
     private My_app app;
-    private ArrayList<GPScoords> arra_for_listvieew;
+
+    private ArrayList<GPScoords_price> arra_for_listvieew_price;
 
 
-    private String key = "000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,18 +59,19 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mymloc = new LatLng(31.7853339, -112.4026973);
-        Spisok_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc, app.getmDatabase().child("test_rem_add"));
-        Spisok_array_hashmap_singl.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc, app.getmDatabase().child("test_rem_add"));
+  //      mymloc = new LatLng(31.7853339, -112.4026973);
+
+
+
+
         mlistView = (ListView) findViewById(R.id.mlist);
 
 
-        arra_for_listvieew = Spisok_array_hashmap_singl.getInstance().getlist();
+        arra_for_listvieew_price = new ArrayList<>();
 
-
-        adapter = new MyArrayAdapter(this, R.layout.test_card, arra_for_listvieew);
-        mlistView.setAdapter(adapter);
-
+        adapter_price = new MyArrayAdapter_price(this, R.layout.test_card, arra_for_listvieew_price);
+      //  mlistView.setAdapter(adapter);
+        mlistView.setAdapter(adapter_price);
 
         Button mbutton = (Button) findViewById(R.id.button17);
         mbutton.setOnClickListener(new View.OnClickListener() {
@@ -67,15 +80,23 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
             }
         });
 
-        Spisok_array_hashmap_singl.getInstance().registerCallBack(this);
+       // Spisok_singl_refactor.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc, app.getmDatabase().child("test_rem_add"));
+     //   Spisok_singl_refactor.getInstance().registerCallBack(this);
 
+
+      DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
+      DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
+
+       Spisok_singl_refactor_second_choos_services.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc,m_block_date_time);
+
+        Spisok_singl_refactor_second_choos_services.getInstance().registerCallBack(this);
 
     }
 
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
-        Spisok_array_hashmap_singl.getInstance().remove_location_sort_arraylist();
+      //  Spisok_singl_refactor.getInstance().remove_location_sort_arraylist();
         Intent intent = new Intent(list_test.this, MainActivity.class);
 
         startActivity(intent);
@@ -83,19 +104,49 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         this.finish();
     }
 
+
     @Override
-    public void refresh() {
-        arra_for_listvieew.clear();
+    public void refresh(GPScoords_price obj) {
+     /*   for(int i=0 ; i<adapter_price.getCount() ; i++){
+            GPScoords_price orig = adapter_price.getItem(i);
+            if(orig.getkey().contains(obj.getkey())){
+                adapter_price.remove(orig);
+                adapter_price.add(obj);
+                adapter_price.notifyDataSetChanged();
+            }
+        }*/
+    }
 
-        arra_for_listvieew.addAll(Spisok_array_hashmap_singl.getInstance().getlist());
-        adapter.notifyDataSetChanged();
+    @Override
+    synchronized  public void addtolist(GPScoords_price obj) {
 
+        LatLng mloc = new LatLng(obj.getlatitude(), obj.getlongitude());
+        double mdist = SphericalUtil.computeDistanceBetween(mloc, mymloc);
+        obj.setmdist(mdist);
+        adapter_price.add(obj);
+        adapter_price.notifyDataSetChanged();
+    /*    if(adapter_price.getCount()>0) {
+            for (int i = 0; i < adapter_price.getCount(); i++) {
+                GPScoords_price orig = adapter_price.getItem(i);
+                if (!orig.getkey().contains(obj.getkey())) {
+                    Log.d("dsfsdfs", "YEY YEY YEY E " + obj.getkey());
+
+                }
+            }
+       }*/
 
     }
 
     @Override
-    synchronized public void adddata(GPScoords obj) {
-
+    synchronized  public void removefromlist(String obj) {
+        GPScoords_price orig = null;
+        for(int i=0 ; i<adapter_price.getCount() ; i++){
+             orig = adapter_price.getItem(i);
+            if(orig.getkey().contains(obj)){
+                adapter_price.remove(orig);
+                adapter_price.notifyDataSetChanged();
+              }
+        }
 
     }
 

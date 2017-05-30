@@ -9,9 +9,9 @@ public class GPScoords_price {
     private String key;
     private String uri = "empty";
     private String name = "empty";
-    private double latitude;
-    private double longitude;
-    private double price = 0.0;
+    private Double latitude;
+    private Double longitude;
+    private Double price = 0.0;
     public GPScoords_price(){
         super();
     }
@@ -30,7 +30,12 @@ public class GPScoords_price {
     public double getmdist() {
         return mdist;
     }
-
+    public double getlatitude() {
+        return latitude;
+    }
+    public double getlongitude() {
+        return longitude;
+    }
     public String getkey() {
         return key;
     }
@@ -45,7 +50,9 @@ public class GPScoords_price {
     public void setname(String name) {
         this.name = name;
     }
-
+    public void setmdist(Double mdist) {
+        this.mdist = mdist;
+    }
     public void seturi(String uri) {
         this.uri = uri;
     }

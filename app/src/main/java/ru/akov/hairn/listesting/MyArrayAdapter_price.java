@@ -16,19 +16,19 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import ru.akov.hairn.R;
-import ru.akov.hairn.listesting.DATA.Shop_info_data;
+import ru.akov.hairn.listesting.DATA.GPScoords_price;
 
 /**
  * Created by User on 19.05.2017.
  */
 
-public class MyArrayAdapter_simplelist extends ArrayAdapter<Shop_info_data> {
+public class MyArrayAdapter_price extends ArrayAdapter<GPScoords_price> {
 
     Context context;
     int layoutResourceId;
-    ArrayList<Shop_info_data> data = null;
+    ArrayList<GPScoords_price> data = null;
 
-    public MyArrayAdapter_simplelist(Context context, int layoutResourceId, ArrayList<Shop_info_data> data) {
+    public MyArrayAdapter_price(Context context, int layoutResourceId, ArrayList<GPScoords_price> data) {
         super(context, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.context = context;
@@ -58,8 +58,8 @@ public class MyArrayAdapter_simplelist extends ArrayAdapter<Shop_info_data> {
 
 
 
-        Shop_info_data weather = data.get(position);
-        double newDouble = new BigDecimal(weather.getlatitude()).setScale(3, RoundingMode.UP).doubleValue();
+        GPScoords_price weather = data.get(position);
+        double newDouble = new BigDecimal(weather.getmdist()).setScale(3, RoundingMode.UP).doubleValue();
         holder.dist.setText(Double.toString(newDouble));
         holder.name.setText(weather.getname());
 
