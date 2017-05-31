@@ -19,7 +19,7 @@ import ru.akov.hairn.listesting.DATA.GPScoords_price;
  * Created by User on 17.03.2017.
  */
 
-public class Spisok_singl_refactor_second_choos_services {
+public class Single_tone_array_creator {
     private static final String TAG = "Массив";
 
     private ChildEventListener location_sort_arraylistner_Child;
@@ -33,10 +33,10 @@ public class Spisok_singl_refactor_second_choos_services {
     private DatabaseReference mDatabase_in_blocked;
     private My_app app;
     private MyCallbacl_refresherlist myCallback;
-    private static Spisok_singl_refactor_second_choos_services instance;
+    private static Single_tone_array_creator instance;
     private LatLng mylocation;
 
-    private Spisok_singl_refactor_second_choos_services() {
+    private Single_tone_array_creator() {
 
     }
 
@@ -45,9 +45,9 @@ public class Spisok_singl_refactor_second_choos_services {
         this.myCallback = callback;
     }
 
-    public static synchronized Spisok_singl_refactor_second_choos_services getInstance() {
+    public static synchronized Single_tone_array_creator getInstance() {
         if (instance == null) {
-            instance = new Spisok_singl_refactor_second_choos_services();   /// спорное решение !!!
+            instance = new Single_tone_array_creator();   /// спорное решение !!!
         }
         return instance;
     }
@@ -85,8 +85,8 @@ public class Spisok_singl_refactor_second_choos_services {
     }
 
     synchronized void remove_location_sort_arraylist() {
-     //  mDatabase_in_singl.removeEventListener(location_sort_arraylistner_Child);
-      //  mDatabase_in_blocked.removeEventListener(bloched_sort_arraylistner);
+       mDatabase_in_singl.removeEventListener(location_sort_arraylistner_Child);
+        mDatabase_in_blocked.removeEventListener(bloched_sort_arraylistner);
     }
 
 

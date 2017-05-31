@@ -23,13 +23,13 @@ import ru.akov.hairn.listesting.DATA.GPScoords_price;
 
 public class list_test extends AppCompatActivity implements MyCallbacl_refresherlist {
     //временные переменные должны приходить при открытии списка
-  //  String namebarbershop_key ="-KlJ2HhZMdxUQCa2HF2Z";
-    String location ="Novovoronezh";
-    String services_names ="services_names";
-    String service ="Female haircut";
-    String date ="20170602";
-    String time ="08_00";
-    LatLng  mymloc =  new LatLng(31.7853339, -112.4026973);
+    //  String namebarbershop_key ="-KlJ2HhZMdxUQCa2HF2Z";
+    String location = "Novovoronezh";
+    String services_names = "services_names";
+    String service = "Female haircut";
+    String date = "20170602";
+    String time = "08_00";
+    LatLng mymloc = new LatLng(31.7853339, -112.4026973);
 
     //private LatLng mymloc;
     private ListView mlistView;
@@ -38,7 +38,6 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
     private My_app app;
 
     private ArrayList<GPScoords_price> arra_for_listvieew_price;
-
 
 
     @Override
@@ -59,20 +58,11 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-  //      mymloc = new LatLng(31.7853339, -112.4026973);
-
-
-
 
         mlistView = (ListView) findViewById(R.id.mlist);
-
-
         arra_for_listvieew_price = new ArrayList<>();
-
         adapter_price = new MyArrayAdapter_price(this, R.layout.test_card, arra_for_listvieew_price);
-      //  mlistView.setAdapter(adapter);
         mlistView.setAdapter(adapter_price);
-
         Button mbutton = (Button) findViewById(R.id.button17);
         mbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,23 +70,19 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
             }
         });
 
-       // Spisok_singl_refactor.getInstance().addlistner_location_sort_arraylist(app.getmDatabase().child("locations_names").child("Novovoronezh").child("barbershops_names"), mymloc, app.getmDatabase().child("test_rem_add"));
-     //   Spisok_singl_refactor.getInstance().registerCallBack(this);
 
+        DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
+        DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
 
-      DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
-      DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
-
-       Spisok_singl_refactor_second_choos_services.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc,m_block_date_time);
-
-        Spisok_singl_refactor_second_choos_services.getInstance().registerCallBack(this);
+        Single_tone_array_creator.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc, m_block_date_time);
+        Single_tone_array_creator.getInstance().registerCallBack(this);
 
     }
 
     @Override
     public void onBackPressed() {
-        // super.onBackPressed();
-      //  Spisok_singl_refactor.getInstance().remove_location_sort_arraylist();
+        super.onBackPressed();
+        Single_tone_array_creator.getInstance().remove_location_sort_arraylist();
         Intent intent = new Intent(list_test.this, MainActivity.class);
 
         startActivity(intent);
@@ -106,19 +92,7 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
 
 
     @Override
-    public void refresh(GPScoords_price obj) {
-     /*   for(int i=0 ; i<adapter_price.getCount() ; i++){
-            GPScoords_price orig = adapter_price.getItem(i);
-            if(orig.getkey().contains(obj.getkey())){
-                adapter_price.remove(orig);
-                adapter_price.add(obj);
-                adapter_price.notifyDataSetChanged();
-            }
-        }*/
-    }
-
-    @Override
-    synchronized  public void addtolist(GPScoords_price obj) {
+    synchronized public void addtolist(GPScoords_price obj) {
 
         LatLng mloc = new LatLng(obj.getlatitude(), obj.getlongitude());
         double mdist = SphericalUtil.computeDistanceBetween(mloc, mymloc);
@@ -138,14 +112,14 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
     }
 
     @Override
-    synchronized  public void removefromlist(String obj) {
+    synchronized public void removefromlist(String obj) {
         GPScoords_price orig = null;
-        for(int i=0 ; i<adapter_price.getCount() ; i++){
-             orig = adapter_price.getItem(i);
-            if(orig.getkey().contains(obj)){
+        for (int i = 0; i < adapter_price.getCount(); i++) {
+            orig = adapter_price.getItem(i);
+            if (orig.getkey().contains(obj)) {
                 adapter_price.remove(orig);
                 adapter_price.notifyDataSetChanged();
-              }
+            }
         }
 
     }
