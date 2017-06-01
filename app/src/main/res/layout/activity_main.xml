@@ -133,4 +133,14 @@
         android:layout_toEndOf="@+id/button7"
         android:id="@+id/button16"
         android:onClick="add_list_view_test"/>
+
+    <Button
+        android:id="@+id/button14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button16"
+        android:layout_marginTop="27dp"
+        android:onClick="newLive"
+        android:text="NEwLive" />
 </RelativeLayout>

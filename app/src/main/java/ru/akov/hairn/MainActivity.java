@@ -1,9 +1,9 @@
 package ru.akov.hairn;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import ru.akov.hairn.chooser_service_to_date.choose_servicei_activity;
 import ru.akov.hairn.listesting.list_test;
 
 
@@ -75,6 +76,14 @@ Shop_creator creator = new Shop_creator();
     public void add_list_view_test(View view) {
 
         Intent intent = new Intent(MainActivity.this,list_test.class);
+
+        startActivity(intent);
+
+        this.finish();
+    }
+    public void newLive(View view) {
+
+        Intent intent = new Intent(MainActivity.this,choose_servicei_activity.class);
 
         startActivity(intent);
 

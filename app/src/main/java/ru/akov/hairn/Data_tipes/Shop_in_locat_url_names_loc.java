@@ -13,17 +13,19 @@ public class Shop_in_locat_url_names_loc {
     public String picurl;
     public Double latitude;
     public Double longitude;
+    public String stars;
 
     public Shop_in_locat_url_names_loc() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Shop_in_locat_url_names_loc(String name, String picurl, Double latitude, Double longitude) {
+    public Shop_in_locat_url_names_loc(String name, String picurl, Double latitude, Double longitude,  String stars) {
         //  this.product = product;
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
         this.picurl = picurl;
+        this.stars = stars;
 
     }
     public Double getlatitude() {
@@ -41,5 +43,7 @@ public class Shop_in_locat_url_names_loc {
         return picurl;
     }
 
-
+    public String getstars() {
+        return stars;
+    }
 }

@@ -118,7 +118,7 @@ public   class Shop_creator {
                             String key = mDatabase.child("barbershops").push().getKey();
 
 
-                            Shop_data msg = new Shop_data("Nady_hair_shop", "barbershop", "https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",userId,"Novovoronezh","37.7853889" ,"-122.4056973",uri_text1);
+                            Shop_data msg = new Shop_data("Nady_hair_shop", "barbershop", "https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",userId,"Novovoronezh",37.7853889 ,-122.4056973,uri_text1,"3","89191894255");
                             //    String key=mDatabase.child("shops").push().getKey();
 
 
@@ -126,7 +126,7 @@ public   class Shop_creator {
 
 
                      //       mDatabase.child("locations_names").child("Novovoronezh").child("barbershops_names").child("Nady_hair_shop").setValue(key);
-                            Shop_in_locat_url_names_loc msguri = new Shop_in_locat_url_names_loc("Nady_hair_shop","https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",37.7853889,-122.4056973);
+                            Shop_in_locat_url_names_loc msguri = new Shop_in_locat_url_names_loc("Nady_hair_shop","https://firebasestorage.googleapis.com/v0/b/test-base-soc-net.appspot.com/o/defaultshop.png?alt=media&token=92cc5bdb-bb0d-4a03-a292-da6ef5eb622d",37.7853889,-122.4056973,"3");
                             mDatabase.child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).setValue(msguri);
                             Shop_locat_list_data msgpos= new Shop_locat_list_data("37.7853889","-122.4056973");
                             mDatabase.child("locations").child("Novovoronezh").child("barbershops_locations").child(key).setValue(msgpos);

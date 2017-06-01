@@ -8,7 +8,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/NoActionBarThemeMyThem">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,13 +17,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".recycle_view_test.Mecycle_vew_test"
-            android:label="@string/Recycle"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Date_chooser_main"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".chooser_service_to_date.choose_servicei_activity"
+            android:label="@string/title_activity_test_choser"
+            android:theme="@style/NoActionBarThemeMyThem" />
         <activity
             android:name=".Zakaz_blank"
             android:label="@string/title_activity_zakaz_blank"
@@ -47,10 +47,6 @@
             </intent-filter>
         </service>
         <!-- [END firebase_iid_service] -->
-        <activity
-            android:name=".Recycle_vew_test"
-            android:label="@string/title_activity_recycle_vew_test"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".listesting.list_test"
             android:label="@string/title_activity_list_test"
