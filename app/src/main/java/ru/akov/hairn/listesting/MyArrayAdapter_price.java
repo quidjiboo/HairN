@@ -30,6 +30,7 @@ public class MyArrayAdapter_price extends ArrayAdapter<GPScoords_price> {
 
     public MyArrayAdapter_price(Context context, int layoutResourceId, ArrayList<GPScoords_price> data) {
         super(context, layoutResourceId, data);
+
         this.layoutResourceId = layoutResourceId;
         this.context = context;
         this.data = data;

@@ -11,9 +11,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 
 /**
@@ -21,10 +24,16 @@ import ru.akov.hairn.R;
  */
 
 public class choose_servicei_activity  extends AppCompatActivity {
-
+    private My_app app;
+    private DatabaseReference m_ref_test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        app = ((My_app) getApplicationContext());
+
+        m_ref_test = app.getmDatabase().child("shops_types");
+
+
         setContentView(R.layout.choose_type_of_shops);
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -36,9 +45,11 @@ public class choose_servicei_activity  extends AppCompatActivity {
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
+      Single_simple.getInstance().addlistner(m_ref_test);
 
 
     }
+
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         Adapter adapter = new Adapter(getSupportFragmentManager());

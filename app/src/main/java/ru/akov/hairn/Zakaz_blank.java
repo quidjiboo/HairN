@@ -94,7 +94,7 @@ public class Zakaz_blank extends AppCompatActivity implements MyCallback_textwat
 
         messagesView  = (ListView) findViewById(R.id.list_uslugi);
 
-        FirebaseListAdapter mAdapter = new FirebaseListAdapter<Usluga>(this, Usluga.class, R.layout.list_item, app.getmDatabase().getRef().child("shop").child("test_barber").child("uslugi")) {
+        FirebaseListAdapter mAdapter = new FirebaseListAdapter<Usluga>(this, Usluga.class, R.layout.old_list_item, app.getmDatabase().getRef().child("shop").child("test_barber").child("uslugi")) {
             @Override
             protected void populateView(View view, Usluga usluga, int position) {
 

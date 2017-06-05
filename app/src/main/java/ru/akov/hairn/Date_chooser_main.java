@@ -180,7 +180,7 @@ if(!mydates.contains(dates.get(i))){
 
 
 
-     FirebaseListAdapter  mAdapter = new FirebaseListAdapter<Clock>(this, Clock.class, R.layout.list_item, app.getmDatabase().getRef().child("shop").child("test_barber").child("workdays").child(date)) {
+     FirebaseListAdapter  mAdapter = new FirebaseListAdapter<Clock>(this, Clock.class, R.layout.old_list_item, app.getmDatabase().getRef().child("shop").child("test_barber").child("workdays").child(date)) {
             @Override
             protected void populateView(View view, Clock clocks, int position) {
 
