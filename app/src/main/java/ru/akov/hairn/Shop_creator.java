@@ -48,8 +48,8 @@ public   class Shop_creator {
                         mDatabase.child("shops_types").child("car_workshop").setValue(Boolean.TRUE);
                         mDatabase.child("location").child("Novovoronezh").setValue(Boolean.TRUE);
                         mDatabase.child("location").child("Moscow").setValue(Boolean.TRUE);
-                        mDatabase.child("services").child("Man's haircut").setValue(Boolean.TRUE);
-                        mDatabase.child("services").child("Female haircut").setValue(Boolean.TRUE);
+                        mDatabase.child("services").child("barbershop").child("Man's haircut").setValue(Boolean.TRUE);
+                        mDatabase.child("services").child("barbershop").child("Female haircut").setValue(Boolean.TRUE);
              //           mDatabase.child("services").child("Hair coloring").setValue();
                         }
 

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -19,6 +20,11 @@ import ru.akov.hairn.R;
 
 public class myRecyclAdapter extends ArrayAdapter<String, myRecyclAdapter.ViewHolder> {
 
+    private Callback_Recycle_adapter_clicker myCallback;
+
+    public void registerCallBack(Callback_Recycle_adapter_clicker callback) {
+        this.myCallback = callback;
+    }
 
     @Nullable
     @Override
@@ -36,9 +42,11 @@ public class myRecyclAdapter extends ArrayAdapter<String, myRecyclAdapter.ViewHo
             mTextView = (TextView) itemView.findViewById(R.id.tile_text);
         }
     }
+
     public myRecyclAdapter(ArrayList<String> dataset) {
-         super(dataset);
+        super(dataset);
     }
+
     public myRecyclAdapter() {
         super();
     }
@@ -53,5 +61,13 @@ public class myRecyclAdapter extends ArrayAdapter<String, myRecyclAdapter.ViewHo
     public void onBindViewHolder(myRecyclAdapter.ViewHolder holder, int position) {
         final String item = getItem(position);
         holder.mTextView.setText(item);
+        holder.mTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                myCallback.change_fragment(item);
+                // action on click
+            }
+        });
     }
 }

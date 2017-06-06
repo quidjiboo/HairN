@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import ru.akov.hairn.chooser_service_to_date.choose_servicei_activity;
+import ru.akov.hairn.chooser_service_to_date.Activity_choose_service;
 import ru.akov.hairn.listesting.list_test;
 
 
@@ -83,7 +83,7 @@ Shop_creator creator = new Shop_creator();
     }
     public void newLive(View view) {
 
-        Intent intent = new Intent(MainActivity.this,choose_servicei_activity.class);
+        Intent intent = new Intent(MainActivity.this,Activity_choose_service.class);
 
         startActivity(intent);
 

@@ -23,9 +23,14 @@ import ru.akov.hairn.R;
  * Created by User on 01.06.2017.
  */
 
-public class choose_servicei_activity  extends AppCompatActivity {
+public class Activity_choose_service extends AppCompatActivity implements TileContentFragment.onSomeEventListener {
+    private  TabLayout tabs;
+    private ViewPager viewPager;
+    private  MyAdapter adapter;
+    final static String TAG_1 = "SHOPS_TYPS";
     private My_app app;
     private DatabaseReference m_ref_test;
+    private TileContentFragment testfrag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,33 +44,56 @@ public class choose_servicei_activity  extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Setting ViewPager for each Tabs
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
-        TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
+        tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
-      Single_simple.getInstance().addlistner(m_ref_test);
+        Single_simple.getInstance().addlistner(m_ref_test);
 
 
     }
 
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
-        Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.addFragment(new ListContentFragment(), "List");
-        adapter.addFragment(new TileContentFragment(), "Tile");
+        adapter = new MyAdapter(getSupportFragmentManager());
+        adapter.addFragment( new ListContentFragment(), "List");
+        adapter.addFragment(testfrag = new TileContentFragment(), "Типа услуг");
 
         viewPager.setAdapter(adapter);
     }
-    static class Adapter extends FragmentPagerAdapter {
+    private void setupViewPager1(ViewPager viewPager, String obj) {
+        adapter = new MyAdapter(getSupportFragmentManager());
+
+        adapter.addFragment(testfrag = new TileContentFragment(), "Услуга" + obj);
+
+        viewPager.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void someEvent(String s) {
+        DatabaseReference  m_ref_test = app.getmDatabase().child("services").child(s);
+
+        setupViewPager1(viewPager, s);
+        tabs.setupWithViewPager(viewPager);
+        Single_simple.getInstance().addlistner(m_ref_test);
+       // adapter.getfrag("List")
+        System.out.println(s);
+    }
+
+    static class MyAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
-        public Adapter(FragmentManager manager) {
+        public MyAdapter(FragmentManager manager) {
             super(manager);
         }
 
+        public Fragment getfrag(String position) {
+            return mFragmentList.get(mFragmentTitleList.indexOf(position));
+        }
         @Override
         public Fragment getItem(int position) {
             return mFragmentList.get(position);

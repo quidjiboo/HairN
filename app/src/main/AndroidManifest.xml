@@ -21,7 +21,7 @@
             android:label="@string/title_activity_test_choser"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".chooser_service_to_date.choose_servicei_activity"
+            android:name=".chooser_service_to_date.Activity_choose_service"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/NoActionBarThemeMyThem" />
         <activity

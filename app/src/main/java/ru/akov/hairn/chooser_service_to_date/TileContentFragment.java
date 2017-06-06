@@ -16,6 +16,8 @@
 
 package ru.akov.hairn.chooser_service_to_date;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -31,8 +33,32 @@ import ru.akov.hairn.R;
 /**
  * Provides UI for the view with Tiles.
  */
-public class TileContentFragment extends Fragment implements Callback_for_Fragments {
+public class TileContentFragment extends Fragment implements Callback_for_Fragments,Callback_Recycle_adapter_clicker  {
 private  myRecyclAdapter adapter;
+    private  onSomeEventListener someEventListener;
+    public interface onSomeEventListener {
+        public void someEvent(String s);
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+
+            Activity activity;
+            if (context instanceof Activity){
+                activity=(Activity) context;
+
+                someEventListener = (onSomeEventListener) context;
+
+            }
+
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(context.toString()+" must implement onMainMenuListener");
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +80,7 @@ private  myRecyclAdapter adapter;
         recyclerView.setPadding(tilePadding, tilePadding, tilePadding, tilePadding);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
+        adapter.registerCallBack(this);
         Single_simple.getInstance().registerCallBack(this);
 
 
@@ -80,6 +107,12 @@ private  myRecyclAdapter adapter;
     @Override
     public void removefromlist(String obj) {
 
+    }
+
+    @Override
+    public void change_fragment(String obj) {
+      
+        someEventListener.someEvent(obj);
     }
 }
 
