@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ import ru.akov.hairn.R;
 /**
  * Provides UI for the view with Tiles.
  */
-public class TileContentFragment extends Fragment implements Callback_for_Fragments,Callback_Recycle_adapter_clicker  {
+public class MyFragment extends Fragment implements Callback_for_Fragments  {
 private  myRecyclAdapter adapter;
     private  onSomeEventListener someEventListener;
     public interface onSomeEventListener {
@@ -42,17 +43,12 @@ private  myRecyclAdapter adapter;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         try {
-
             Activity activity;
             if (context instanceof Activity){
                 activity=(Activity) context;
-
                 someEventListener = (onSomeEventListener) context;
-
             }
-
         }
         catch (ClassCastException e)
         {
@@ -80,7 +76,17 @@ private  myRecyclAdapter adapter;
         recyclerView.setPadding(tilePadding, tilePadding, tilePadding, tilePadding);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        adapter.registerCallBack(this);
+        ItemClickSupport.addTo(recyclerView).setOnItemClickListener(
+                new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+
+                        Log.d("dfgdfgdf","ОЛОЛОЛОЛО position = " +    adapter.getItem(position));
+                        someEventListener.someEvent(adapter.getItem(position));
+                    }
+                }
+        );
+
         Single_simple.getInstance().registerCallBack(this);
 
 
@@ -109,10 +115,6 @@ private  myRecyclAdapter adapter;
 
     }
 
-    @Override
-    public void change_fragment(String obj) {
-      
-        someEventListener.someEvent(obj);
-    }
+
 }
 

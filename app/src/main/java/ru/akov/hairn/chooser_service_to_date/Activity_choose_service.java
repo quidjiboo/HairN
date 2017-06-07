@@ -23,14 +23,14 @@ import ru.akov.hairn.R;
  * Created by User on 01.06.2017.
  */
 
-public class Activity_choose_service extends AppCompatActivity implements TileContentFragment.onSomeEventListener {
+public class Activity_choose_service extends AppCompatActivity implements MyFragment.onSomeEventListener {
     private  TabLayout tabs;
     private ViewPager viewPager;
     private  MyAdapter adapter;
     final static String TAG_1 = "SHOPS_TYPS";
     private My_app app;
     private DatabaseReference m_ref_test;
-    private TileContentFragment testfrag;
+    private MyFragment testfrag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +59,14 @@ public class Activity_choose_service extends AppCompatActivity implements TileCo
     private void setupViewPager(ViewPager viewPager) {
         adapter = new MyAdapter(getSupportFragmentManager());
         adapter.addFragment( new ListContentFragment(), "List");
-        adapter.addFragment(testfrag = new TileContentFragment(), "Типа услуг");
+        adapter.addFragment(testfrag = new MyFragment(), "Типа услуг");
 
         viewPager.setAdapter(adapter);
     }
     private void setupViewPager1(ViewPager viewPager, String obj) {
         adapter = new MyAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(testfrag = new TileContentFragment(), "Услуга" + obj);
+        adapter.addFragment(testfrag = new MyFragment(), "Услуга" + obj);
 
         viewPager.setAdapter(adapter);
     }
@@ -76,9 +76,9 @@ public class Activity_choose_service extends AppCompatActivity implements TileCo
     public void someEvent(String s) {
         DatabaseReference  m_ref_test = app.getmDatabase().child("services").child(s);
 
-        setupViewPager1(viewPager, s);
+     /*   setupViewPager1(viewPager, s );
         tabs.setupWithViewPager(viewPager);
-        Single_simple.getInstance().addlistner(m_ref_test);
+        Single_simple.getInstance().addlistner(m_ref_test);*/
        // adapter.getfrag("List")
         System.out.println(s);
     }
