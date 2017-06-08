@@ -20,17 +20,25 @@ public class Single_simple {
     private ValueEventListener singlevaluegetter;
     private My_app app;
     private Callback_for_Fragments myCallback;
+    private Callback_for_Fragments myCallback1;
     private static Single_simple instance;
 
 
     private Single_simple() {
 
     }
-
+    public void registerCallBack1(Callback_for_Fragments callback) {
+        this.myCallback1 = callback;
+    }
+    public void unregisterCallBack1() {
+        this.myCallback1 = null;
+    }
     public void registerCallBack(Callback_for_Fragments callback) {
         this.myCallback = callback;
     }
-
+    public void unregisterCallBack() {
+        this.myCallback = null;
+    }
     public static synchronized Single_simple getInstance() {
         if (instance == null) {
             instance = new Single_simple();   /// спорное решение !!!
@@ -47,7 +55,8 @@ public class Single_simple {
                 for (DataSnapshot childDataSnapshot : dataSnapshot.getChildren()){
 
                 String obj = childDataSnapshot.getKey();
-                myCallback.addtolist(obj);}
+                myCallback.addtolist(obj);
+                    myCallback1.addtolist(obj);}
             }
 
             @Override
@@ -56,4 +65,5 @@ public class Single_simple {
             }
         });
     }
+
 }

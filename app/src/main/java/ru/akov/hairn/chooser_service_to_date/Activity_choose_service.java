@@ -18,6 +18,7 @@ import java.util.List;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
+import ru.akov.hairn.test_switch_frame.RootFragment;
 
 /**
  * Created by User on 01.06.2017.
@@ -47,6 +48,7 @@ public class Activity_choose_service extends AppCompatActivity implements MyFrag
          viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
+
         tabs = (TabLayout) findViewById(R.id.tabs);
         tabs.setupWithViewPager(viewPager);
 
@@ -58,28 +60,19 @@ public class Activity_choose_service extends AppCompatActivity implements MyFrag
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
         adapter = new MyAdapter(getSupportFragmentManager());
-        adapter.addFragment( new ListContentFragment(), "List");
+        adapter.addFragment( new RootFragment(), "List");
         adapter.addFragment(testfrag = new MyFragment(), "Типа услуг");
 
         viewPager.setAdapter(adapter);
     }
-    private void setupViewPager1(ViewPager viewPager, String obj) {
-        adapter = new MyAdapter(getSupportFragmentManager());
 
-        adapter.addFragment(testfrag = new MyFragment(), "Услуга" + obj);
-
-        viewPager.setAdapter(adapter);
-    }
 
 
     @Override
     public void someEvent(String s) {
-        DatabaseReference  m_ref_test = app.getmDatabase().child("services").child(s);
+      //  DatabaseReference  m_ref_test = app.getmDatabase().child("services").child(s);
 
-     /*   setupViewPager1(viewPager, s );
-        tabs.setupWithViewPager(viewPager);
-        Single_simple.getInstance().addlistner(m_ref_test);*/
-       // adapter.getfrag("List")
+
         System.out.println(s);
     }
 
@@ -96,6 +89,10 @@ public class Activity_choose_service extends AppCompatActivity implements MyFrag
         }
         @Override
         public Fragment getItem(int position) {
+            if (position == 0)
+                return new RootFragment();
+            else
+
             return mFragmentList.get(position);
         }
 
