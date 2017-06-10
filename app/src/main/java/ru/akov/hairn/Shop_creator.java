@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import ru.akov.hairn.Data_tipes.Clock;
-import ru.akov.hairn.Data_tipes.Dennedeli;
+import ru.akov.hairn.Data_tipes.MyDennedeli;
 import ru.akov.hairn.Data_tipes.Shop_data;
 import ru.akov.hairn.Data_tipes.Shop_in_locat_url_names_loc;
 import ru.akov.hairn.Data_tipes.Shop_locat_list_data;
@@ -237,7 +237,7 @@ public   class Shop_creator {
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
                         if(!dataSnapshot.exists()) {
-                            ArrayList<Dennedeli> mydays = new ArrayList();
+                            ArrayList<MyDennedeli> mydays = new ArrayList();
                             mydays=get_days_ofmouth1();
                             int z;
                             z=mydays.size();
@@ -281,9 +281,9 @@ public   class Shop_creator {
                     }
                 });
     }
-    public  static  ArrayList<Dennedeli> get_days_ofmouth1(){
+    public  static  ArrayList<MyDennedeli> get_days_ofmouth1(){
 
-        ArrayList<Dennedeli> days = new ArrayList();
+        ArrayList<MyDennedeli> days = new ArrayList();
         Calendar mycal = Calendar.getInstance();
         int today_month;
         int today_year;
@@ -303,7 +303,7 @@ public   class Shop_creator {
             testcal.set(Calendar.DAY_OF_MONTH,i);
             int dayofweek = testcal.get(Calendar.DAY_OF_WEEK) ;
             Log.w("AKOV",Integer.toString(today_year)+month+day+ "день недели " + dayofweek);
-            Dennedeli dm = new Dennedeli(Integer.toString(today_year)+month+day, dayofweek);
+            MyDennedeli dm = new MyDennedeli(Integer.toString(today_year)+month+day, dayofweek);
            // days.add(Integer.toString(today_year)+month+day);
             days.add(dm);
         }
@@ -325,7 +325,7 @@ public   class Shop_creator {
 
             Log.w("AKOV",Integer.toString(today_year)+next_month1+day + "день недели В следующем месяце " + dayofweek);
 
-            Dennedeli dm = new Dennedeli(Integer.toString(today_year)+next_month1+day, dayofweek);
+            MyDennedeli dm = new MyDennedeli(Integer.toString(today_year)+next_month1+day, dayofweek);
             //  days.add(Integer.toString(today_year)+next_month1+day);
             days.add(dm);
         }
