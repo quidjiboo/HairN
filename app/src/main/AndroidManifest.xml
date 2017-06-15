@@ -25,6 +25,10 @@
             android:label="@string/title_activity_test_choser"
             android:theme="@style/NoActionBarThemeMyThem" />
         <activity
+            android:name=".main_window.Activity_main_choosing_tabs"
+            android:label="@string/title_activity_test_choser"
+            android:theme="@style/NoActionBarThemeMyThem" />
+        <activity
             android:name=".Zakaz_blank"
             android:label="@string/title_activity_zakaz_blank"
             android:parentActivityName=".Date_chooser_main"

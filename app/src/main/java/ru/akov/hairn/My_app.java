@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by User on 21.03.2016.
  */
 public class My_app extends Application {
+    private String fragmentname  = "0";
     private  Context mContext; // забыл зачем нужно, пусть будет
 
     private boolean flag = true;
@@ -29,6 +30,7 @@ public class My_app extends Application {
     @Override
     public void onCreate() {
        super.onCreate();
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         // иницализиру сингтоны
         Zakaz_singltone.getInstance();
         Status_auth_changes_singltonne.getInstance();
@@ -36,6 +38,7 @@ public class My_app extends Application {
 
         auth   = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 public FirebaseAuth getauth(){
     return  auth;
@@ -87,5 +90,13 @@ public void createmAuthListener () {
 }
     public  Context getContext(){
         return mContext;
+    }
+
+    public String getFragmentname() {
+        return fragmentname;
+    }
+
+    public void setFragmentname(String fragmentname) {
+        this.fragmentname = fragmentname;
     }
 }

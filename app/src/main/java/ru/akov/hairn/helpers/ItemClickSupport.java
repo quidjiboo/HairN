@@ -1,4 +1,4 @@
-package ru.akov.hairn.chooser_service_to_date;
+package ru.akov.hairn.helpers;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

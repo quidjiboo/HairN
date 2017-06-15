@@ -30,43 +30,46 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import ru.akov.hairn.R;
+import ru.akov.hairn.helpers.ItemClickSupport;
 
 /**
  * Provides UI for the view with Tiles.
  */
-public class MyFragment extends Fragment implements Callback_for_Fragments  {
-private  myRecyclAdapter adapter;
-    private  onSomeEventListener someEventListener;
+public class MyFragment extends Fragment implements Callback_for_Fragments {
+
+    private myRecyclAdapter adapter;
+    private onSomeEventListener someEventListener;
+
     public interface onSomeEventListener {
         public void someEvent(String s);
+
+
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
             Activity activity;
-            if (context instanceof Activity){
-                activity=(Activity) context;
+            if (context instanceof Activity) {
+                activity = (Activity) context;
                 someEventListener = (onSomeEventListener) context;
             }
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(context.toString()+" must implement onMainMenuListener");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement onMainMenuListener");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-      ArrayList<String> myDataset = getDataSet();
+        ArrayList<String> myDataset = getDataSet();
 
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
 
 
-        adapter   = new myRecyclAdapter();
-
+        adapter = new myRecyclAdapter();
 
 
         recyclerView.setAdapter(adapter);
@@ -81,7 +84,7 @@ private  myRecyclAdapter adapter;
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
 
-                        Log.d("dfgdfgdf","ОЛОЛОЛОЛО position = " +    adapter.getItem(position));
+                        Log.d("dfgdfgdf", "ОЛОЛОЛОЛО position = " + adapter.getItem(position));
                         someEventListener.someEvent(adapter.getItem(position));
                     }
                 }
@@ -93,7 +96,7 @@ private  myRecyclAdapter adapter;
         return recyclerView;
     }
 
-    public  ArrayList<String> getDataSet() {
+    public ArrayList<String> getDataSet() {
         ArrayList<String> myDataset = new ArrayList<>();
         String[] mDataSet = new String[30];
         for (int i = 0; i < 30; i++) {

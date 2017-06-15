@@ -27,17 +27,17 @@ public class myRecyclAdapter extends ArrayAdapter<String, myRecyclAdapter.ViewHo
         return null;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder  {
+        public static class ViewHolder extends RecyclerView.ViewHolder  {
 
-        public TextView mTextView;
+            public TextView mTextView;
 
-        public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.item_tile, parent, false));
+            public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
+                super(inflater.inflate(R.layout.item_tile, parent, false));
 
-            mTextView = (TextView) itemView.findViewById(R.id.tile_text);
+                mTextView = (TextView) itemView.findViewById(R.id.tile_text);
+            }
+
         }
-
-    }
 
     public myRecyclAdapter(ArrayList<String> dataset) {
         super(dataset);

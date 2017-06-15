@@ -56,7 +56,8 @@ public class Single_simple {
 
                 String obj = childDataSnapshot.getKey();
                 myCallback.addtolist(obj);
-                    myCallback1.addtolist(obj);}
+                    myCallback1.addtolist(obj);
+                }
             }
 
             @Override
