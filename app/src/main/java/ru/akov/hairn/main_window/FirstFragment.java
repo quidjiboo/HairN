@@ -74,17 +74,7 @@ public class FirstFragment extends Fragment {
         My_app   app = ((My_app) getActivity().getApplicationContext());
 
         DatabaseReference m_ref_test = app.getmDatabase().child("shops_types");
-       /* m_ref_test.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("dsfsd",dataSnapshot.toString());
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
         RecyclerView messages = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
         LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
