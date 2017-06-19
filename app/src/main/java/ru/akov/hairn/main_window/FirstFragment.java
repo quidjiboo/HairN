@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +12,6 @@ import android.view.ViewGroup;
 
 import com.google.firebase.database.DatabaseReference;
 
-import ru.akov.hairn.Data_tipes.Typs_of_shop;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 
@@ -72,9 +72,23 @@ public class FirstFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler_view, container, false);
         My_app   app = ((My_app) getActivity().getApplicationContext());
+
         DatabaseReference m_ref_test = app.getmDatabase().child("shops_types");
+       /* m_ref_test.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.d("dsfsd",dataSnapshot.toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
         RecyclerView messages = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        myfirebaseRecyclAdapter  mAdapter = new myfirebaseRecyclAdapter(Typs_of_shop.class,R.layout.item_tile,myfirebaseRecyclAdapter.mViewHolder.class,m_ref_test);
+        myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
+        LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
+        messages.setLayoutManager(linearLayoutManager);
         messages.setAdapter(mAdapter);
 
       /*  Button  newbut = (Button)  view.findViewById(R.id.tosecond);

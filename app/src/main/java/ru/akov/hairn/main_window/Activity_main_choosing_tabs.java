@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -54,7 +53,9 @@ public class Activity_main_choosing_tabs extends AppCompatActivity   implements 
             public void onPageSelected(int position) {
                 Toast.makeText(Activity_main_choosing_tabs.this,
                         "Selected page position: " + position, Toast.LENGTH_SHORT).show();
-                Log.d(TAG,"ПЕРЕЛИСТЫВАЮ!! "  + adapter.getRegisteredFragment(viewPager.getCurrentItem()).getArguments()) ;
+
+                //А вот тут надо подумать!! при поворроте не может отработать!!!
+       //         Log.d(TAG,"ПЕРЕЛИСТЫВАЮ!! "  + adapter.getRegisteredFragment(viewPager.getCurrentItem()).getArguments()) ;
             }
 
             // This method will be invoked when the current page is scrolled

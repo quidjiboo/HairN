@@ -30,7 +30,7 @@ public class My_app extends Application {
     @Override
     public void onCreate() {
        super.onCreate();
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         // иницализиру сингтоны
         Zakaz_singltone.getInstance();
         Status_auth_changes_singltonne.getInstance();
