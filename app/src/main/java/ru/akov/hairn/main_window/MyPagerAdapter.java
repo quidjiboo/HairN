@@ -31,15 +31,15 @@ public  class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position) {
-            case 0: // Fragment # 0 - This will show FirstFragment
+            case 0: // Fragment # 0 - This will show FirstFragment_Select_Service_Type
             {
                 if(app.getFragmentname().contains("0")){
-                     return  FirstFragment.newInstance(0, "First # 1");}
+                     return  FirstFragment_Select_Service_Type.newInstance(0, "First # 1");}
                 if(app.getFragmentname().contains("1")){
-                    return  SecondFragment.newInstance(0, "Page # 2");}
+                    return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",app.getCurrentservice());}
             }
 
-            case 1: // Fragment # 0 - This will show FirstFragment different title
+            case 1: // Fragment # 0 - This will show FirstFragment_Select_Service_Type different title
                 return SecondFragment.newInstance(1, "Page # 2");
             case 2: // Fragment # 1 - This will show SecondFragment
                 return ThirdFragment.newInstance(2, "Page # 3");
@@ -56,6 +56,13 @@ public  class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
         return "Page " + position ;
     }
     public int getItemPosition(Object object) {
+      /*  if (object instanceof ThirdFragment || object instanceof  SecondFragment) {
+            return POSITION_UNCHANGED; // don't force a reload
+        } else {
+            // POSITION_NONE means something like: this fragment is no longer valid
+            // triggering the ViewPager to re-build the instance of this fragment.
+            return POSITION_NONE;
+        }*/
         return POSITION_NONE;
     }
 

@@ -15,7 +15,13 @@ import com.google.firebase.database.FirebaseDatabase;
  * Created by User on 21.03.2016.
  */
 public class My_app extends Application {
+    //ВЫНЕСТИ В СИНГЛ ТОН В АКТИВИТИ!!! ВМЕСТО С ССЫЛКАМИ НА БАЗУ!
     private String fragmentname  = "0";
+
+
+
+    private String currentservice  = "car_workshop";
+
     private  Context mContext; // забыл зачем нужно, пусть будет
 
     private boolean flag = true;
@@ -98,5 +104,12 @@ public void createmAuthListener () {
 
     public void setFragmentname(String fragmentname) {
         this.fragmentname = fragmentname;
+    }
+    public String getCurrentservice() {
+        return currentservice;
+    }
+
+    public void setCurrentservice(String currentservice) {
+        this.currentservice = currentservice;
     }
 }
