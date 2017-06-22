@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
-import ru.akov.hairn.helpers.ItemClickSupport;
 
 /**
  * Created by Alexandr on 12.06.2017.
@@ -76,27 +75,19 @@ public class Fragment_Select_Currect_Services extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recycler_view, container, false);
+        View view = inflater.inflate(R.layout.recycler_view_2, container, false);
         My_app   app = ((My_app) getActivity().getApplicationContext());
         Log.d("My Ref","референс к базе подключаю"+servicetype);
         DatabaseReference m_ref_test = app.getmDatabase().child("services").child(servicetype);
 
         RecyclerView messages = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
+
+
+        myfirebaseRecyclAdapter_selected_mode mAdapter = new myfirebaseRecyclAdapter_selected_mode(String.class,R.layout.item_tile,MyHolder_selected.class,m_ref_test,getContext());
         LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
         messages.setLayoutManager(linearLayoutManager);
         messages.setAdapter(mAdapter);
 
-        ItemClickSupport.addTo(messages).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Log.d("dsfsd","sdfsdfsdhgfhgfhgf");
-                Log.d("dsfdsf", ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position));
-                Log.d("d1112344f",   ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey().toString());
-
-                // do it
-            }
-        });
         return view;
 
     }
