@@ -20,17 +20,36 @@ import ru.akov.hairn.R;
  * Created by Alexandr on 12.06.2017.
  */
 
-public class Fragment_Select_Currect_Services extends Fragment {
+public class Fragment_Select_Currect_Services extends Fragment implements MyHolder_selected.ClickListener {
 
     // Store instance variables
+    private myfirebaseRecyclAdapter_selected_mode mAdapter;
     private String servicetype;
     private String title;
     private int page;
     private onSomeEventListener1 someEventListener;
 
+    @Override
+    public void onItemClicked(int position) {
+Log.d("ПОЗИЦИЯ", position +  " " );
+            toggleSelection(position);
+
+    }
+    private void toggleSelection(int position) {
+        mAdapter.toggleSelection(position);
+
+
+
+    }
+
+    @Override
+    public boolean onItemLongClicked(int position) {
+        return false;
+    }
+
 
     public interface onSomeEventListener1 {
-        public void someEvent(String fragmentnumber);
+        public void someEvent1(String fragmentnumber);
     }
     @Override
     public void onAttach(Context context) {
@@ -80,15 +99,20 @@ public class Fragment_Select_Currect_Services extends Fragment {
         Log.d("My Ref","референс к базе подключаю"+servicetype);
         DatabaseReference m_ref_test = app.getmDatabase().child("services").child(servicetype);
 
-        RecyclerView messages = (RecyclerView) view.findViewById(R.id.my_recycler_view);
+        RecyclerView messages = (RecyclerView) view.findViewById(R.id.my_recycler_view_2);
 
 
-        myfirebaseRecyclAdapter_selected_mode mAdapter = new myfirebaseRecyclAdapter_selected_mode(String.class,R.layout.item_tile,MyHolder_selected.class,m_ref_test,getContext());
+        mAdapter = new myfirebaseRecyclAdapter_selected_mode(String.class,R.layout.item_tile_marked,MyHolder_selected.class,m_ref_test,getContext(),this);
         LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
-        messages.setLayoutManager(linearLayoutManager);
         messages.setAdapter(mAdapter);
-
+        messages.setLayoutManager(linearLayoutManager);
         return view;
 
     }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mAdapter.cleanup();
+    }
+
 }

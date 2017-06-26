@@ -120,4 +120,9 @@ String fn= fragmentnumber;
         app.setFragmentname(fn);
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+    public void someEvent1(String fragmentnumber) {
+
+    }
 }
