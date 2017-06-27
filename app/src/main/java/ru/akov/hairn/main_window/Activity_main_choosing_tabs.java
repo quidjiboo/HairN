@@ -36,7 +36,7 @@ public class Activity_main_choosing_tabs extends AppCompatActivity
 
         m_ref_test = app.getmDatabase().child("shops_types");
 
-        setContentView(R.layout.choose_type_of_shops);
+        setContentView(R.layout.activity_chooser_main);
         // Adding Toolbar to Main screen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
