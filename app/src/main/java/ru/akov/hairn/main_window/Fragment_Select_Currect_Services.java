@@ -37,9 +37,10 @@ Log.d("ПОЗИЦИЯ", position +  " " );
     }
     private void toggleSelection(int position) {
         mAdapter.toggleSelection(position);
+        Log.d("КАКАЯ АКТИВНОСТЬ", getActivity().findViewById(R.id.fab1).isShown() +  "" );
+// getActivity().findViewById(R.id.fab1).
 
-
-
+        someEventListener.someEvent1("sdfsdf");
     }
 
     @Override

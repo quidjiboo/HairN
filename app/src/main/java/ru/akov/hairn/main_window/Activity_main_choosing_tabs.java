@@ -2,12 +2,15 @@ package ru.akov.hairn.main_window;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 
@@ -26,9 +29,10 @@ public class Activity_main_choosing_tabs extends AppCompatActivity
     private ViewPager viewPager;
     private MyPagerAdapter adapter;
     private My_app app;
+
     private DatabaseReference m_ref_test;
-
-
+    private   FloatingActionButton fab;
+    private View.OnClickListener fablistner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +74,14 @@ public class Activity_main_choosing_tabs extends AppCompatActivity
                 // Code goes here
             }
         });
-
+        fab = (FloatingActionButton) findViewById(R.id.fab1);
+        fab.setOnClickListener(fablistner = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });
     }
     @Override
     public void onBackPressed() {
@@ -123,6 +134,15 @@ String fn= fragmentnumber;
 
     @Override
     public void someEvent1(String fragmentnumber) {
+        fab.setOnClickListener(null);
+       fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.setFragmentname("2");
+                adapter.notifyDataSetChanged();
+            }
+        });
+fab.show();
 
     }
 }
