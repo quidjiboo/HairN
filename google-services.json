@@ -15,11 +15,19 @@
       },
       "oauth_client": [
         {
+          "client_id": "880699045378-bkp82uanp3pr8aacitk4fubvrjk7b91t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.akov.hairn",
+            "certificate_hash": "be6dfb8ca146075791a4783abd598ac7fbd0977a"
+          }
+        },
+        {
           "client_id": "880699045378-39qaun2ge4u1ifrauk177r0lq9nhgk2d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "ru.akov.hairn",
-            "certificate_hash": "DA66E342D63AF36997AD699E4CD4EB36519A7AD7"
+            "certificate_hash": "da66e342d63af36997ad699e4cd4eb36519a7ad7"
           }
         },
         {
@@ -27,7 +35,7 @@
           "client_type": 1,
           "android_info": {
             "package_name": "ru.akov.hairn",
-            "certificate_hash": "F32AB3EE77E039CC65D249FB31F53D6A9C74DEC4"
+            "certificate_hash": "f32ab3ee77e039cc65d249fb31f53d6a9c74dec4"
           }
         },
         {
@@ -52,6 +60,37 @@
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880699045378:android:27276da9378ce032",
+        "android_client_info": {
+          "package_name": "com.support.android.designlibdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880699045378-633ftk1lfu1l287llcacejdekalu0llo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcncxAn5M37GV4i0JlCl13D2zftJExzzI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

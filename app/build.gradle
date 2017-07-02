@@ -58,6 +58,7 @@ dependencies {
     compile 'com.pascalwelsch.arrayadapter:arrayadapter:1.2.0'
 
 
-    compile 'com.bignerdranch.android:recyclerview-multiselect:0.2'
+
+    compile 'com.prolificinteractive:material-calendarview:1.4.3'
 }
 apply plugin: 'com.google.gms.google-services'

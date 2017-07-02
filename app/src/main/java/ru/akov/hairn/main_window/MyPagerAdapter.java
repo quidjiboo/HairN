@@ -36,7 +36,11 @@ public  class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
                 if(app.getFragmentname().contains("0")){
                      return  FirstFragment_Select_Service_Type.newInstance(0, "First # 1");}
                 if(app.getFragmentname().contains("1")){
-                    return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",app.getCurrentservice());}
+                return  Fragment_Select_Currect_Services.newInstance(0, "Page # 1",app.getCurrentservice());}
+                if(app.getFragmentname().contains("2")){
+                    return  DatePickerFragment.newInstance(0, "fdgfdgdfgdf # 1");}
+                if(app.getFragmentname().contains("3")){
+                    return  Timepeicker.newInstance(0, "fdgfdgdfgdf # 1");}
             }
 
             case 1: // Fragment # 0 - This will show FirstFragment_Select_Service_Type different title

@@ -23,7 +23,9 @@ import ru.akov.hairn.R;
  */
 
 public class Activity_main_choosing_tabs extends AppCompatActivity
-        implements FirstFragment_Select_Service_Type.onSomeEventListener , Fragment_Select_Currect_Services.onSomeEventListener1{
+        implements FirstFragment_Select_Service_Type.onSomeEventListener ,
+        Fragment_Select_Currect_Services.onSomeEventListener1,
+DatePickerFragment.onSomeEventListenerDatePickerFragment{
     final static String TAG = "MAIN_ACTIVITY";
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -144,5 +146,17 @@ String fn= fragmentnumber;
         });
 fab.show();
 
+    }
+
+    @Override
+    public void someEvent2(String fragmentnumber) {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.setFragmentname("3");
+                adapter.notifyDataSetChanged();
+            }
+        });
+        fab.show();
     }
 }
