@@ -4,12 +4,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import ru.akov.hairn.My_app;
+import ru.akov.hairn.helpers.SmartFragmentStatePagerAdapter;
 
 /**
  * Created by Alexandr on 12.06.2017.
  */
 
-public  class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
+public  class
+MyPagerAdapter extends SmartFragmentStatePagerAdapter {
     private My_app app;
 
     private static int NUM_ITEMS = 3;
@@ -34,15 +36,18 @@ public  class MyPagerAdapter extends SmartFragmentStatePagerAdapter {
             case 0: // Fragment # 0 - This will show FirstFragment_Select_Service_Type
             {
                 if(app.getFragmentname().contains("0")){
-                     return  FirstFragment_Select_Service_Type.newInstance(0, "First # 1");}
+                     return  FirstFragment_Select_Service_Type.newInstance(0, "Page # 1");}
                 if(app.getFragmentname().contains("1")){
-                    return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",app.getCurrentservice());}
+                return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",app.getCurrentservice());}
+                if(app.getFragmentname().contains("2")){
+                    return  DatePickerFragment.newInstance(0, "Page # 3");}
+
             }
 
             case 1: // Fragment # 0 - This will show FirstFragment_Select_Service_Type different title
-                return SecondFragment.newInstance(1, "Page # 2");
+                return SecondFragment.newInstance(1, "Page # 1");
             case 2: // Fragment # 1 - This will show SecondFragment
-                return ThirdFragment.newInstance(2, "Page # 3");
+                return ThirdFragment.newInstance(2, "Page # 1");
             default:
                 return null;
         }

@@ -23,7 +23,9 @@ import ru.akov.hairn.R;
  */
 
 public class Activity_main_choosing_tabs extends AppCompatActivity
-        implements FirstFragment_Select_Service_Type.onSomeEventListener , Fragment_Select_Currect_Services.onSomeEventListener1{
+        implements FirstFragment_Select_Service_Type.onSomeEventListener ,
+        Fragment_Select_Currect_Services.onSomeEventListener1,
+DatePickerFragment.onSomeEventListenerDatePickerFragment{
     final static String TAG = "MAIN_ACTIVITY";
     private TabLayout tabs;
     private ViewPager viewPager;
@@ -85,10 +87,18 @@ public class Activity_main_choosing_tabs extends AppCompatActivity
     }
     @Override
     public void onBackPressed() {
+        if( !adapter.getRegisteredFragment(viewPager.getCurrentItem()).getArguments().getString("someTitle").contains("Page # 1")) {
+        if(
+                app.getFragmentname().contains("1")){
 
-        if(app.getFragmentname().contains("1")){
             someEvent("0");
         }
+        else if(app.getFragmentname().contains("2")){
+            someEvent("1");
+        }
+        else if(app.getFragmentname().contains("3")){
+            someEvent("2");
+        }}
         else {
             super.onBackPressed();
         Intent intent = new Intent(Activity_main_choosing_tabs.this, MainActivity.class);
@@ -144,5 +154,17 @@ String fn= fragmentnumber;
         });
 fab.show();
 
+    }
+
+    @Override
+    public void someEvent2(String fragmentnumber) {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                app.setFragmentname("3");
+                adapter.notifyDataSetChanged();
+            }
+        });
+        fab.show();
     }
 }

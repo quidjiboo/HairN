@@ -2,6 +2,8 @@ package ru.akov.hairn.main_window;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +45,26 @@ public class SecondFragment extends Fragment {
         View view = inflater.inflate(R.layout.second_fragment, container, false);
         TextView tvLabel = (TextView) view.findViewById(R.id.mytext2);
         tvLabel.setText(page + " -- " + title);
+
+
+        String[] myDataset = getDataSet();
+        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.testrec);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        // создаем адаптер
+        RecyclerAdapter   mAdapter = new RecyclerAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
+
         return view;
 
+    }
+    private String[] getDataSet() {
+
+        String[] mDataSet = new String[100];
+        for (int i = 0; i < 100; i++) {
+            mDataSet[i] = "item" + i;
+        }
+        return mDataSet;
     }
     public  String getTitle(){
 

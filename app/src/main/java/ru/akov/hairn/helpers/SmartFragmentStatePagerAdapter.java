@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window;
+package ru.akov.hairn.helpers;
 
 
 import android.support.v4.app.Fragment;
