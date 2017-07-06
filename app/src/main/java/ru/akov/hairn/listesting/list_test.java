@@ -72,7 +72,7 @@ public class list_test extends AppCompatActivity implements MyCallbacl_refresher
 
 
         DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
-        DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
+            DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
 
         Single_tone_array_creator.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc, m_block_date_time);
         Single_tone_array_creator.getInstance().registerCallBack(this);

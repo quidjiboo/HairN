@@ -52,7 +52,7 @@ public class SecondFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         // создаем адаптер
-        RecyclerAdapter   mAdapter = new RecyclerAdapter(myDataset);
+        simpleRecyclerAdapter mAdapter = new simpleRecyclerAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;

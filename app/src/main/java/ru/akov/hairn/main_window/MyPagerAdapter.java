@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.helpers.SmartFragmentStatePagerAdapter;
+import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
 
 /**
  * Created by Alexandr on 12.06.2017.

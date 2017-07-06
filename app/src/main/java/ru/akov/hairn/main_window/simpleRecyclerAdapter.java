@@ -12,7 +12,7 @@ import ru.akov.hairn.R;
  * Created by User on 03.07.2017.
  */
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class simpleRecyclerAdapter extends RecyclerView.Adapter<simpleRecyclerAdapter.ViewHolder> {
 
     private String[] mDataset;
 
@@ -29,14 +29,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     // Конструктор
-    public RecyclerAdapter(String[] dataset) {
+    public simpleRecyclerAdapter(String[] dataset) {
         mDataset = dataset;
     }
 
     // Создает новые views (вызывается layout manager-ом)
     @Override
-    public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                         int viewType) {
+    public simpleRecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                               int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_list, parent, false);

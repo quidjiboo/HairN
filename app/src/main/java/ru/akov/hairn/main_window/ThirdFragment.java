@@ -18,6 +18,7 @@ public class ThirdFragment extends Fragment {
     private String title;
     private int page;
 
+
     // newInstance constructor for creating fragment with arguments
     public static ThirdFragment newInstance(int page, String title) {
         ThirdFragment fragmentFirst = new ThirdFragment();
