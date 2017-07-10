@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import ru.akov.hairn.Data_tipes.Shop_in_locat_url_names_loc;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
-import ru.akov.hairn.listesting.MyCallbacl_refresherlist;
 
 /**
  * Created by User on 17.03.2017.
@@ -33,7 +32,7 @@ public class Single_tone_array_creator_fragment {
     private DatabaseReference mDatabase_in_singl;
     private DatabaseReference mDatabase_in_blocked;
     private My_app app;
-    private MyCallbacl_refresherlist myCallback;
+    private MyCallbacl_refresherlist_for_fragment myCallback;
     private static Single_tone_array_creator_fragment instance;
     private LatLng mylocation;
 
@@ -42,7 +41,7 @@ public class Single_tone_array_creator_fragment {
     }
 
 
-    public void registerCallBack(MyCallbacl_refresherlist callback) {
+    public void registerCallBack(MyCallbacl_refresherlist_for_fragment callback) {
         this.myCallback = callback;
     }
 

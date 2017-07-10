@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.github.florent37.singledateandtimepicker.SingleDateAndTimePicker;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DatabaseReference;
 import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
@@ -113,21 +114,26 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
 
         String[] myDataset = getDataSet();
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.testrectimepicker);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+
 
 
         // создаем адаптер
      //   simpleRecyclerAdapter mAdapter = new simpleRecyclerAdapter(myDataset);
     //    mRecyclerView.setAdapter(mAdapter);
 
+        app = ((My_app) getActivity().getApplicationContext());
         arra_for_listvieew_price = new ArrayList<>();
         dataarrayadapter  = new DataArrayAdapter();
         mRecyclerView.setAdapter(dataarrayadapter);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
 
-//        DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
- //       DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
 
+
+      DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
+        DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
+        Single_tone_array_creator_fragment.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc, m_block_date_time);
+        Single_tone_array_creator_fragment.getInstance().registerCallBack(this);
 
 
         return view;
