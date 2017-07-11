@@ -24,6 +24,7 @@ import java.util.Date;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
+import ru.akov.hairn.main_window.Sing_tone_choosings;
 
 /**
  * Created by Alexandr on 12.06.2017.
@@ -35,31 +36,32 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
     private String title;
     private int page;
 
-    private  SingleDateAndTimePicker mydateAndTimePicker;
+    private SingleDateAndTimePicker mydateAndTimePicker;
     private ArrayList<GPScoords_price> arra_for_listvieew_price;
     private My_app app;
     private DataArrayAdapter dataarrayadapter;
     private LatLng mymloc;
     // private Toolbar tv;
     private onSomeEventListenerDatePickerFragment someEventListener;
+
     public interface onSomeEventListenerDatePickerFragment {
         public void someEvent2(String fragmentnumber);
     }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
             Activity activity;
-            if (context instanceof Activity){
-                activity=(Activity) context;
+            if (context instanceof Activity) {
+                activity = (Activity) context;
                 someEventListener = (DatePickerFragment.onSomeEventListenerDatePickerFragment) context;
             }
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(context.toString()+" must implement onMainMenuListener");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement onMainMenuListener");
         }
     }
+
     // newInstance constructor for creating fragment with arguments
     public static DatePickerFragment newInstance(int page, String title) {
         DatePickerFragment fragmentFirst = new DatePickerFragment();
@@ -81,71 +83,98 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
     }
 
     // Inflate the view for the fragment based on layout XML
+    private void settimeinsingl() {
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 //Временные переменные , будут переданы при создании фрагмента
-        mymloc   = new LatLng(31.7853339, -112.4026973);
-        String location = "Novovoronezh";
-        String services_names = "services_names";
-        String service = "Female haircut";
+        mymloc = new LatLng(31.7853339, -112.4026973);
+
         String date = "20170602";
         String time = "08_00";
 
         View view = inflater.inflate(R.layout.time_picker_fragment, container, false);
-        mydateAndTimePicker  = (SingleDateAndTimePicker)view.findViewById(R.id.fdgdfg) ;
+        mydateAndTimePicker = (SingleDateAndTimePicker) view.findViewById(R.id.fdgdfg);
+
         mydateAndTimePicker.setStepMinutes(30);
+
         mydateAndTimePicker.setIsAmPm(false);
         mydateAndTimePicker.setMustBeOnFuture(true);
         mydateAndTimePicker.setTextColor(Color.WHITE);
         mydateAndTimePicker.setSelectedTextColor(Color.WHITE);
         mydateAndTimePicker.setSelectorColor(Color.WHITE);
 
+
+
+
         mydateAndTimePicker.setListener(new SingleDateAndTimePicker.Listener() {
             @Override
             public void onDateChanged(String displayed, Date date) {
                 Date cal = (Date) Calendar.getInstance().getTime();
 
-                if (date.after(cal)){
+                if (date.after(cal)) {
+
                     Log.d("Время выбрано", displayed);
-                Log.d("Время выбрано", date.toString());}
+                    Log.d("Время выбрано", date.toString());
+
+                    final String month = (String) android.text.format.DateFormat.format("MM", date); //06
+                    final String year = (String) android.text.format.DateFormat.format("yyyy", date); //2013
+                    final String day = (String) android.text.format.DateFormat.format("dd", date);
+
+                    final String hour = (String) android.text.format.DateFormat.format("kk", date);
+                    final String minet = (String) android.text.format.DateFormat.format("mm", date);
+                    final String zapis = year + month + day;
+                    Log.d("Время выбрано", zapis + hour + "_" + minet);
+                    Sing_tone_choosings.getInstance().setDate(zapis);
+                    Sing_tone_choosings.getInstance().setTime(hour + "_" + minet);
+
+                    dataarrayadapter.clear();
+                    DatabaseReference m_service_ref = app.getmDatabase().child("locations_names").child(Sing_tone_choosings.getInstance().getLocation()).child(Sing_tone_choosings.getInstance().getTypes_of_shops());
+                    DatabaseReference m_block_date_time = app.getmDatabase().
+                            child(Sing_tone_choosings.getInstance().getDate()).
+                            child(Sing_tone_choosings.getInstance().getTime()).
+                            child(Sing_tone_choosings.getInstance().getTypes_of_shops()).
+                            child(Sing_tone_choosings.getInstance().getLocation());
+
+                    Single_tone_array_creator_fragment.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc, m_block_date_time);
+
+                }
             }
         });
 
-        String[] myDataset = getDataSet();
+
         RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.testrectimepicker);
 
 
-
         // создаем адаптер
-     //   simpleRecyclerAdapter mAdapter = new simpleRecyclerAdapter(myDataset);
-    //    mRecyclerView.setAdapter(mAdapter);
+        //   simpleRecyclerAdapter mAdapter = new simpleRecyclerAdapter(myDataset);
+        //    mRecyclerView.setAdapter(mAdapter);
 
         app = ((My_app) getActivity().getApplicationContext());
         arra_for_listvieew_price = new ArrayList<>();
-        dataarrayadapter  = new DataArrayAdapter();
+        dataarrayadapter = new DataArrayAdapter();
         mRecyclerView.setAdapter(dataarrayadapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
 
 
-      DatabaseReference m_service_ref = app.getmDatabase().child(services_names).child(service).child(location);
-        DatabaseReference m_block_date_time = app.getmDatabase().child(date).child(time).child(service).child(location);
+        DatabaseReference m_service_ref = app.getmDatabase().child("locations_names").child(Sing_tone_choosings.getInstance().getLocation()).child(Sing_tone_choosings.getInstance().getTypes_of_shops());
+        DatabaseReference m_block_date_time = app.getmDatabase().
+                child(Sing_tone_choosings.getInstance().getDate()).
+                child(Sing_tone_choosings.getInstance().getTime()).
+                child(Sing_tone_choosings.getInstance().getTypes_of_shops()).
+                child(Sing_tone_choosings.getInstance().getLocation());
+
         Single_tone_array_creator_fragment.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc, m_block_date_time);
         Single_tone_array_creator_fragment.getInstance().registerCallBack(this);
 
 
         return view;
 
-    }
-    private String[] getDataSet() {
-
-        String[] mDataSet = new String[100];
-        for (int i = 0; i < 100; i++) {
-            mDataSet[i] = "item" + i;
-        }
-        return mDataSet;
     }
 
 
@@ -172,8 +201,9 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
         }
 
     }
-    public  String getTitle(){
 
-        return "dfdsfdsfdgfdghgh";
+    public String getTitle() {
+
+        return "DataPickerFragment Фрагмент выбора даты";
     }
 }

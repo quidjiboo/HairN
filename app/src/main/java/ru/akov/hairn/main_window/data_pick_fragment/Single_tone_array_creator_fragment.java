@@ -1,7 +1,5 @@
 package ru.akov.hairn.main_window.data_pick_fragment;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -70,6 +68,8 @@ public class Single_tone_array_creator_fragment {
                 }
                 if (bloched_sort_arraylistner != null)
                     mDatabase_in_blocked.removeEventListener(bloched_sort_arraylistner);
+
+
                 add_rem_hashset(mDatabase_in_blocked);
                 childevent(mDatabase_in_singl);
             }
@@ -96,9 +96,9 @@ public class Single_tone_array_creator_fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                Double price = dataSnapshot.getValue(Double.class);
-                Log.d(TAG, "DEDEDED= " + dataSnapshot.getKey());
-                add(dataSnapshot.getKey(), price);
+            //    Shop_in_locat_url_names_loc shop = dataSnapshot.getValue(Shop_in_locat_url_names_loc.class);
+            //    Log.d(TAG, "DEDEDED= " + dataSnapshot.getKey());
+                add_withoutprice(dataSnapshot.getKey());
             }
 
             @Override
@@ -126,60 +126,33 @@ public class Single_tone_array_creator_fragment {
 
     }
 
-    synchronized void add(final String key, final Double price) {
 
-        mDatabase_in_singl.getRoot().child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                Shop_in_locat_url_names_loc obj = dataSnapshot.getValue(Shop_in_locat_url_names_loc.class);
-                GPScoords_price obj_of_location_sort_array = new GPScoords_price(0.0, dataSnapshot.getKey(), obj.getpicurl(), obj.getname(), obj.getlatitude(), obj.getlongitude(), price);
-
-                if (!blocked_tim_arraylist_of_keys.contains(key))
-                    myCallback.addtolist(obj_of_location_sort_array);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
     synchronized void add_withoutprice(final String key) {
 
-        mDatabase_in_singl.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    final Double price = dataSnapshot.getValue(Double.class);
-                    mDatabase_in_singl.getRoot().child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            Shop_in_locat_url_names_loc obj = dataSnapshot.getValue(Shop_in_locat_url_names_loc.class);
-                            GPScoords_price obj_of_location_sort_array = new GPScoords_price(0.0, dataSnapshot.getKey(), obj.getpicurl(), obj.getname(), obj.getlatitude(), obj.getlongitude(), price);
 
-                            if (!blocked_tim_arraylist_of_keys.contains(key))
-                                myCallback.addtolist(obj_of_location_sort_array);
-                        }
+                mDatabase_in_singl.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
+                        Shop_in_locat_url_names_loc obj = dataSnapshot.getValue(Shop_in_locat_url_names_loc.class);
+                        GPScoords_price obj_of_location_sort_array = new GPScoords_price(0.0, dataSnapshot.getKey(), obj.getpicurl(), obj.getname(), obj.getlatitude(), obj.getlongitude(), 0.0);
 
-                        }
-                    });
-                }
+                        if (!blocked_tim_arraylist_of_keys.contains(key))
+                            myCallback.addtolist(obj_of_location_sort_array);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
 
-    }
+
+
 
     synchronized void remove_by_key(String obj) {
 

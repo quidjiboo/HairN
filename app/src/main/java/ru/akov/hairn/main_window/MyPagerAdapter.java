@@ -39,7 +39,7 @@ MyPagerAdapter extends SmartFragmentStatePagerAdapter {
                 if(app.getFragmentname().contains("0")){
                      return  FirstFragment_Select_Service_Type.newInstance(0, "Page # 1");}
                 if(app.getFragmentname().contains("1")){
-                return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",app.getCurrentservice());}
+                return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",Sing_tone_choosings.getInstance().getTypes_of_shops());}
                 if(app.getFragmentname().contains("2")){
                     return  DatePickerFragment.newInstance(0, "Page # 3");}
 

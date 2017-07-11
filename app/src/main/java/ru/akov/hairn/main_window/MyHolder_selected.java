@@ -17,6 +17,7 @@ public class MyHolder_selected extends RecyclerView.ViewHolder implements View.O
     View selectedOverlay;
     private ClickListener listener;
 
+
     public MyHolder_selected(View itemView, ClickListener listener) {
         super(itemView);
         recipeName = (TextView)itemView.findViewById(R.id.tile_text_marked);
@@ -34,6 +35,7 @@ public class MyHolder_selected extends RecyclerView.ViewHolder implements View.O
         if (listener != null) {
             listener.onItemClicked(getAdapterPosition());
         }
+
     }
 
     @Override

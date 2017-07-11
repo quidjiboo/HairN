@@ -24,6 +24,7 @@ public class myfirebaseRecyclAdapter_selected_mode extends FirebaseRecyclerAdapt
 
     private static final String TAG = myfirebaseRecyclAdapter_selected_mode.class.getSimpleName();
     private Context context;
+    private  ArrayList<String> services = null;
     private SparseBooleanArray selectedItems;
     private MyHolder_selected.ClickListener clickListener;
     private ChildEventListener mylist;
@@ -34,6 +35,7 @@ public class myfirebaseRecyclAdapter_selected_mode extends FirebaseRecyclerAdapt
         this.clickListener = clickListener;
         this.context = context;
         Log.d(TAG,"Сделал адаптер");
+        services = new ArrayList<>();
         selectedItems = new SparseBooleanArray();
         ref.addChildEventListener(mylist = new ChildEventListener() {
             @Override
@@ -92,6 +94,12 @@ public class myfirebaseRecyclAdapter_selected_mode extends FirebaseRecyclerAdapt
             selectedItems.put(position, true);
         }
         notifyItemChanged(position);
+        services.clear();
+        for (int i = 0; i < selectedItems.size(); ++i) {
+            services.add(getRef(i).getKey().toString());
+
+        }
+Sing_tone_choosings.getInstance().setServices(services);
     }
     public void clearSelection() {
         List<Integer> selection = getSelectedItems();

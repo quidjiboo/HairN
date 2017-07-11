@@ -32,7 +32,9 @@ public class Fragment_Select_Currect_Services extends Fragment implements MyHold
     @Override
     public void onItemClicked(int position) {
 Log.d("ПОЗИЦИЯ", position +  " " );
+
             toggleSelection(position);
+
 
     }
     private void toggleSelection(int position) {

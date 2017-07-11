@@ -20,7 +20,6 @@ public class My_app extends Application {
 
 
 
-    private String currentservice  = "car_workshop";
 
     private  Context mContext; // забыл зачем нужно, пусть будет
 
@@ -105,11 +104,5 @@ public void createmAuthListener () {
     public void setFragmentname(String fragmentname) {
         this.fragmentname = fragmentname;
     }
-    public String getCurrentservice() {
-        return currentservice;
-    }
 
-    public void setCurrentservice(String currentservice) {
-        this.currentservice = currentservice;
-    }
 }
