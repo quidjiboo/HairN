@@ -95,11 +95,12 @@ public class myfirebaseRecyclAdapter_selected_mode extends FirebaseRecyclerAdapt
         }
         notifyItemChanged(position);
         services.clear();
-        for (int i = 0; i < selectedItems.size(); ++i) {
-            services.add(getRef(i).getKey().toString());
+        for (int i = 0; i < getSelectedItems().size(); ++i) {
+
+            services.add(getRef(getSelectedItems().get(i)).getKey().toString());
 
         }
-Sing_tone_choosings.getInstance().setServices(services);
+        Sing_tone_choosings.getInstance().setServices(services);
     }
     public void clearSelection() {
         List<Integer> selection = getSelectedItems();

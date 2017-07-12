@@ -28,6 +28,9 @@ public class Sing_tone_choosings {
 
 
     String types_of_shops = "";
+
+
+
     ArrayList<String> services = null;
 
     String date = "20170602";
@@ -89,6 +92,9 @@ public class Sing_tone_choosings {
         services.clear();
         services.addAll(inarray);
         Log.d("ВЫБРАННЫЕ ЭЛЕМЕНТЫ!Ё!!",   services.toString());
+    }
+    public ArrayList<String> getServices() {
+        return services;
     }
     public String getLocation() {
         return location;

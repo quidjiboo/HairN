@@ -22,10 +22,12 @@ public class DataArrayAdapter extends ArrayAdapter<GPScoords_price, DataArrayAda
 public static class ViewHolder extends RecyclerView.ViewHolder {
 
     private final TextView titleView;
+    private final TextView price;
 
     public ViewHolder(final View itemView) {
         super(itemView);
         titleView = (TextView) itemView.findViewById(R.id.txtTitle2);
+        price = (TextView) itemView.findViewById(R.id.txtTitle1);
     }
 }
 
@@ -39,6 +41,8 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final GPScoords_price item = getItem(position);
         holder.titleView.setText(item.getname());
+        String total2 = String.valueOf(item.getprice());
+        holder.price.setText(total2);
     }
 
     @Override

@@ -96,7 +96,8 @@ public class Single_tone_array_creator {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                Double price = dataSnapshot.getValue(Double.class);
+                Double price1 = dataSnapshot.getValue(Double.class);
+                String price = "olllll";
                 Log.d(TAG, "DEDEDED= " + dataSnapshot.getKey());
                 add(dataSnapshot.getKey(), price);
             }
@@ -126,7 +127,7 @@ public class Single_tone_array_creator {
 
     }
 
-    synchronized void add(final String key, final Double price) {
+    synchronized void add(final String key, final String price) {
 
         mDatabase_in_singl.getRoot().child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -152,7 +153,8 @@ public class Single_tone_array_creator {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()) {
-                    final Double price = dataSnapshot.getValue(Double.class);
+                    final Double price1 = dataSnapshot.getValue(Double.class);
+                    final     String price = "ololol";
                     mDatabase_in_singl.getRoot().child("locations_names").child("Novovoronezh").child("barbershops_names").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
