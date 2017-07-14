@@ -26,6 +26,8 @@ public static class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder(final View itemView) {
         super(itemView);
+        itemView.setClickable(true);
+
         titleView = (TextView) itemView.findViewById(R.id.txtTitle2);
         price = (TextView) itemView.findViewById(R.id.txtTitle1);
     }

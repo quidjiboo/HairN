@@ -23,8 +23,10 @@ import java.util.Date;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
+import ru.akov.hairn.helpers.ItemClickSupport;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
 import ru.akov.hairn.main_window.Sing_tone_choosings;
+import ru.akov.hairn.main_window.myfirebaseRecyclAdapter;
 
 /**
  * Created by Alexandr on 12.06.2017.
@@ -146,7 +148,7 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
         });
 
 
-        RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.testrectimepicker);
+       RecyclerView mRecyclerView = (RecyclerView) view.findViewById(R.id.testrectimepicker);
 
 
         // создаем адаптер
@@ -172,6 +174,19 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
         Single_tone_array_creator_fragment.getInstance().addlistner_location_sort_arraylist(m_service_ref, mymloc, m_block_date_time);
         Single_tone_array_creator_fragment.getInstance().registerCallBack(this);
 
+
+        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                /*Log.d("dsfsd","sdfsdfsdhgfhgfhgf");
+                Log.d("dsfdsf", ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position));
+                Log.d("d1112344f",   ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey().toString());*/
+                Sing_tone_choosings.getInstance().add_types_of_shops(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
+                // app.setCurrentservice(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
+                someEventListener.someEvent2("1");
+                // do it
+            }
+        });
 
         return view;
 
