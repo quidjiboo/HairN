@@ -23,16 +23,14 @@ import java.util.Date;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
-import ru.akov.hairn.helpers.ItemClickSupport;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
 import ru.akov.hairn.main_window.Sing_tone_choosings;
-import ru.akov.hairn.main_window.myfirebaseRecyclAdapter;
 
 /**
  * Created by Alexandr on 12.06.2017.
  */
 
-public class DatePickerFragment extends Fragment implements MyCallbacl_refresherlist_for_fragment {
+public class DatePickerFragment extends Fragment implements MyCallbacl_refresherlist_for_fragment, DataArrayAdapter.ViewHolder.ClickListener {
 
     // Store instance variables
     private String title;
@@ -46,6 +44,19 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
     // private Toolbar tv;
     private onSomeEventListenerDatePickerFragment someEventListener;
 
+    @Override
+    public void onItemClicked(int position) {
+        toggleSelection(position);
+    }
+
+    @Override
+    public boolean onItemLongClicked(int position) {
+        return false;
+    }
+    private void toggleSelection(int position) {
+        dataarrayadapter.toggleSelection(position);
+
+    }
     public interface onSomeEventListenerDatePickerFragment {
         public void someEvent2(String fragmentnumber);
     }
@@ -157,7 +168,7 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
 
         app = ((My_app) getActivity().getApplicationContext());
         arra_for_listvieew_price = new ArrayList<>();
-        dataarrayadapter = new DataArrayAdapter();
+        dataarrayadapter = new DataArrayAdapter(this);
         mRecyclerView.setAdapter(dataarrayadapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(linearLayoutManager);
@@ -175,18 +186,7 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
         Single_tone_array_creator_fragment.getInstance().registerCallBack(this);
 
 
-        ItemClickSupport.addTo(mRecyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-            @Override
-            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                /*Log.d("dsfsd","sdfsdfsdhgfhgfhgf");
-                Log.d("dsfdsf", ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position));
-                Log.d("d1112344f",   ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey().toString());*/
-                Sing_tone_choosings.getInstance().add_types_of_shops(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
-                // app.setCurrentservice(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
-                someEventListener.someEvent2("1");
-                // do it
-            }
-        });
+
 
         return view;
 
