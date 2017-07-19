@@ -17,6 +17,7 @@ import java.util.List;
 
 import ru.akov.hairn.R;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
+import ru.akov.hairn.main_window.Sing_tone_choosings;
 
 /**
  * Created by User on 06.07.2017.
@@ -47,6 +48,8 @@ public class DataArrayAdapter extends ArrayAdapter<GPScoords_price, DataArrayAda
         }
 
         notifyItemChanged(position);
+        Sing_tone_choosings.getInstance().setShopid(this.getItem(position).getkey());
+
     }
 
     /**

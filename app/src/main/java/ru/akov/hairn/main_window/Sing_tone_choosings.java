@@ -22,6 +22,9 @@ public class Sing_tone_choosings {
 
 
 
+    String shopid =  "";
+
+
     String services_names = "services_names";
     String locations_names_names = "locations_names";
 
@@ -115,5 +118,12 @@ public class Sing_tone_choosings {
 
     public void setTime(String time) {
         this.time = time;
+    }
+    public String getShopid() {
+        return shopid;
+    }
+
+    public void setShopid(String shopid) {
+        this.shopid = shopid;
     }
 }

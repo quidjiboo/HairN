@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -158,12 +159,13 @@ fab.show();
     }
 
     @Override
-    public void someEvent2(String fragmentnumber) {
+    public void someEvent2(final String fragmentnumber) {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                app.setFragmentname("3");
-                adapter.notifyDataSetChanged();
+                Log.d("Выбран ШОП", fragmentnumber);
+       //         app.setFragmentname("3");
+        //       adapter.notifyDataSetChanged();
             }
         });
         fab.show();

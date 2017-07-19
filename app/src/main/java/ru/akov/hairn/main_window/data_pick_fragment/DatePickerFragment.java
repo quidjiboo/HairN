@@ -55,6 +55,7 @@ public class DatePickerFragment extends Fragment implements MyCallbacl_refresher
     }
     private void toggleSelection(int position) {
         dataarrayadapter.toggleSelection(position);
+        someEventListener.someEvent2(Sing_tone_choosings.getInstance().getShopid());
 
     }
     public interface onSomeEventListenerDatePickerFragment {

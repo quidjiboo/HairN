@@ -22,7 +22,7 @@ import ru.akov.hairn.main_window.Sing_tone_choosings;
 
 public class Single_tone_array_creator_fragment {
     private static final String TAG = "Массив";
-    private Double summa=0.0;
+    private Double summa = 0.0;
     private ChildEventListener location_sort_arraylistner_Child;
     private ChildEventListener bloched_sort_arraylistner;
 
@@ -84,11 +84,10 @@ public class Single_tone_array_creator_fragment {
         });
 
 
-
     }
 
     synchronized void remove_location_sort_arraylist() {
-       mDatabase_in_singl.removeEventListener(location_sort_arraylistner_Child);
+        mDatabase_in_singl.removeEventListener(location_sort_arraylistner_Child);
         mDatabase_in_blocked.removeEventListener(bloched_sort_arraylistner);
     }
 
@@ -99,8 +98,8 @@ public class Single_tone_array_creator_fragment {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-            //    Shop_in_locat_url_names_loc shop = dataSnapshot.getValue(Shop_in_locat_url_names_loc.class);
-            //    Log.d(TAG, "DEDEDED= " + dataSnapshot.getKey());
+                //    Shop_in_locat_url_names_loc shop = dataSnapshot.getValue(Shop_in_locat_url_names_loc.class);
+                //    Log.d(TAG, "DEDEDED= " + dataSnapshot.getKey());
                 add_withoutprice(dataSnapshot.getKey());
             }
 
@@ -160,8 +159,8 @@ public class Single_tone_array_creator_fragment {
                     if (Sing_tone_choosings.getInstance().getServices().contains(messageSnapshot.getKey().toString())) {
 
                         summ = summ + oj;
-                        summ_ok=summ_ok+1;
-                        }
+                        summ_ok = summ_ok + 1;
+                    }
 
                 }
 
@@ -169,9 +168,11 @@ public class Single_tone_array_creator_fragment {
 
 
                 String strsumm = Double.toString(summ);
-                if(summ_ok!=Sing_tone_choosings.getInstance().getServices().size()){strsumm="Нет всех услуг";}
+                if (summ_ok != Sing_tone_choosings.getInstance().getServices().size()) {
+                    strsumm = "Нет всех услуг";
+                }
 
-              final String finalSumm = strsumm;
+                final String finalSumm = strsumm;
 
                 mDatabase_in_singl.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -199,16 +200,12 @@ public class Single_tone_array_creator_fragment {
         });
 
 
-            }
-
-
-
-
+    }
 
 
     synchronized void remove_by_key(String obj) {
 
-           myCallback.removefromlist(obj);
+        myCallback.removefromlist(obj);
     }
 
 
@@ -218,9 +215,10 @@ public class Single_tone_array_creator_fragment {
         mDatabase.addChildEventListener(bloched_sort_arraylistner = new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-if(!blocked_tim_arraylist_of_keys.contains(dataSnapshot.getKey())){
-                        blocked_tim_arraylist_of_keys.add(dataSnapshot.getKey());
-                        remove_by_key(dataSnapshot.getKey());}
+                        if (!blocked_tim_arraylist_of_keys.contains(dataSnapshot.getKey())) {
+                            blocked_tim_arraylist_of_keys.add(dataSnapshot.getKey());
+                            remove_by_key(dataSnapshot.getKey());
+                        }
                     }
 
                     @Override
@@ -230,7 +228,7 @@ if(!blocked_tim_arraylist_of_keys.contains(dataSnapshot.getKey())){
 
                     @Override
                     public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        if(blocked_tim_arraylist_of_keys.contains(dataSnapshot.getKey())) {
+                        if (blocked_tim_arraylist_of_keys.contains(dataSnapshot.getKey())) {
                             blocked_tim_arraylist_of_keys.remove(dataSnapshot.getKey());
                             add_withoutprice(dataSnapshot.getKey());
                         }
