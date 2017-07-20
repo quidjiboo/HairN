@@ -10,9 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.firebase.database.DatabaseReference;
-
-import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.helpers.ItemClickSupport;
 
@@ -72,15 +69,15 @@ public class FirstFragment_Select_Service_Type extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recycler_view, container, false);
-        final My_app   app = ((My_app) getActivity().getApplicationContext());
+       // final My_app   app = ((My_app) getActivity().getApplicationContext());
 
-        DatabaseReference m_ref_test = app.getmDatabase().child("shops_types");
+       // DatabaseReference m_ref_test = app.getmDatabase().child("shops_types");
 
         RecyclerView messages = (RecyclerView) view.findViewById(R.id.my_recycler_view);
-        myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
+      //  myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
         LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
         messages.setLayoutManager(linearLayoutManager);
-        messages.setAdapter(mAdapter);
+        messages.setAdapter(test_shop_typs_singl.getInstance().getmAdapter());
 
         ItemClickSupport.addTo(messages).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
@@ -97,4 +94,8 @@ public class FirstFragment_Select_Service_Type extends Fragment {
         return view;
 
     }
+
+
+
+
 }

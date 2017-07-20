@@ -97,6 +97,9 @@ Log.d("ПОЗИЦИЯ", position +  " " );
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
         View view = inflater.inflate(R.layout.recycler_view_2, container, false);
         My_app   app = ((My_app) getActivity().getApplicationContext());
         Log.d("My Ref","референс к базе подключаю"+servicetype);

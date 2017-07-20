@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import ru.akov.hairn.main_window.test_shop_typs_singl;
+
 
 /**
  * Created by User on 21.03.2016.
@@ -39,6 +41,9 @@ public class My_app extends Application {
         // иницализиру сингтоны
         Zakaz_singltone.getInstance();
         Status_auth_changes_singltonne.getInstance();
+        test_shop_typs_singl.initInstance(this);
+
+
         mContext = this;
 
         auth   = FirebaseAuth.getInstance();
