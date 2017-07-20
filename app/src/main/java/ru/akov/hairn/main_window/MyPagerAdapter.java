@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.helpers.SmartFragmentStatePagerAdapter;
 import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
+import ru.akov.hairn.main_window.zakaz_fragment.ZakazFragment;
 
 /**
  * Created by Alexandr on 12.06.2017.
@@ -42,7 +43,8 @@ MyPagerAdapter extends SmartFragmentStatePagerAdapter {
                 return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",Sing_tone_choosings.getInstance().getTypes_of_shops());}
                 if(app.getFragmentname().contains("2")){
                     return  DatePickerFragment.newInstance(0, "Page # 3");}
-
+                if(app.getFragmentname().contains("3")){
+                    return  ZakazFragment.newInstance(0, "Page # 4");}
             }
 
             case 1: // Fragment # 0 - This will show FirstFragment_Select_Service_Type different title

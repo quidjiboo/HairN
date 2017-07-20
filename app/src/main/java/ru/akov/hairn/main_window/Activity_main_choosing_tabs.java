@@ -29,8 +29,9 @@ public class Activity_main_choosing_tabs extends AppCompatActivity
         Fragment_Select_Currect_Services.onSomeEventListener1,
 DatePickerFragment.onSomeEventListenerDatePickerFragment{
     final static String TAG = "MAIN_ACTIVITY";
+    private  Toolbar toolbar;
     private TabLayout tabs;
-    private ViewPager viewPager;
+    private CustomViewPager viewPager;
     private MyPagerAdapter adapter;
     private My_app app;
 
@@ -46,10 +47,10 @@ DatePickerFragment.onSomeEventListenerDatePickerFragment{
 
         setContentView(R.layout.activity_chooser_main);
         // Adding Toolbar to Main screen
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Setting ViewPager for each Tabs
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        viewPager = (CustomViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
         // Set Tabs inside Toolbar
         tabs = (TabLayout) findViewById(R.id.tabs);
@@ -139,6 +140,9 @@ DatePickerFragment.onSomeEventListenerDatePickerFragment{
 
     @Override
     public void someEvent(String fragmentnumber) {
+        viewPager.setPagingEnabled(true);
+        toolbar.setCollapsible(true);
+        tabs.setVisibility(View.VISIBLE);
 String fn= fragmentnumber;
         app.setFragmentname(fn);
         adapter.notifyDataSetChanged();
@@ -146,6 +150,10 @@ String fn= fragmentnumber;
 
     @Override
     public void someEvent1(String fragmentnumber) {
+        viewPager.setPagingEnabled(true);
+        toolbar.setCollapsible(true);
+        tabs.setVisibility(View.VISIBLE);
+
         fab.setOnClickListener(null);
        fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,12 +168,17 @@ fab.show();
 
     @Override
     public void someEvent2(final String fragmentnumber) {
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                viewPager.setPagingEnabled(false);
+                toolbar.setCollapsible(false);
+                tabs.setVisibility(View.GONE);
                 Log.d("Выбран ШОП", fragmentnumber);
-       //         app.setFragmentname("3");
-        //       adapter.notifyDataSetChanged();
+                app.setFragmentname("3");
+               adapter.notifyDataSetChanged();
+
             }
         });
         fab.show();
