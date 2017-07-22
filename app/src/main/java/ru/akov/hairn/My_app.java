@@ -41,14 +41,14 @@ public class My_app extends Application {
         // иницализиру сингтоны
         Zakaz_singltone.getInstance();
         Status_auth_changes_singltonne.getInstance();
-        test_shop_typs_singl.initInstance(this);
+
 
 
         mContext = this;
 
         auth   = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        test_shop_typs_singl.initInstance(this);
     }
 public FirebaseAuth getauth(){
     return  auth;
