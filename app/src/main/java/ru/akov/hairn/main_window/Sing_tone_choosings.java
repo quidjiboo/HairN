@@ -82,7 +82,8 @@ public class Sing_tone_choosings {
                 break; // optional
 
             // You can have any number of case statements.
-            default : // Optional
+            default :
+                types_of_shops = "sdfsdfsdfsd";// Optional
                 // Statements
         }
     }

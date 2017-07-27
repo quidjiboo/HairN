@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +87,8 @@ public class FirstFragment_Select_Service_Type extends Fragment {
                 Log.d("dsfdsf", ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position));
                 Log.d("d1112344f",   ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey().toString());*/
                 Sing_tone_choosings.getInstance().add_types_of_shops(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
+                Log.d("d1112344f",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey()));
+             Log.d("d1112344f",Sing_tone_choosings.getInstance().getTypes_of_shops());
                // app.setCurrentservice(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
                 someEventListener.someEvent("1");
                 // do it

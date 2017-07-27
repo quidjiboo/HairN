@@ -2,6 +2,7 @@ package ru.akov.hairn.main_window;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.helpers.SmartFragmentStatePagerAdapter;
@@ -40,6 +41,7 @@ MyPagerAdapter extends SmartFragmentStatePagerAdapter {
                 if(app.getFragmentname().contains("0")){
                      return  FirstFragment_Select_Service_Type.newInstance(0, "Page # 1");}
                 if(app.getFragmentname().contains("1")){
+                    Log.d("ХУЙНЯ",Sing_tone_choosings.getInstance().getTypes_of_shops());
                 return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",Sing_tone_choosings.getInstance().getTypes_of_shops());}
                 if(app.getFragmentname().contains("2")){
                     return  DatePickerFragment.newInstance(0, "Page # 3");}
