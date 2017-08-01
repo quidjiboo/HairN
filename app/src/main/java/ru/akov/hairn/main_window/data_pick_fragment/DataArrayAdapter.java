@@ -49,7 +49,7 @@ public class DataArrayAdapter extends ArrayAdapter<GPScoords_price, DataArrayAda
 
         notifyItemChanged(position);
         Sing_tone_choosings.getInstance().setShopid(this.getItem(position).getkey());
-
+        Sing_tone_choosings.getInstance().setShopname(this.getItem(position).getname());
     }
 
     /**

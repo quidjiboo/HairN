@@ -111,6 +111,13 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/shop_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="shop_name"
+            style="@style/Base.TextAppearance.AppCompat.Title"/>
+
         <TextView android:layout_width="367dp"
             android:layout_height="wrap_content"
             android:text="Список услуг:"

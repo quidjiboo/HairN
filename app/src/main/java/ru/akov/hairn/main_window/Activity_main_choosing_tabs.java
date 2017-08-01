@@ -19,6 +19,7 @@ import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
+import ru.akov.hairn.main_window.zakaz_fragment.ZakazFragment;
 
 /**
  * Created by User on 01.06.2017.
@@ -27,7 +28,8 @@ import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
 public class Activity_main_choosing_tabs extends AppCompatActivity
         implements FirstFragment_Select_Service_Type.onSomeEventListener ,
         Fragment_Select_Currect_Services.onSomeEventListener1,
-DatePickerFragment.onSomeEventListenerDatePickerFragment{
+DatePickerFragment.onSomeEventListenerDatePickerFragment,
+        ZakazFragment.onSomeEventListenerZakazFragment{
     final static String TAG = "MAIN_ACTIVITY";
     private  Toolbar toolbar;
     private TabLayout tabs;
@@ -178,6 +180,23 @@ fab.show();
                 Log.d("Выбран ШОП", fragmentnumber);
                 app.setFragmentname("3");
                adapter.notifyDataSetChanged();
+
+            }
+        });
+        fab.show();
+    }
+
+    @Override
+    public void someEvent3() {
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setPagingEnabled(true);
+                toolbar.setCollapsible(true);
+                tabs.setVisibility(View.VISIBLE);
+
+                app.setFragmentname("0");
+                adapter.notifyDataSetChanged();
 
             }
         });

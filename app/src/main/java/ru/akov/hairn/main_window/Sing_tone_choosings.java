@@ -23,7 +23,7 @@ public class Sing_tone_choosings {
 
 
     String shopid =  "";
-
+    String shopname =  "";
 
     String services_names = "services_names";
     String locations_names_names = "locations_names";
@@ -126,5 +126,12 @@ public class Sing_tone_choosings {
 
     public void setShopid(String shopid) {
         this.shopid = shopid;
+    }
+    public String getShopname() {
+        return shopname;
+    }
+
+    public void setShopname(String shopname) {
+        this.shopname = shopname;
     }
 }
