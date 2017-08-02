@@ -15,11 +15,13 @@ import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 
+import ru.akov.hairn.Data_tipes.Zakaz_fragment;
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
 import ru.akov.hairn.main_window.zakaz_fragment.ZakazFragment;
+import ru.akov.hairn.main_window.zakaz_fragment.Zakaz_sender_fromfragment;
 
 /**
  * Created by User on 01.06.2017.
@@ -197,7 +199,18 @@ fab.show();
 
                 app.setFragmentname("0");
                 adapter.notifyDataSetChanged();
-
+                Zakaz_fragment zak = new Zakaz_fragment(
+                        app.getauth().getCurrentUser().toString(),
+                        Sing_tone_choosings.getInstance().getShopid(),
+                        "mail",
+                        "name",
+                        "phone",
+                        Sing_tone_choosings.getInstance().getServices().toString(),
+                        Sing_tone_choosings.getInstance().getDate(),
+                        Sing_tone_choosings.getInstance().getTime(),
+                        "need"
+                        );
+                Zakaz_sender_fromfragment.sen_zakaz_fragment(Sing_tone_choosings.getInstance().getTypes_of_shops(),app.getmDatabase(),app.getauth().getCurrentUser(),zak);
             }
         });
         fab.show();

@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import ru.akov.hairn.R;
@@ -44,6 +45,15 @@ public class ThirdFragment extends Fragment {
         View view = inflater.inflate(R.layout.third_fragment, container, false);
         TextView tvLabel = (TextView) view.findViewById(R.id.mytext3);
         tvLabel.setText(page + " -- " + title);
+
+
+        Button confirmbutton =(Button) view.findViewById(R.id.confirm_button);
+        confirmbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return view;
 
     }
