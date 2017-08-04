@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window.data_pick_fragment;
+package ru.akov.hairn.main_window_client.data_pick_fragment;
 
 import android.util.Log;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import ru.akov.hairn.Data_tipes.Shop_in_locat_url_names_loc;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
-import ru.akov.hairn.main_window.Sing_tone_choosings;
+import ru.akov.hairn.main_window_client.Sing_tone_choosings;
 
 /**
  * Created by User on 17.03.2017.

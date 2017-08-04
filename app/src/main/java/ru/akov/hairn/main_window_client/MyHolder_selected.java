@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window;
+package ru.akov.hairn.main_window_client;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

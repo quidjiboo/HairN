@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window;
+package ru.akov.hairn.main_window_client;
 
 import android.util.Log;
 

@@ -13,7 +13,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import ru.akov.hairn.listesting.list_test;
-import ru.akov.hairn.main_window.Activity_main_choosing_tabs;
+import ru.akov.hairn.main_window_client.Activity_main_choosing_tabs;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -120,7 +120,15 @@ Shop_creator creator = new Shop_creator();
         Shop_creator creator = new Shop_creator();
         creator.add_Nady_barbeshop_text_first(app.getmDatabase(),app.getauth().getCurrentUser());
     }
+    public void  shop_button_new(View view) {
+        //  Intent intent = new Intent(MainActivity.this,     Activity_choose_service.class);
 
+        Intent intent = new Intent(MainActivity.this,Activity_main_choosing_tabs.class);
+
+        startActivity(intent);
+
+        this.finish();
+    }
     @Override
     protected void onResume() {
         super.onResume();

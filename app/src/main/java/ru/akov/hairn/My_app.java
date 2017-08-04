@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import ru.akov.hairn.main_window.test_shop_typs_singl;
+import ru.akov.hairn.main_window_client.test_shop_typs_singl;
 
 
 /**
@@ -48,6 +48,9 @@ public class My_app extends Application {
 
         auth   = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        init();
+    }
+    private void init(){
         test_shop_typs_singl.initInstance(this);
     }
 public FirebaseAuth getauth(){
@@ -70,6 +73,7 @@ public void createmAuthListener () {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null){
                 Log.v("AKOV", "!!!!!!!Подключены!!!!!!!!!!" + user.getUid());
+
                 if (user != null    && flag)
 
                     {

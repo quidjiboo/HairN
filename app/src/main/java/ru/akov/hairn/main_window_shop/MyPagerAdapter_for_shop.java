@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window;
+package ru.akov.hairn.main_window_shop;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -6,20 +6,25 @@ import android.util.Log;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.helpers.SmartFragmentStatePagerAdapter;
-import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
-import ru.akov.hairn.main_window.zakaz_fragment.ZakazFragment;
+import ru.akov.hairn.main_window_client.FirstFragment_Select_Service_Type;
+import ru.akov.hairn.main_window_client.Fragment_Select_Currect_Services;
+import ru.akov.hairn.main_window_client.SecondFragment;
+import ru.akov.hairn.main_window_client.Sing_tone_choosings;
+import ru.akov.hairn.main_window_client.ThirdFragment;
+import ru.akov.hairn.main_window_client.data_pick_fragment.DatePickerFragment;
+import ru.akov.hairn.main_window_client.zakaz_fragment.ZakazFragment;
 
 /**
  * Created by Alexandr on 12.06.2017.
  */
 
 public  class
-MyPagerAdapter extends SmartFragmentStatePagerAdapter {
+MyPagerAdapter_for_shop extends SmartFragmentStatePagerAdapter {
     private My_app app;
 
     private static int NUM_ITEMS = 3;
 
-    public MyPagerAdapter(FragmentManager fragmentManager,My_app app) {
+    public MyPagerAdapter_for_shop(FragmentManager fragmentManager, My_app app) {
 
         super(fragmentManager);
        this.app=app;

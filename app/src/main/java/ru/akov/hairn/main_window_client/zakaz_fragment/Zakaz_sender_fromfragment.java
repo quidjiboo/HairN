@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window.zakaz_fragment;
+package ru.akov.hairn.main_window_client.zakaz_fragment;
 
 import android.util.Log;
 

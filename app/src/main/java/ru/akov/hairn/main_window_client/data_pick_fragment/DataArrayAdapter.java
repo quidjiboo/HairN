@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window.data_pick_fragment;
+package ru.akov.hairn.main_window_client.data_pick_fragment;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import ru.akov.hairn.R;
 import ru.akov.hairn.listesting.DATA.GPScoords_price;
-import ru.akov.hairn.main_window.Sing_tone_choosings;
+import ru.akov.hairn.main_window_client.Sing_tone_choosings;
 
 /**
  * Created by User on 06.07.2017.

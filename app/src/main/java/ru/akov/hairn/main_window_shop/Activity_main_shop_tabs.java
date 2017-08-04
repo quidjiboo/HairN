@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window;
+package ru.akov.hairn.main_window_shop;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,30 +8,24 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
 
-import ru.akov.hairn.Data_tipes.Zakaz_fragment;
 import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
-import ru.akov.hairn.main_window.data_pick_fragment.DatePickerFragment;
-import ru.akov.hairn.main_window.zakaz_fragment.ZakazFragment;
-import ru.akov.hairn.main_window.zakaz_fragment.Zakaz_sender_fromfragment;
+import ru.akov.hairn.main_window_client.CustomViewPager;
+import ru.akov.hairn.main_window_client.MyPagerAdapter;
 
 /**
  * Created by User on 01.06.2017.
  */
 
-public class Activity_main_choosing_tabs extends AppCompatActivity
-        implements FirstFragment_Select_Service_Type.onSomeEventListener ,
-        Fragment_Select_Currect_Services.onSomeEventListener1,
-DatePickerFragment.onSomeEventListenerDatePickerFragment,
-        ZakazFragment.onSomeEventListenerZakazFragment{
+public class Activity_main_shop_tabs extends AppCompatActivity
+        {
     final static String TAG = "MAIN_ACTIVITY";
     private  Toolbar toolbar;
     private TabLayout tabs;
@@ -49,7 +43,7 @@ DatePickerFragment.onSomeEventListenerDatePickerFragment,
 
         m_ref_test = app.getmDatabase().child("shops_types");
 
-        setContentView(R.layout.activity_chooser_main);
+        setContentView(R.layout.activity_shop_main);
         // Adding Toolbar to Main screen
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -94,23 +88,10 @@ DatePickerFragment.onSomeEventListenerDatePickerFragment,
     }
     @Override
     public void onBackPressed() {
-        if( !adapter.getRegisteredFragment(viewPager.getCurrentItem()).getArguments().getString("someTitle").contains("Page # 1")) {
-        if(
-                app.getFragmentname().contains("1")){
-
-            someEvent("0");
-        }
-        else if(app.getFragmentname().contains("2")){
-            someEvent("1");
-        }
-        else if(app.getFragmentname().contains("3")){
-            someEvent("2");
-        }}
-        else {
-            super.onBackPressed();
-        Intent intent = new Intent(Activity_main_choosing_tabs.this, MainActivity.class);
+        super.onBackPressed();
+        Intent intent = new Intent(Activity_main_shop_tabs.this, MainActivity.class);
         startActivity(intent);
-        this.finish();}
+        this.finish();
 
     }
 
@@ -142,77 +123,5 @@ DatePickerFragment.onSomeEventListenerDatePickerFragment,
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void someEvent(String fragmentnumber) {
-        viewPager.setPagingEnabled(true);
-        toolbar.setCollapsible(true);
-        tabs.setVisibility(View.VISIBLE);
-String fn= fragmentnumber;
-        app.setFragmentname(fn);
-        adapter.notifyDataSetChanged();
-    }
 
-    @Override
-    public void someEvent1(String fragmentnumber) {
-        viewPager.setPagingEnabled(true);
-        toolbar.setCollapsible(true);
-        tabs.setVisibility(View.VISIBLE);
-
-        fab.setOnClickListener(null);
-       fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                app.setFragmentname("2");
-                adapter.notifyDataSetChanged();
-            }
-        });
-fab.show();
-
-    }
-
-    @Override
-    public void someEvent2(final String fragmentnumber) {
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPager.setPagingEnabled(false);
-                toolbar.setCollapsible(false);
-                tabs.setVisibility(View.GONE);
-                Log.d("Выбран ШОП", fragmentnumber);
-                app.setFragmentname("3");
-               adapter.notifyDataSetChanged();
-
-            }
-        });
-        fab.show();
-    }
-
-    @Override
-    public void someEvent3() {
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPager.setPagingEnabled(true);
-                toolbar.setCollapsible(true);
-                tabs.setVisibility(View.VISIBLE);
-
-                app.setFragmentname("0");
-                adapter.notifyDataSetChanged();
-                Zakaz_fragment zak = new Zakaz_fragment(
-                        app.getauth().getCurrentUser().toString(),
-                        Sing_tone_choosings.getInstance().getShopid(),
-                        "mail",
-                        "name",
-                        "phone",
-                        Sing_tone_choosings.getInstance().getServices().toString(),
-                        Sing_tone_choosings.getInstance().getDate(),
-                        Sing_tone_choosings.getInstance().getTime(),
-                        "need"
-                        );
-                Zakaz_sender_fromfragment.sen_zakaz_fragment(Sing_tone_choosings.getInstance().getTypes_of_shops(),app.getmDatabase(),app.getauth().getCurrentUser(),zak);
-            }
-        });
-        fab.show();
-    }
 }

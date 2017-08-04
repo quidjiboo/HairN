@@ -143,4 +143,13 @@
         android:layout_marginTop="27dp"
         android:onClick="newLive"
         android:text="NEwLive" />
+
+    <Button
+        android:id="@+id/shop_button_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/button14"
+        android:layout_toEndOf="@+id/button11"
+        android:onClick="shop_button_new"
+        android:text="shop" />
 </RelativeLayout>

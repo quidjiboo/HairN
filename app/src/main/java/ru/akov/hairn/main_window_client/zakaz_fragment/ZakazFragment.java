@@ -1,4 +1,4 @@
-package ru.akov.hairn.main_window.zakaz_fragment;
+package ru.akov.hairn.main_window_client.zakaz_fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -23,7 +23,7 @@ import ru.akov.hairn.MtextWatcher;
 import ru.akov.hairn.MyCallback_textwatcher;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
-import ru.akov.hairn.main_window.Sing_tone_choosings;
+import ru.akov.hairn.main_window_client.Sing_tone_choosings;
 
 /**
  * Created by User on 20.07.2017.
