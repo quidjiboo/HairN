@@ -18,19 +18,18 @@ import ru.akov.hairn.MainActivity;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.main_window_client.CustomViewPager;
-import ru.akov.hairn.main_window_client.MyPagerAdapter;
 
 /**
  * Created by User on 01.06.2017.
  */
 
-public class Activity_main_shop_tabs extends AppCompatActivity
+public class Activity_main_shop_tabs extends AppCompatActivity  implements FirstFragment_myshopslist.onSomeEventListener
         {
     final static String TAG = "MAIN_ACTIVITY";
     private  Toolbar toolbar;
     private TabLayout tabs;
     private CustomViewPager viewPager;
-    private MyPagerAdapter adapter;
+    private MyPagerAdapter_for_shop adapter;
     private My_app app;
 
     private DatabaseReference m_ref_test;
@@ -97,7 +96,7 @@ public class Activity_main_shop_tabs extends AppCompatActivity
 
     // Add Fragments to Tabs
     private void setupViewPager(ViewPager viewPager) {
-        adapter = new MyPagerAdapter(getSupportFragmentManager(), app);
+        adapter = new MyPagerAdapter_for_shop(getSupportFragmentManager(), app);
         viewPager.setAdapter(adapter);
     }
 
@@ -124,4 +123,8 @@ public class Activity_main_shop_tabs extends AppCompatActivity
     }
 
 
-}
+            @Override
+            public void someEvent(String fragmentnumber) {
+
+            }
+        }

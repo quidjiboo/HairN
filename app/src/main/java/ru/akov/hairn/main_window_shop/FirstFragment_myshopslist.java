@@ -21,7 +21,7 @@ import ru.akov.hairn.main_window_client.test_shop_typs_singl;
  * Created by Alexandr on 12.06.2017.
  */
 
-public class FirstFragment_zakazi extends Fragment {
+public class FirstFragment_myshopslist extends Fragment {
 
     // Store instance variables
     private String title;
@@ -39,7 +39,7 @@ public class FirstFragment_zakazi extends Fragment {
             Activity activity;
             if (context instanceof Activity){
                 activity=(Activity) context;
-                someEventListener = (FirstFragment_zakazi.onSomeEventListener) context;
+                someEventListener = (FirstFragment_myshopslist.onSomeEventListener) context;
             }
         }
         catch (ClassCastException e)
@@ -50,9 +50,9 @@ public class FirstFragment_zakazi extends Fragment {
 
 
     // newInstance constructor for creating fragment with arguments
-    public static FirstFragment_zakazi newInstance(int page, String title ) {
+    public static FirstFragment_myshopslist newInstance(int page, String title ) {
 
-        FirstFragment_zakazi fragmentFirst = new FirstFragment_zakazi();
+        FirstFragment_myshopslist fragmentFirst = new FirstFragment_myshopslist();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
@@ -81,7 +81,7 @@ public class FirstFragment_zakazi extends Fragment {
       //  myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
         LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
         messages.setLayoutManager(linearLayoutManager);
-        messages.setAdapter(test_shop_typs_singl.getInstance().getmAdapter_service_type());
+        messages.setAdapter(test_shop_typs_singl.getInstance().getmAdapter_myshops_list());
 
         ItemClickSupport.addTo(messages).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override

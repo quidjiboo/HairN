@@ -13,6 +13,8 @@ import ru.akov.hairn.R;
 
 public class test_shop_typs_singl {
     private myfirebaseRecyclAdapter mAdapter_service_type;
+    private myfirebaseRecyclAdapter mAdapter_my_shops;
+    private DatabaseReference my_shops_ref;
     private DatabaseReference shop_typs_ref;
     private DatabaseReference zakazi_my_shop;
     private My_app app;
@@ -36,6 +38,11 @@ public class test_shop_typs_singl {
             mAdapter_service_type = new myfirebaseRecyclAdapter(String.class, R.layout.item_tile,MyHolder.class, shop_typs_ref,app.getContext());
         return mAdapter_service_type;
     }
+    public myfirebaseRecyclAdapter getmAdapter_myshops_list() {
+        if(mAdapter_my_shops ==null)
+            mAdapter_my_shops = new myfirebaseRecyclAdapter(String.class, R.layout.item_tile,MyHolder.class, my_shops_ref,app.getContext());
+        return mAdapter_my_shops;
+    }
     public void cleanadapter(){
         Log.d("Фрагмент", "отсоединил слушателя адпетр");
         mAdapter_service_type.cleanup();
@@ -43,6 +50,7 @@ public class test_shop_typs_singl {
 
     test_shop_typs_singl(My_app appl){
           app = appl;
+        my_shops_ref=app.getmDatabase().child("users").child(app.getauth().getCurrentUser().getUid()).child("myshops");
         shop_typs_ref = app.getmDatabase().child("shops_types");
         mAdapter_service_type = new myfirebaseRecyclAdapter(String.class, R.layout.item_tile,MyHolder.class, shop_typs_ref,app.getContext());
     }

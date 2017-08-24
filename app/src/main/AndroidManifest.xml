@@ -20,12 +20,16 @@
             android:name=".Date_chooser_main"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
+        <!--<activity
             android:name=".chooser_service_to_date.Activity_choose_service"
+            android:label="@string/title_activity_test_choser"
+            android:theme="@style/NoActionBarThemeMyThem" />-->
+        <activity
+            android:name=".main_window_client.Activity_main_choosing_tabs"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/NoActionBarThemeMyThem" />
         <activity
-            android:name=".main_window_client.Activity_main_choosing_tabs"
+            android:name=".main_window_shop.Activity_main_shop_tabs"
             android:label="@string/title_activity_test_choser"
             android:theme="@style/NoActionBarThemeMyThem" />
         <activity

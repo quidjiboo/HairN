@@ -2,17 +2,11 @@ package ru.akov.hairn.main_window_shop;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.util.Log;
 
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.helpers.SmartFragmentStatePagerAdapter;
-import ru.akov.hairn.main_window_client.FirstFragment_Select_Service_Type;
-import ru.akov.hairn.main_window_client.Fragment_Select_Currect_Services;
 import ru.akov.hairn.main_window_client.SecondFragment;
-import ru.akov.hairn.main_window_client.Sing_tone_choosings;
 import ru.akov.hairn.main_window_client.ThirdFragment;
-import ru.akov.hairn.main_window_client.data_pick_fragment.DatePickerFragment;
-import ru.akov.hairn.main_window_client.zakaz_fragment.ZakazFragment;
 
 /**
  * Created by Alexandr on 12.06.2017.
@@ -42,22 +36,22 @@ MyPagerAdapter_for_shop extends SmartFragmentStatePagerAdapter {
 
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment_Select_Service_Type
-            {
-                if(app.getFragmentname().contains("0")){
-                     return  FirstFragment_Select_Service_Type.newInstance(0, "Page # 1");}
+            { return FirstFragment_myshopslist.newInstance(0, "Page # 1");
+               /* if(app.getFragmentname().contains("0")){
+                     return  FirstFragment_myshopslist.newInstance(0, "Page # 1");}
                 if(app.getFragmentname().contains("1")){
                     Log.d("ХУЙНЯ",Sing_tone_choosings.getInstance().getTypes_of_shops());
                 return  Fragment_Select_Currect_Services.newInstance(0, "Page # 2",Sing_tone_choosings.getInstance().getTypes_of_shops());}
                 if(app.getFragmentname().contains("2")){
                     return  DatePickerFragment.newInstance(0, "Page # 3");}
                 if(app.getFragmentname().contains("3")){
-                    return  ZakazFragment.newInstance(0, "Page # 4");}
+                    return  ZakazFragment.newInstance(0, "Page # 4");}*/
             }
 
             case 1: // Fragment # 0 - This will show FirstFragment_Select_Service_Type different title
-                return SecondFragment.newInstance(1, "Page # 1");
+                return SecondFragment.newInstance(1, "Page # 34");
             case 2: // Fragment # 1 - This will show SecondFragment
-                return ThirdFragment.newInstance(2, "Page # 1");
+                return ThirdFragment.newInstance(2, "Page #56561");
             default:
                 return null;
         }
