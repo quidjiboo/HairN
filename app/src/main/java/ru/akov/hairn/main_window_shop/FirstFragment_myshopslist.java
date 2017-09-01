@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import ru.akov.hairn.R;
 import ru.akov.hairn.helpers.ItemClickSupport;
-import ru.akov.hairn.main_window_client.Sing_tone_choosings;
 import ru.akov.hairn.main_window_client.myfirebaseRecyclAdapter;
 import ru.akov.hairn.main_window_client.test_shop_typs_singl;
 
@@ -86,15 +85,11 @@ public class FirstFragment_myshopslist extends Fragment {
         ItemClickSupport.addTo(messages).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                /*Log.d("dsfsd","sdfsdfsdhgfhgfhgf");
-                Log.d("dsfdsf", ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position));
-                Log.d("d1112344f",   ((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey().toString());*/
-                Sing_tone_choosings.getInstance().add_types_of_shops(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
-                Log.d("d1112344f",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey()));
-             Log.d("d1112344f",Sing_tone_choosings.getInstance().getTypes_of_shops());
-               // app.setCurrentservice(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
-                someEventListener.someEvent("1");
-                // do it
+
+                Shop_singltone.getInstance().add_data(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
+                Log.d("d1112344f",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position)));
+             //   Log.d("d1112344f",   ((TextView)v.findViewById(R.id.textViewvalue).);
+
             }
         });
         return view;

@@ -24,7 +24,7 @@ public class myfirebaseRecyclAdapter extends FirebaseRecyclerAdapter <String, My
 
         Log.d(TAG,"НУ ЧТО БЫ ВИДНО БЛЫО " + getRef(position).getKey().toString());
         viewHolder.recipeName.setText(getRef(position).getKey().toString());
-
+        viewHolder.recipevalue.setText(model);
 
     }
 
