@@ -19,7 +19,7 @@ import ru.akov.hairn.main_window_client.test_shop_typs_singl;
 public class My_app extends Application {
     //ВЫНЕСТИ В СИНГЛ ТОН В АКТИВИТИ!!! ВМЕСТО С ССЫЛКАМИ НА БАЗУ!
     private String fragmentname  = "0";
-
+    private String fragmentshopname  = "0";
 
 
 
@@ -112,6 +112,13 @@ public void createmAuthListener () {
 
     public void setFragmentname(String fragmentname) {
         this.fragmentname = fragmentname;
+    }
+    public String getshopFragmentname() {
+        return fragmentshopname;
+    }
+
+    public void setshopFragmentname(String fragmentshopname) {
+        this.fragmentshopname = fragmentshopname;
     }
 
 }

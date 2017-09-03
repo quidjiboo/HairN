@@ -23,7 +23,7 @@ import ru.akov.hairn.main_window_client.CustomViewPager;
  * Created by User on 01.06.2017.
  */
 
-public class Activity_main_shop_tabs extends AppCompatActivity  implements FirstFragment_myshopslist.onSomeEventListener
+public class Activity_main_shop_tabs extends AppCompatActivity  implements FirstFragment_myshopslist.onSomeEventListener, SecondFragment_myshopzakazllist.onSomeEventListener1
         {
     final static String TAG = "MAIN_ACTIVITY";
     private  Toolbar toolbar;
@@ -125,6 +125,16 @@ public class Activity_main_shop_tabs extends AppCompatActivity  implements First
 
             @Override
             public void someEvent(String fragmentnumber) {
+                viewPager.setPagingEnabled(true);
+                toolbar.setCollapsible(true);
+                tabs.setVisibility(View.VISIBLE);
+                String fn= fragmentnumber;
+                app.setFragmentname(fn);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void someEvent1(String fragmentnumber) {
 
             }
         }

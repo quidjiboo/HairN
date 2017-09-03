@@ -27,7 +27,10 @@ public class Shop_singltone {
 
     }
 
-
+    public   String getcurid_shop() {
+        Log.v("AKOV",curid_shop + " ghgfhgf");
+return  curid_shop;
+    }
     public   void Show_data() {
         Log.v("AKOV",curid_shop + " ghgfhgf");
 

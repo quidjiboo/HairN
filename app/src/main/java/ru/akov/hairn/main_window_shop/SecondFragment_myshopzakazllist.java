@@ -20,16 +20,16 @@ import ru.akov.hairn.main_window_client.test_shop_typs_singl;
  * Created by Alexandr on 12.06.2017.
  */
 
-public class FirstFragment_myshopslist extends Fragment {
+public class SecondFragment_myshopzakazllist extends Fragment {
 
     // Store instance variables
     private String title;
     private int page;
-    private onSomeEventListener someEventListener;
+    private onSomeEventListener1 someEventListener;
 
 
-    public interface onSomeEventListener {
-        public void someEvent(String fragmentnumber);
+    public interface onSomeEventListener1 {
+        public void someEvent1(String fragmentnumber);
     }
     @Override
     public void onAttach(Context context) {
@@ -38,7 +38,7 @@ public class FirstFragment_myshopslist extends Fragment {
             Activity activity;
             if (context instanceof Activity){
                 activity=(Activity) context;
-                someEventListener = (FirstFragment_myshopslist.onSomeEventListener) context;
+                someEventListener = (SecondFragment_myshopzakazllist.onSomeEventListener1) context;
             }
         }
         catch (ClassCastException e)
@@ -49,9 +49,9 @@ public class FirstFragment_myshopslist extends Fragment {
 
 
     // newInstance constructor for creating fragment with arguments
-    public static FirstFragment_myshopslist newInstance(int page, String title ) {
+    public static SecondFragment_myshopzakazllist newInstance(int page, String title ) {
 
-        FirstFragment_myshopslist fragmentFirst = new FirstFragment_myshopslist();
+        SecondFragment_myshopzakazllist fragmentFirst = new SecondFragment_myshopzakazllist();
         Bundle args = new Bundle();
         args.putInt("someInt", page);
         args.putString("someTitle", title);
@@ -87,9 +87,9 @@ public class FirstFragment_myshopslist extends Fragment {
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
 
                 Shop_singltone.getInstance().add_data(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
-                Log.d("d1112344f",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position)));
+                Log.d("SECONDFRAGMENT",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position)));
              //   Log.d("d1112344f",   ((TextView)v.findViewById(R.id.textViewvalue).);
-                someEventListener.someEvent("1");
+                someEventListener.someEvent1("1");
 
             }
         });
