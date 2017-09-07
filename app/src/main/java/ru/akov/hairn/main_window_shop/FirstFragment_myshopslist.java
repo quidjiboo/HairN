@@ -89,6 +89,7 @@ public class FirstFragment_myshopslist extends Fragment {
                 Shop_singltone.getInstance().add_data(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
                 Log.d("d1112344f",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position)));
              //   Log.d("d1112344f",   ((TextView)v.findViewById(R.id.textViewvalue).);
+                //TODO ТОТОТОТОТОТОТ
                 someEventListener.someEvent("1");
 
             }

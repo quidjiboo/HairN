@@ -80,7 +80,7 @@ public class SecondFragment_myshopzakazllist extends Fragment {
       //  myfirebaseRecyclAdapter mAdapter = new myfirebaseRecyclAdapter(String.class,R.layout.item_tile,MyHolder.class,m_ref_test,getContext());
         LinearLayoutManager    linearLayoutManager = new LinearLayoutManager(getActivity());
         messages.setLayoutManager(linearLayoutManager);
-        messages.setAdapter(test_shop_typs_singl.getInstance().getmAdapter_myshops_list());
+        messages.setAdapter(test_shop_typs_singl.getInstance().getmAdapter_inmyshops_list_zakazi());
 
         ItemClickSupport.addTo(messages).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
