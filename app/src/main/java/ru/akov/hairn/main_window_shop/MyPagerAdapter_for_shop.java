@@ -17,7 +17,7 @@ public  class
 MyPagerAdapter_for_shop extends SmartFragmentStatePagerAdapter {
     private My_app app;
 
-    private static int NUM_ITEMS = 3;
+    private static int NUM_ITEMS1 = 3;
 
     public MyPagerAdapter_for_shop(FragmentManager fragmentManager, My_app app) {
 
@@ -28,7 +28,7 @@ MyPagerAdapter_for_shop extends SmartFragmentStatePagerAdapter {
     // Returns total number of pages
     @Override
     public int getCount() {
-        return NUM_ITEMS;
+        return NUM_ITEMS1;
     }
 
     // Returns the fragment to display for that page
@@ -38,9 +38,9 @@ MyPagerAdapter_for_shop extends SmartFragmentStatePagerAdapter {
         switch (position) {
             case 0: // Fragment # 0 - This will show FirstFragment_Select_Service_Type
             { // return FirstFragment_myshopslist.newInstance(0, "Page # 1");
-               if(app.getFragmentname().contains("0")){
+               if(app.getshopFragmentname().contains("0")){
                      return  FirstFragment_myshopslist.newInstance(0, "Page # 1");}
-                if(app.getFragmentname().contains("1")){
+                if(app.getshopFragmentname().contains("1")){
                     Log.d("ХУЙНЯ",Shop_singltone.getInstance().getcurid_shop());
                 return  SecondFragment_myshopzakazllist.newInstance(0, "Page # 2");}
                /*  if(app.getFragmentname().contains("2")){

@@ -23,7 +23,7 @@ import ru.akov.hairn.main_window_client.CustomViewPager;
  * Created by User on 01.06.2017.
  */
 
-public class Activity_main_shop_tabs extends AppCompatActivity  implements FirstFragment_myshopslist.onSomeEventListener, SecondFragment_myshopzakazllist.onSomeEventListener1
+public class Activity_main_shop_tabs extends AppCompatActivity  implements FirstFragment_myshopslist.onSomeEventListener, SecondFragment_myshopzakazllist.onSomeEventListener12
         {
     final static String TAG = "MAIN_ACTIVITY";
     private  Toolbar toolbar;
@@ -84,6 +84,7 @@ public class Activity_main_shop_tabs extends AppCompatActivity  implements First
                         .setAction("Action", null).show();
             }
         });
+        app.setshopFragmentname("0");
     }
     @Override
     public void onBackPressed() {
@@ -129,7 +130,7 @@ public class Activity_main_shop_tabs extends AppCompatActivity  implements First
                 toolbar.setCollapsible(true);
                 tabs.setVisibility(View.VISIBLE);
                 String fn= fragmentnumber;
-                app.setFragmentname(fn);
+                app.setshopFragmentname(fn);
                 adapter.notifyDataSetChanged();
             }
 

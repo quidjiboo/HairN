@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference;
 import ru.akov.hairn.Data_tipes.Zakaz_shop_second_fragment;
 import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
+import ru.akov.hairn.main_window_shop.MyHolder_zakazi;
 import ru.akov.hairn.main_window_shop.myfirebaseRecyclAdapter_zakazi_shop;
 
 /**
@@ -55,7 +56,7 @@ public class test_shop_typs_singl {
     }
     public myfirebaseRecyclAdapter_zakazi_shop getmAdapter_inmyshops_list_zakazi() {
         if(mAdapter_my_shops_zakazi ==null)
-            mAdapter_my_shops_zakazi = new myfirebaseRecyclAdapter_zakazi_shop(Zakaz_shop_second_fragment.class, R.layout.item_tile,MyHolder.class, my_shops_ref);
+            mAdapter_my_shops_zakazi = new myfirebaseRecyclAdapter_zakazi_shop(Zakaz_shop_second_fragment.class, R.layout.item_tile,MyHolder_zakazi.class, zakazi_my_shop);
         return mAdapter_my_shops_zakazi;
     }
     public void cleanadapter(){
@@ -65,12 +66,15 @@ public class test_shop_typs_singl {
 
     test_shop_typs_singl(My_app appl){
           app = appl;
-
-        zakazi_my_shop=app.getmDatabase().child(current_tipe_of_shop).child(current_shop_id).child("zakazi");
+        zakazi_my_shop=app.getmDatabase().child("barbershops").child("-KolDBkidNrRySkXn5Oh").child("zakazi");
+     //   zakazi_my_shop=app.getmDatabase().child(current_tipe_of_shop).child(current_shop_id).child("zakazi");
         my_shops_ref=app.getmDatabase().child("users").child(app.getauth().getCurrentUser().getUid()).child("myshops");
         shop_typs_ref = app.getmDatabase().child("shops_types");
         mAdapter_service_type = new myfirebaseRecyclAdapter(String.class, R.layout.item_tile,MyHolder.class, shop_typs_ref,app.getContext());
     }
+
+    //TODO
+    //блин вот это не забыть релаизовать!!!
     public void set_zakazi_my_shop (String typeofshop, String key) {
         typeofshop = "barbershops";
         key = "-KolDBkidNrRySkXn5Oh";

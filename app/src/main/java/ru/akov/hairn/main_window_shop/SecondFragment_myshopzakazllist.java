@@ -25,10 +25,10 @@ public class SecondFragment_myshopzakazllist extends Fragment {
     // Store instance variables
     private String title;
     private int page;
-    private onSomeEventListener1 someEventListener;
+    private onSomeEventListener12 someEventListener;
 
 
-    public interface onSomeEventListener1 {
+    public interface onSomeEventListener12 {
         public void someEvent1(String fragmentnumber);
     }
     @Override
@@ -38,7 +38,7 @@ public class SecondFragment_myshopzakazllist extends Fragment {
             Activity activity;
             if (context instanceof Activity){
                 activity=(Activity) context;
-                someEventListener = (SecondFragment_myshopzakazllist.onSomeEventListener1) context;
+                someEventListener = (SecondFragment_myshopzakazllist.onSomeEventListener12) context;
             }
         }
         catch (ClassCastException e)
