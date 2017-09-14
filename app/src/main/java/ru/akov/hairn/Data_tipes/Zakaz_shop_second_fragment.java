@@ -32,7 +32,7 @@ public class Zakaz_shop_second_fragment {
         this.clock = clock;
         this.status = status;
     }
-    public String geclienid() {
+    public String getclienid() {
         return clienid;
     }
     public String getmagazinid() {

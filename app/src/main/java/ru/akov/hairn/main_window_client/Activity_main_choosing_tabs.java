@@ -200,7 +200,7 @@ fab.show();
                 app.setFragmentname("0");
                 adapter.notifyDataSetChanged();
                 Zakaz_fragment zak = new Zakaz_fragment(
-                        app.getauth().getCurrentUser().toString(),
+                        app.getauth().getCurrentUser().getUid().toString(),
                         Sing_tone_choosings.getInstance().getShopid(),
                         "mail",
                         "name",

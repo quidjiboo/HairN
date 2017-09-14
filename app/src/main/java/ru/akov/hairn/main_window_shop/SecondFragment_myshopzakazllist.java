@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import ru.akov.hairn.R;
 import ru.akov.hairn.helpers.ItemClickSupport;
-import ru.akov.hairn.main_window_client.myfirebaseRecyclAdapter;
 import ru.akov.hairn.main_window_client.test_shop_typs_singl;
 
 /**
@@ -86,10 +85,12 @@ public class SecondFragment_myshopzakazllist extends Fragment {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
 
-                Shop_singltone.getInstance().add_data(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
-                Log.d("SECONDFRAGMENT",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position)));
+//                Shop_singltone.getInstance().add_data(((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getRef(position).getKey());
+           //     Log.d("SECONDFRAGMENT",   (((myfirebaseRecyclAdapter) recyclerView.getAdapter()).getItem(position)));
              //   Log.d("d1112344f",   ((TextView)v.findViewById(R.id.textViewvalue).);
-                someEventListener.someEvent1("1");
+             //   someEventListener.someEvent1("1");
+                Log.d("SHOPSECONDFRAGMENT",(((myfirebaseRecyclAdapter_zakazi_shop) recyclerView.getAdapter()).getItem(position).getclienid()));
+
 
             }
         });
