@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import ru.akov.hairn.My_app;
 import ru.akov.hairn.R;
 import ru.akov.hairn.helpers.ItemClickSupport;
 import ru.akov.hairn.main_window_client.test_shop_typs_singl;
@@ -25,7 +26,7 @@ public class SecondFragment_myshopzakazllist extends Fragment {
     private String title;
     private int page;
     private onSomeEventListener12 someEventListener;
-
+    private My_app app;
 
     public interface onSomeEventListener12 {
         public void someEvent1(String fragmentnumber);
@@ -64,6 +65,7 @@ public class SecondFragment_myshopzakazllist extends Fragment {
         super.onCreate(savedInstanceState);
         page = getArguments().getInt("someInt", 0);
         title = getArguments().getString("someTitle");
+        app = ((My_app) getActivity().getApplicationContext());
     }
 
     // Inflate the view for the fragment based on layout XML
@@ -90,7 +92,10 @@ public class SecondFragment_myshopzakazllist extends Fragment {
              //   Log.d("d1112344f",   ((TextView)v.findViewById(R.id.textViewvalue).);
              //   someEventListener.someEvent1("1");
                 Log.d("SHOPSECONDFRAGMENT",(((myfirebaseRecyclAdapter_zakazi_shop) recyclerView.getAdapter()).getItem(position).getclienid()));
+                String zakazkey =  ((myfirebaseRecyclAdapter_zakazi_shop) recyclerView.getAdapter()).getRef(position).getKey();
+                String clientd =((myfirebaseRecyclAdapter_zakazi_shop) recyclerView.getAdapter()).getItem(position).getclienid();
 
+       Zakaz_accepted_fromshopfragment._accept_zakaz("barbershops",app.getmDatabase(),app.getauth().getCurrentUser(), clientd,zakazkey, "-KolDBkidNrRySkXn5Oh");
 
             }
         });
